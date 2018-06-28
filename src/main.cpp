@@ -22,7 +22,6 @@
  *
  * Libraries
  * - termcolor (for terminal colour and fonts: http://termcolor.readthedocs.io/)
- * - gtkmm (for GTKSlide: https://www.gtkmm.org/)
  *
  * Reasources
  * - cpprefrence (https://www.cppreference.com)
