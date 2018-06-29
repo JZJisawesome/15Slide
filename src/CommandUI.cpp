@@ -324,7 +324,7 @@ void CommandUI::displayHelp()
     cout << "disable\tstr\tDisables the specified option" << "\n";
     cout << endl;
 
-    cout << "about\t\tCool stuff about 15Slide and credits" << "\n";
+    cout << "about\t\tCool stuff about 15Slide" << "\n";
     cout << "exit\t\tExit 15Slide" << "\n";
     cout << endl;
 }
@@ -340,16 +340,16 @@ void CommandUI::displayAbout()
     cout << termcolor::reset;
     cout << endl;
 
-    cout << "15Slide is a fun slidy-tile game developed by JZJisawesome in 2017, written in the C++ programming language." << "\n";
+    cout << "15Slide is a fun slidy-tile game developed in 2017, written with the C++ 17 programming language." << "\n";
     cout << endl;
 
-    cout << "Thanks to the Termcolor project for colour and fonts: ";
-    cout << "http://termcolor.readthedocs.io/" << "\n";
+    cout << "To contribute, learn about used libraries and much more, go to: ";
+    cout << "https://github.com/JZJisawesome/15Slide" << "\n";
     cout << endl;
 
     cout << termcolor::underline;
-    cout << "Build Info";
-    cout << termcolor::reset << "\n";
+    cout << "Build Info" << "\n";
+    cout << termcolor::reset;
     cout << endl;
 
     cout << termcolor::reverse << termcolor::bold;

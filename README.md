@@ -1,5 +1,6 @@
 # 15Slide
 A cross-platform(ish) slidy-tile game written with C++17!
+
 ![15Slide in the terminal](https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png "15Slide in the terminal")
 ## Building
 ### Linux (not done)

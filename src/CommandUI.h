@@ -65,7 +65,7 @@
  *      </tr>
  *      <tr>
  *          <td>about</td>
- *          <td>Cool stuff about 15Slide and credits</td>
+ *          <td>Cool stuff about 15Slide</td>
  *      </tr>
  *      <tr>
  *          <td>exit</td>
@@ -102,8 +102,8 @@ private:
 
     void handleDebug (const std::string &inputtedLine);
 
-    /* Grid Management */
 
+    /* Grid Management */
     std::string defaultSaveFile {""};///<The savefile to use for autoSaving, found during CommandUI::saveGame or CommandUI::loadGame
     void saveGame(const std::string &saveFile, const Grid15::Grid &grid);
     void loadGame(const std::string &saveFile, Grid15::Grid &grid);
