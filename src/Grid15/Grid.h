@@ -58,4 +58,4 @@ public:
     };
 };
 }
-#endif // GRID_H
+#endif //GRID_H

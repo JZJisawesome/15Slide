@@ -65,7 +65,7 @@
  *      </tr>
  *      <tr>
  *          <td>about</td>
- *          <td>Cool stuff about 15Slide and credits</td>
+ *          <td>Cool stuff about 15Slide</td>
  *      </tr>
  *      <tr>
  *          <td>exit</td>
@@ -76,14 +76,14 @@
 class CommandUI
 {
 public:
-    /* Command Handeling*/
+    /* Command Handling */
     void start(Grid15::Grid &grid);//start the ui
 
-    void handleCommand(const std::string &inputedLine, Grid15::Grid &grid);
+    void handleCommand(const std::string &inputtedLine, Grid15::Grid &grid);
 
 
-    /* Grid Management*/
-    static void printGrid(std::array<std::array<std::uint8_t, 4>, 4> grid);
+    /* Grid Management */
+    static void printGrid(Grid15::Grid::gridArray_t grid);
     static void printGrid(const Grid15::Grid &grid);
 
 private:
@@ -102,8 +102,8 @@ private:
 
     void handleDebug (const std::string &inputtedLine);
 
-    /* Grid Management */
 
+    /* Grid Management */
     std::string defaultSaveFile {""};///<The savefile to use for autoSaving, found during CommandUI::saveGame or CommandUI::loadGame
     void saveGame(const std::string &saveFile, const Grid15::Grid &grid);
     void loadGame(const std::string &saveFile, Grid15::Grid &grid);
@@ -111,7 +111,7 @@ private:
     void swapTile(const std::int64_t tile, Grid15::Grid &grid);
 
 
-    /* Command Handeling*/
+    /* Command Handling */
     bool wantsToExit {false};///<Whether the user wants to exit or not; used internally to exit CommandUI::start
     enum class command;
 

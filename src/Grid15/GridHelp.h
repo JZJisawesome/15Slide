@@ -44,4 +44,4 @@ void load(const std::string &saveFile, Grid &grid);
 void reIndex(Grid &grid);
 }
 }
-#endif // GRIDHELP_H
+#endif //GRIDHELP_H
