@@ -12,7 +12,6 @@ namespace Grid15
  *
  * \brief Manages storage, initialization, movement of tiles, and saving/loading of a grid
  *
- * \author JZJisawesome
  * \date 2017-2018
  *
  * \deprecated Use Grid and GridHelp instead

@@ -51,7 +51,6 @@
 
 /** \brief 15Slide main loop
  *
- * \author JZJisawesome
  * \date 2017-2018
 **/
 int main(int argc, char *argv[])

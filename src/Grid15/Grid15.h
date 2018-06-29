@@ -9,7 +9,6 @@
  *
  * \brief Contains the game engine for 15Slide; the actual Grid and management tools
  *
- * \author JZJisawesome
  * \date 2018-2018
  */
 namespace Grid15 {}
