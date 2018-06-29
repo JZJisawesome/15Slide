@@ -279,30 +279,20 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
         9,  10, 11, 12,
         13, 14, 15, Grid::NO_TILE
     };
-
+    
     Grid::gridArray_t multiDimentional {};
+    copyGridArray(Grid::GOAL_GRID, multiDimentional);//so no exceptions on the first loop; reindexes too
 
-    //so the first loop run through does not throw exceptions
+    while (!solvableGrid(multiDimentional))
     const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
     std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
+    
 
     //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
             multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
-
-    while (!solvableGrid(multiDimentional))
-    {
-        const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
-        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
-
-
-        //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
-    }
 
     return multiDimentional;
 }
@@ -371,6 +361,8 @@ bool solvableGrid(const Grid15::Grid &grid)
                     }
                 }
 
+                std::cout << "Inversion Count: " << inv_count << std::endl;
+
                 return inv_count;
             }
         };
@@ -387,14 +379,6 @@ bool solvableGrid(const Grid15::Grid &grid)
         //without odd grid checking (N is always 4)
 
         std::cout << "X position: " << noTilePositionFromBottom(grid) << std::endl;
-
-        if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
-            std::cout << "Sovable:" << !(inversionCount(tempGrid) & 1) << std::endl;
-        else//if no tile row is even
-            std::cout << "Sovable:" << (inversionCount(tempGrid) & 1) << std::endl;
-
-        std::cout << "Inversion Count: " << inversionCount(tempGrid) << std::endl;
-
 
         if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
             return !(inversionCount(tempGrid) & 1);
