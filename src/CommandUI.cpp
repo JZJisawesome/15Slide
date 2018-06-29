@@ -20,7 +20,7 @@
 #include <exception>
 
 
-/* Command Handeling*/
+/* Command Handling */
 ///Commands
 enum class CommandUI::command
 {
@@ -60,11 +60,11 @@ const std::unordered_map<std::string, CommandUI::command> CommandUI::commandMap
 
 /** \brief The main loop for the CommandUI
  *
- * \param grid A Grid to use for the program
+ * \param grid A Grid to use
  */
 void CommandUI::start(Grid15::Grid &grid)
 {
-    std::string inputedLine {};
+    std::string inputtedLine {};
 
     while(!wantsToExit)
     {
@@ -75,9 +75,8 @@ void CommandUI::start(Grid15::Grid &grid)
             std::cout << "slide»";
         std::cout << termcolor::reset;
 
-        std::getline(std::cin, inputedLine);
-
-        handleCommand(inputedLine, grid);
+        std::getline(std::cin, inputtedLine);//this seems unnecessary and slow
+        handleCommand(inputtedLine, grid);
     }
 
     wantsToExit = {false};//reset the variable
@@ -85,12 +84,12 @@ void CommandUI::start(Grid15::Grid &grid)
 
 /** \brief Handles a command from the user and does something acordingly
  *
- * \param inputedLine The line to parse
+ * \param inputtedLine The line to parse
  * \param grid The Grid to change
  */
-void CommandUI::handleCommand(const std::string &inputedLine, Grid15::Grid &grid)
+void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &grid)
 {
-    std::stringstream argsStream{inputedLine};
+    std::stringstream argsStream{inputtedLine};
     std::int64_t tile {0};
 
     constexpr auto invalidSyntaxError
@@ -246,7 +245,7 @@ void CommandUI::handleCommand(const std::string &inputedLine, Grid15::Grid &grid
             break;
 
         case CommandUI::command::invalid://this might be triggered
-        default://this not really used, but to make compiler warnings stop
+        default://this not really used, but to make certain compiler warnings stop
 
             std::cerr << termcolor::bold << termcolor::red;
             std::cerr << "Sorry, but \"" << input << "\" is not a valid command. ";
@@ -277,9 +276,9 @@ void CommandUI::runDemo()
     cout << "Move the tiles agacient to the ";
     cout << termcolor::on_blue << termcolor::white;
     if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
-        cout << "X";
-    else
         cout << "◉◉◉";
+    else
+        cout << "X";
     cout << termcolor::reset;
     cout << " by typing a number and pressing enter." << "\n";
     cout << "You can save or load a game by typing \"save\" or \"load\" and the file name." << "\n";
@@ -340,15 +339,15 @@ void CommandUI::displayAbout()
     cout << termcolor::reset;
     cout << endl;
 
-    cout << "15Slide is a fun slidy-tile game developed in 2017, written with the C++ 17 programming language." << "\n";
+    cout << "15Slide is a fun, cross-platform(ish) slidy-tile game developed in 2017, with the C++ 17 programming language." << "\n";
     cout << endl;
 
-    cout << "To contribute, learn about used libraries and much more, go to: ";
+    cout << "To contribute, to learn about used libraries and for much more, go to: ";
     cout << "https://github.com/JZJisawesome/15Slide" << "\n";
     cout << endl;
 
     cout << termcolor::underline;
-    cout << "Build Info" << "\n";
+    cout << "Build Information" << "\n";
     cout << termcolor::reset;
     cout << endl;
 
@@ -391,7 +390,7 @@ void CommandUI::displayOptions()
     cout << endl;
 }
 
-/** \brief Handles an option string and sets the aproperiate option
+/** \brief Handles an option string and sets the appropriate option
  *
  * \param option The option string to set
  * \param optionSetting Turn it on or off
@@ -418,7 +417,7 @@ void CommandUI::handleOptions(const std::string &option, bool optionSetting)
 /** \brief Handles the debug commands. Only avaliable if ProgramStuff::Build::DEBUG equals true
  *
  * \param inputtedLine The arguments to parse
- * \throw std::exception If the user uses the "crash" command
+ * \throw std::runtime_error If the user uses the "crash" command
  */
 void CommandUI::handleDebug(const std::string& inputtedLine)
 {
@@ -442,7 +441,7 @@ void CommandUI::handleDebug(const std::string& inputtedLine)
             cout << "debug help\tDisplays a list of valid debugging commands" << "\n";
             cout << endl;
 
-            cout << "debug crash\tThrows an instance of std::exception, terminating 15Slide" << "\n";
+            cout << "debug crash\tThrows an instance of std::runtime_error, terminating 15Slide" << "\n";
             cout << endl;
         }
         else if (input == "crash")
@@ -471,7 +470,7 @@ void CommandUI::handleDebug(const std::string& inputtedLine)
  */
 void CommandUI::printGrid(const Grid15::Grid::gridArray_t gridArray)
 {
-    //we use printf here for speed, except for colour which uses ostream :(
+    //we use printf here for speed, except for termcolor which has to use ostream
 
     if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
     {
@@ -666,7 +665,7 @@ void CommandUI::swapTile(const std::int64_t tile, Grid15::Grid &grid)
         std::cout << std::endl;
         std::cout << termcolor::green << termcolor::bold << termcolor::blink;
         std::cout << "YOU WON!!!";
-        if constexpr (!ProgramStuff::OS::WINDOWS)
+        if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
             std::cout << "\xf0\x9f\x8f\x86";//trophy
         std::cout << "\n";
         std::cout << termcolor::reset;

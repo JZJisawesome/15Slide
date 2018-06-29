@@ -64,7 +64,7 @@ void swapTile(const std::uint8_t tileNum, Grid15::Grid &grid)
         grid.index[Grid::NO_TILE][1] = {tileY};
     }
     else
-        throw std::invalid_argument {"tileNum invalid!"};//not a valid move
+        throw std::invalid_argument {"tileNum or Grid invalid!"};//not a valid move
 }
 
 /** \brief Gets the tile at the given coordinates of a Grid
@@ -180,7 +180,7 @@ bool hasWon(const Grid& grid)
  */
 bool validGridArray(const Grid::gridArray_t &grid)
 {
-    std::array<std::uint8_t, 16> numCount {0};//start at 0//FIX TO SET ALL TO 0 MAYBE
+    std::array<std::uint8_t, 16> numCount {0};//start at 0//FIX TO SET ALL TO 0 (MAYBE NEEDED)
 
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
@@ -189,9 +189,10 @@ bool validGridArray(const Grid::gridArray_t &grid)
                 return false;//too high a number (out of bounds)
         }
 
+
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
-            numCount[grid[i][j]] += 1;//increment
+            numCount[grid[i][j]] += 1;//increment each number
 
     for (std::uint_fast32_t i {0}; i < 16; ++i)
     {
@@ -215,9 +216,6 @@ bool validIndex(const Grid::gridArray_t &grid, const Grid15::Grid::index_t &inde
     reIndex(tempGrid);//we can rely on this to throw std::invalid_argument
 
     return std::equal(std::begin(tempGrid.index), std::end(tempGrid.index), std::begin(index));
-
-    //else
-    //    throw std::invalid_argument {"Grid invalid!"};
 }
 
 /** \brief Copies a Grid. Better than Grid::setGrid because it ensures validation and also creates a new index
@@ -232,7 +230,7 @@ void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid)
     {
         grid.setGridArray(newGrid);
 
-        reIndex(grid);//also checks validGridArray; unavoidably but inneficient
+        reIndex(grid);//also checks validGridArray; unavoidable for now but inefficient
     }
     else
         throw std::invalid_argument {"Grid invalid!"};
@@ -261,17 +259,17 @@ void copyGrid(const Grid &newGrid, Grid &grid)
  */
 bool validGrid(const Grid& grid)
 {
-    return validGridArray(grid.gridArray) && validIndex(grid.gridArray, grid.index);//fixme valid grid arry is used in valid index (unnnessary)
+    return validGridArray(grid.gridArray) && validIndex(grid.gridArray, grid.index);//fixme validGridArray is used in valid index (unnnessary, but again unavoidable)
 }
 
-/** \brief Creates a new, random and valid grid array
+/** \brief Creates a new, random grid array
  *
- * \return A new grid
+ * \return A new grid array
  */
 Grid::gridArray_t generateRandomGridArray()
 {
-    //FIXME no single dimentional intermediary array
-    //otherwise only shuffles rows, not inside or in between
+    //FIXME get rid of single dimentional intermediary array
+    //we have to have it because otherwise std::shuffle only shuffles rows themselves, not inside or in between
     std::array<std::uint8_t, 16> tempGrid
     {
         1,  2,  3,  4,
@@ -280,13 +278,12 @@ Grid::gridArray_t generateRandomGridArray()
         13, 14, 15, Grid::NO_TILE
     };
 
-    //thanks to http://www.cplusplus.com/reference/algorithm/shuffle/
     const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
     std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
 
     Grid::gridArray_t multiDimentional {};
 
-    //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
+    //copy it to the actual game grid
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
             multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
@@ -295,7 +292,7 @@ Grid::gridArray_t generateRandomGridArray()
     return multiDimentional;
 }
 
-/** \brief Creates a new, random and valid Grid
+/** \brief Creates a new, random Grid
  *
  * \return A new Grid
  */
@@ -364,7 +361,7 @@ void load(const std::string& saveFile, Grid& grid)
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
         {
-            //FIXME extraction right into newGrid even though unsigned char
+            //FIXME extraction right into newGrid even though unsigned char (extract number not character)
             saveFileStream >> temp;
             newGridArray[i][j] = {static_cast<std::uint8_t> (temp)};
         }
@@ -379,7 +376,7 @@ void load(const std::string& saveFile, Grid& grid)
  * \param grid The Grid to change
  * \throw std::invalid_argument If the grid array is not valid
  */
-void reIndex(Grid& grid)//check for invalid
+void reIndex(Grid& grid)
 {
     if (validGridArray(grid.gridArray))
     {

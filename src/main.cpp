@@ -2,9 +2,9 @@
  *
  * \section welcome_sec Welcome!!!
  *
- * Welcome to 15Slide, a cross-platform(ish) slidy-tile game written with C++17!
+ * Welcome to 15Slide, a fun, cross-platform(ish) slidy-tile game written with C++17!
  *
- * To contribute, go to <a href="https://github.com/JZJisawesome/15Slide">https://github.com/JZJisawesome/15Slide</a>
+ * To contribute, to learn about used libraries and for much more, go to: <a href="https://github.com/JZJisawesome/15Slide">https://github.com/JZJisawesome/15Slide</a>
  *
  * \date 2017-2018
  */
