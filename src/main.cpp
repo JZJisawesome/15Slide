@@ -12,7 +12,7 @@
  *
  * - Grid15 classes are done except for more optomization
  * - CommandUI is pretty much done, except for more detailed parsing
- * - Spelling throuought needs work, and UTF-8 support with Windows builds needs fixing
+ * - Spelling throuought needs work (I am 14), and UTF-8 support with Windows builds needs fixing
  * - Better/more documentation
  * - Simplfy this page and move it to README.MD
  *
@@ -22,14 +22,12 @@
  *
  * Libraries
  * - termcolor (for terminal colour and fonts: http://termcolor.readthedocs.io/)
- * - gtkmm (for GTKSlide: https://www.gtkmm.org/)
  *
  * Reasources
  * - cpprefrence (https://www.cppreference.com)
  * - cplusplus (http://www.cplusplus.com/)
  * - Standard C++ Website (https://isocpp.org/)
  * - C++ 17 STL Cookbook by Jacek Galowicz in June 2017 (https://www.packtpub.com/application-development/c17-stl-cookbook)
- * - gtkmm Tutorial and Refrence (https://developer.gnome.org/gtkmm-tutorial/)
  * - Various forums (espically https://stackoverflow.com/)
  */
 
