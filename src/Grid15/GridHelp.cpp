@@ -320,9 +320,13 @@ Grid generateRandomGrid()
     return newGrid;
 }
 
-/** \brief Checks if a grid is solvable or not. Algorithms from https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+/** \brief Checks if a grid is solvable or not.
  *
- * FULL CREDIT TO https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * Portions of this function are someone else's code, and not bound by any 15Slide licences.
+ * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
+ * Accessed and modified 29 June 2018.
+ * Unknown author and code version.
+ * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
  *
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
@@ -337,9 +341,13 @@ bool solvableGrid(const Grid15::Grid::gridArray_t &gridArray)
     return solvableGrid(tempGrid);
 }
 
-/** \brief Checks if a grid is solvable or not. Algorithms from https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+/** \brief Checks if a grid is solvable or not.
  *
- * FULL CREDIT TO https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * Portions of this function are someone else's code, and not bound by any 15Slide licences.
+ * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
+ * Accessed and modified 29 June 2018.
+ * Unknown author and code version.
+ * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
  *
  * \param grid The Grid to check
  * \return If the Grid is  (index and/or grid array) or not
@@ -355,7 +363,7 @@ bool solvableGrid(const Grid15::Grid &grid)
             for (std::uint_fast32_t j {0}; j < 4; ++j)
                 tempGrid[(i * 4) + j] = {grid.gridArray[i][j]};
 
-        auto inversionCount//https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/ (but N is always 4)
+        auto inversionCount
         {
             [](const std::array<std::uint8_t, 16> arr)
             {
@@ -375,25 +383,13 @@ bool solvableGrid(const Grid15::Grid &grid)
             }
         };
 
-        auto noTilePositionFromBottom//uses Grid::index instead; faster
+        auto noTilePositionFromBottom//uses Grid::index instead of the borowed source code; already avaliable and a bit faster
         {
             [](const Grid15::Grid &aGrid)
             {
                 return 4 - aGrid.index[Grid15::Grid::NO_TILE][0];
             }
         };
-
-        //https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
-        //without odd grid checking (N is always 4)
-
-        std::cout << "X position: " << noTilePositionFromBottom(grid) << std::endl;
-
-        if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
-            std::cout << "Sovable:" << !(inversionCount(tempGrid) & 1) << std::endl;
-        else//if no tile row is even
-            std::cout << "Sovable:" << (inversionCount(tempGrid) & 1) << std::endl;
-
-        std::cout << "Inversion Count: " << inversionCount(tempGrid) << std::endl;
 
 
         if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
