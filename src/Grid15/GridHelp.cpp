@@ -26,7 +26,7 @@ namespace GridHelp
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid or not next to the no tile
  */
-void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid15::Grid &grid)
+void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
 {
     if (validMove(tileX, tileY, grid))
         swapTile(grid.gridArray[tileX][tileY], grid);//find tile to swap and pass grid to change
@@ -40,7 +40,7 @@ void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid15::Grid &
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid, not next to the no tile or the Grid is invalid
  */
-void swapTile(const std::uint8_t tileNum, Grid15::Grid &grid)
+void swapTile(const std::uint8_t tileNum, Grid &grid)
 {
     //original location of tile
     const std::uint8_t tileX {grid.index[tileNum][0]};
@@ -75,7 +75,7 @@ void swapTile(const std::uint8_t tileNum, Grid15::Grid &grid)
  * \return The tile
  * \throw std::out_of_range From std::array::at; if the coordinates are off the grid (see Grid::X_MAX, Grid::X_MIN, Grid::Y_MAX and Grid::Y_MIN)
  */
-uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid15::Grid &grid)
+uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid)
 {
     return grid.gridArray.at(tileX).at(tileY);//no need to do manual out of bounds checks with at()
 }
@@ -87,7 +87,7 @@ uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid15
  * \return The x coordinate
  * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
  */
-uint8_t getX(const std::uint8_t tileNum, const Grid15::Grid &grid)
+uint8_t getX(const std::uint8_t tileNum, const Grid &grid)
 {
     if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
         return grid.index[tileNum][0];
@@ -102,7 +102,7 @@ uint8_t getX(const std::uint8_t tileNum, const Grid15::Grid &grid)
  * \return The y coordinate
  * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
  */
-uint8_t getY(const std::uint8_t tileNum, const Grid15::Grid &grid)
+uint8_t getY(const std::uint8_t tileNum, const Grid &grid)
 {
     if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
         return grid.index[tileNum][1];
@@ -209,7 +209,7 @@ bool validGridArray(const Grid::gridArray_t &grid)
  * \return If the index is valid (true) or not (false)
  * \throw std::invalid_argument If the grid (not the index) is invalid
  */
-bool validIndex(const Grid::gridArray_t &grid, const Grid15::Grid::index_t &index)
+bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index)
 {
     Grid tempGrid {grid};
     reIndex(tempGrid);//we can rely on this to throw std::invalid_argument
@@ -332,7 +332,7 @@ Grid generateRandomGrid()
  * \return If the grid is solvable or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
  */
-bool solvableGrid(const Grid15::Grid::gridArray_t &gridArray)
+bool solvableGrid(const Grid::gridArray_t &gridArray)
 {
     Grid tempGrid {gridArray};
 
@@ -353,7 +353,7 @@ bool solvableGrid(const Grid15::Grid::gridArray_t &gridArray)
  * \return If the Grid is  (index and/or grid array) or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
  */
-bool solvableGrid(const Grid15::Grid &grid)
+bool solvableGrid(const Grid &grid)
 {
     if (validGrid(grid))
     {
