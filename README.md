@@ -1,12 +1,12 @@
 # 15Slide
 A cross-platform(ish) slidy-tile game written with C++17!
-[15Slide in the terminal](https://github.com/JZJisawesome/15Slide/raw/master/images/15Slide_terminal.png "15Slide in the terminal")
+[15Slide in the terminal](https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png "15Slide in the terminal")
 ## Building
 ### Linux
 1. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
 2. Install the gtkmm libraries for your distrubution (see [https://developer.gnome.org/gtkmm-tutorial/](https://developer.gnome.org/gtkmm-tutorial/))
 3. Checkout the 15 Slide, and put the termcolor folder in the src folder
-5. Run [//]: # (Not done)
+5. Run (Not done)
 ## Status and To Do
 * Grid15 classes are done except for more optomization
 * CommandUI is pretty much done, except for better parsing of invalid arguments and commands
@@ -21,11 +21,3 @@ A cross-platform(ish) slidy-tile game written with C++17!
 ### Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/))
-[//]: # (### Great Reasources)
-[//]: # (Not nessary; should remove)
-[//]: # (* cpprefrence ([https://www.cppreference.com/](https://www.cppreference.com/)))
-[//]: # (* cplusplus ([http://www.cplusplus.com/](http://www.cplusplus.com/)))
-[//]: # (* Standard C++ Website ([https://isocpp.org/](https://isocpp.org/)))
-[//]: # (* gtkmm Tutorial and Refrence ([https://developer.gnome.org/gtkmm-tutorial/](https://developer.gnome.org/gtkmm-tutorial/)))
-[//]: # (* C++ 17 STL Cookbook by Jacek Galowicz in June 2017 ([https://www.packtpub.com/application-development/c17-stl-cookbook/](https://www.packtpub.com/application-development/c17-stl-cookbook/)))
-[//]: # (* Various forums (espically [https://stackoverflow.com/](https://stackoverflow.com/)))
