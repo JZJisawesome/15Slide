@@ -9,7 +9,7 @@
 namespace Grid15
 {
 /* Grid Setup */
-///Creates a new Grid, leaving everything uninitinilized
+///Creates a new Grid, leaving everything uninitialized
 Grid::Grid() {}
 
 /** \brief Creates a new Grid and copies a grid array to it
@@ -38,8 +38,8 @@ Grid::Grid(const index_t &newIndex)
  */
 Grid::Grid(const gridArray_t &newGrid, const index_t &newIndex)
 {
-    setGridArray(newGrid);
-    setIndex(newIndex);
+    std::copy(std::begin(newGrid), std::end(newGrid), std::begin(gridArray));
+    std::copy(std::begin(newGrid.index), std::end(newGrid.index), std::begin(index));
 }
 
 /** \brief Creates and copies a new Grid

@@ -10,9 +10,8 @@ namespace Grid15
 {
 /** \class GridManager
  *
- * \brief Manages storage, initialization, movement of tiles, and saving/loading of a grid
+ * \brief Manages storage, initialization, movement of tiles, and saving/loading of a grid. DONT USE: IT'S DECPRECATED
  *
- * \author JZJisawesome
  * \date 2017-2018
  *
  * \deprecated Use Grid and GridHelp instead
@@ -87,4 +86,4 @@ private:
     void reIndex();
 };
 }
-#endif // GRIDMANAGER_H
+#endif //GRIDMANAGER_H

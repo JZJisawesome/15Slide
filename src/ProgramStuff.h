@@ -8,7 +8,6 @@
  *
  * \brief Information/options for use in 15Slide
  *
- * \author JZJisawesome
  * \date 2018-2018
 */
 namespace ProgramStuff

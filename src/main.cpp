@@ -2,33 +2,11 @@
  *
  * \section welcome_sec Welcome!!!
  *
- * Welcome to 15Slide, a cross-platform(ish) slidy-tile game written in C++!
+ * Welcome to 15Slide, a fun, cross-platform(ish) slidy-tile game written with C++17!
  *
+ * To contribute, to learn about used libraries and for much more, go to: <a href="https://github.com/JZJisawesome/15Slide">https://github.com/JZJisawesome/15Slide</a>
  *
- * \author JZJisawesome
  * \date 2017-2018
- *
- * \section status_sec Status
- *
- * - Grid15 classes are done except for more optomization
- * - CommandUI is pretty much done, except for more detailed parsing
- * - Spelling throuought needs work (I am 14), and UTF-8 support with Windows builds needs fixing
- * - Better/more documentation
- * - Simplfy this page and move it to README.MD
- *
- * \section credits_sec Credits, Libraries and Reasources
- * People (so far)
- * - JZJisawesome (14 as of 2018)
- *
- * Libraries
- * - termcolor (for terminal colour and fonts: http://termcolor.readthedocs.io/)
- *
- * Reasources
- * - cpprefrence (https://www.cppreference.com)
- * - cplusplus (http://www.cplusplus.com/)
- * - Standard C++ Website (https://isocpp.org/)
- * - C++ 17 STL Cookbook by Jacek Galowicz in June 2017 (https://www.packtpub.com/application-development/c17-stl-cookbook)
- * - Various forums (espically https://stackoverflow.com/)
  */
 
 
@@ -56,7 +34,6 @@
 
 /** \brief 15Slide main loop
  *
- * \author JZJisawesome
  * \date 2017-2018
 **/
 int main(int argc, char *argv[])

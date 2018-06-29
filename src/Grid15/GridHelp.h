@@ -12,7 +12,6 @@ namespace Grid15
 {
 /** \brief Helps with movement of tiles, saving/loading, and other management features for a Grid
  *
- * \author JZJisawesome
  * \date 2018-2018
  */
 namespace GridHelp
@@ -45,4 +44,4 @@ void load(const std::string &saveFile, Grid &grid);
 void reIndex(Grid &grid);
 }
 }
-#endif // GRIDHELP_H
+#endif //GRIDHELP_H
