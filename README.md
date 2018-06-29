@@ -10,7 +10,13 @@ A cross-platform(ish) slidy-tile game written with C++17!
 #### Cross-platform for Windows (to do)
 ### Windows (to do)
 ### macOS (to do)
-## Files and Folders (to do)
+## Files and Folders (not done)
+File/Folder|Description
+-----------|-----------
+images|Images of 15Slide in action
+src|15Slide source code
+CODE_OF_CONDUCT.md|The code of conduct for this project
+README.md|This file, with build instructions and much more
 ## Status and To Do
 * Grid15 classes are done except for more optomization
 * CommandUI is pretty much done, except for better parsing of invalid arguments and commands
