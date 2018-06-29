@@ -39,7 +39,7 @@ Grid::Grid(const index_t &newIndex)
 Grid::Grid(const gridArray_t &newGrid, const index_t &newIndex)
 {
     std::copy(std::begin(newGrid), std::end(newGrid), std::begin(gridArray));
-    std::copy(std::begin(newGrid.index), std::end(newGrid.index), std::begin(index));
+    std::copy(std::begin(newIndex), std::end(newIndex), std::begin(index));
 }
 
 /** \brief Creates and copies a new Grid
