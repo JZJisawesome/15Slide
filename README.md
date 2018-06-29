@@ -24,6 +24,7 @@ A cross-platform(ish) slidy-tile game written with C++17!
 * Testing for macOS (I don't have a mac of any kind)
 * More support for Windows in general
 * Choose a licence
+* Setup a code formating standard (probably ansi)
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/))
