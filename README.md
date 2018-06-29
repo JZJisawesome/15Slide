@@ -6,8 +6,7 @@ A cross-platform(ish) slidy-tile game written with C++17!
 ### Linux (not done)
 1. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
 2. Install the gtkmm libraries for your distrubution (see [https://developer.gnome.org/gtkmm-tutorial/](https://developer.gnome.org/gtkmm-tutorial/))
-3. Checkout the 15 Slide, and put the termcolor folder in the src folder
-5. Run
+3. 
 #### Cross-platform for Windows (to do)
 ### Windows (to do)
 ### macOS (to do)
