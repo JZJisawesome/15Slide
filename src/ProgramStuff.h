@@ -125,7 +125,7 @@ constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsi
 
 namespace Build
 {
-constexpr float SLIDE_VERSION   {0.5};      ///<15Slide Version
+constexpr float SLIDE_VERSION   {0.9};      ///<15Slide Version
 
 constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
