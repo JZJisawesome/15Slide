@@ -13,6 +13,7 @@ namespace GTKSlide
  *
  * \brief The main window of GTKSlide
  *
+ * \author John Jekel
  * \date 2018-2018
  */
 class MainWindow : public Gtk::Window

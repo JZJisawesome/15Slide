@@ -1,6 +1,8 @@
 #ifndef GUIGRID_H
 #define GUIGRID_H
 
+// author John Jekel
+
 #include "Grid15/Grid.h"
 
 #include <gtkmm.h>
