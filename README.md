@@ -2,14 +2,9 @@
 A cross-platform(ish) slidy-tile game written with C++17!
 
 ![15Slide in the terminal](https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png "15Slide in the terminal")
-## Building
+## Building 15Slide
 ### Linux (not done)
-1. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
-2. Install the gtkmm libraries for your distrubution (see [https://developer.gnome.org/gtkmm-tutorial/](https://developer.gnome.org/gtkmm-tutorial/))
-3. 
-#### Cross-platform for Windows (to do)
-### Windows (to do)
-### macOS (to do)
+Steps for your platform are probably avaliable [in the 15Slide wiki.](https://github.com/JZJisawesome/15Slide/wiki/Building-15Slide "Building 15Slide")
 ## Files and Folders (not done)
 File/Folder|Description
 -----------|-----------
