@@ -12,6 +12,7 @@ namespace Grid15
 {
 /** \brief Helps with movement of tiles, saving/loading, and other management features for a Grid
  *
+ * \author John Jekel 
  * \date 2018-2018
  */
 namespace GridHelp

@@ -8,6 +8,7 @@
  *
  * \brief Information/options for use in 15Slide
  *
+ * \author John Jekel
  * \date 2018-2018
 */
 namespace ProgramStuff
