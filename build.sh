@@ -1,5 +1,8 @@
 #!/bin/sh
 
+compiler=g++
+#compiler=clang++
+
 mkdir ./obj
 mkdir ./obj/Grid15
 g++ -Wall -fexceptions -std=c++1z -Og -g -Isrc -Iinclude -c ./src/CommandUI.cpp -o ./obj/CommandUI.o
