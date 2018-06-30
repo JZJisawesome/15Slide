@@ -10,7 +10,9 @@ File/Folder|Description
 images|Images of 15Slide in action
 src|15Slide source code
 CODE_OF_CONDUCT.md|The code of conduct for this project
+LICENCE|The licence for 15Slide (currently MIT)
 README.md|This file, with build instructions and much more
+build.sh|The build file for Linux
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/))
