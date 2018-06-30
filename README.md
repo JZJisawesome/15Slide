@@ -1,7 +1,7 @@
 # 15Slide
 A cross-platform(ish) slidy-tile game written with C++17!
 
-![15Slide in the terminal](https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png "15Slide in the terminal")
+<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
 ## Building 15Slide
 Steps for your platform are probably avaliable [in the 15Slide wiki.](https://github.com/JZJisawesome/15Slide/wiki/Building-15Slide "Building 15Slide")
 ## Files and Folders (not done)

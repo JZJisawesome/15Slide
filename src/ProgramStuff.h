@@ -118,6 +118,10 @@ constexpr bool CHEAT_MODE {false};///<Create a cheap grid each run
 constexpr bool USE_UTF8_TERMINAL {true && !OS::WINDOWS};///<Use UTF-8 throuought the program; not avaliable on Windows
 
 constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsii code
+  
+#ifndef __SLIDEWINDOWS
+#define GUI 1
+#endif
 
 namespace Build
 {
