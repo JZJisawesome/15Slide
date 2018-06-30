@@ -28,11 +28,6 @@
 
 #include <exception>
 
-#if defined(GUI)
-#include "GTKSlide/MainWindow.h"
-#include <gtkmm/application.h>
-#endif
-
 /** \brief 15Slide main loop
  *
  * \date 2017-2018
@@ -66,14 +61,7 @@ int main(int argc, char *argv[])
         std::cout << "15Slide" << "\n";
         std::cout << termcolor::reset;
         std::cout << std::endl;
-        
-#if defined(GUI)
-        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
-        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI
-
-        return application->run(window);
-#else
         std::cout << "Type \"help\" for a list of commands." << "\n";
         std::cout << termcolor::underline;
         std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
@@ -85,7 +73,6 @@ int main(int argc, char *argv[])
 
         CommandUI terminalUI {};
         terminalUI.start(*gameGrid);
-#endif
     }
     catch (std::exception &e)
     {
