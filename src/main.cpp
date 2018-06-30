@@ -6,7 +6,6 @@
  *
  * To contribute, to learn about used libraries and for much more, go to: <a href="https://github.com/JZJisawesome/15Slide">https://github.com/JZJisawesome/15Slide</a>
  *
- * \author John Jekel
  * \date 2017-2018
  */
 
