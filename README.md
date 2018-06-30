@@ -1,7 +1,7 @@
 # 15Slide
 A cross-platform(ish) slidy-tile game written with C++17!
 
-<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/>|<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/GTKSlide/images/GTKSlide.png" alt="GTKSlide"/>
+<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
 ## Building
 ### Linux (not done)
 1. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
