@@ -290,7 +290,7 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
             multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
 
-    while (!solvableGrid(multiDimentional))//it's fixed, but it is inefficient. We have to try to make this better before merging to master
+    while (!solvableGrid(multiDimentional))//it's fixed, but it is inefficient. We have to try to make this better in the fix-unsolvable-grid-generation branch
     {
         const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
         std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
