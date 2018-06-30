@@ -26,7 +26,7 @@ namespace GridHelp
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid or not next to the no tile
  */
-void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
+void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid15::Grid &grid)
 {
     if (validMove(tileX, tileY, grid))
         swapTile(grid.gridArray[tileX][tileY], grid);//find tile to swap and pass grid to change
@@ -40,7 +40,7 @@ void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid, not next to the no tile or the Grid is invalid
  */
-void swapTile(const std::uint8_t tileNum, Grid &grid)
+void swapTile(const std::uint8_t tileNum, Grid15::Grid &grid)
 {
     //original location of tile
     const std::uint8_t tileX {grid.index[tileNum][0]};
@@ -75,7 +75,7 @@ void swapTile(const std::uint8_t tileNum, Grid &grid)
  * \return The tile
  * \throw std::out_of_range From std::array::at; if the coordinates are off the grid (see Grid::X_MAX, Grid::X_MIN, Grid::Y_MAX and Grid::Y_MIN)
  */
-uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid)
+uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid15::Grid &grid)
 {
     return grid.gridArray.at(tileX).at(tileY);//no need to do manual out of bounds checks with at()
 }
@@ -87,7 +87,7 @@ uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &
  * \return The x coordinate
  * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
  */
-uint8_t getX(const std::uint8_t tileNum, const Grid &grid)
+uint8_t getX(const std::uint8_t tileNum, const Grid15::Grid &grid)
 {
     if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
         return grid.index[tileNum][0];
@@ -102,7 +102,7 @@ uint8_t getX(const std::uint8_t tileNum, const Grid &grid)
  * \return The y coordinate
  * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
  */
-uint8_t getY(const std::uint8_t tileNum, const Grid &grid)
+uint8_t getY(const std::uint8_t tileNum, const Grid15::Grid &grid)
 {
     if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
         return grid.index[tileNum][1];
@@ -210,7 +210,7 @@ bool validGridArray(const Grid::gridArray_t &grid)
  * \return If the index is valid (true) or not (false)
  * \throw std::invalid_argument If the grid (not the index) is invalid
  */
-bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index)
+bool validIndex(const Grid::gridArray_t &grid, const Grid15::Grid::index_t &index)
 {
     Grid tempGrid {grid};
     reIndex(tempGrid);//we can rely on this to throw std::invalid_argument
@@ -266,7 +266,7 @@ bool validGrid(const Grid& grid)
  *
  * \return A new grid array
  */
-Grid15::Grid::gridArray_t generateRandomGridArray()
+Grid::gridArray_t generateRandomGridArray()
 {
     //FIXME get rid of single dimentional intermediary array
     //we have to have it because otherwise std::shuffle only shuffles rows themselves, not inside or in between
@@ -277,30 +277,17 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
         9,  10, 11, 12,
         13, 14, 15, Grid::NO_TILE
     };
-  
-    Grid::gridArray_t multiDimentional {};
 
-    //so the first loop run through does not throw exceptions
     const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
     std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
+
+    Grid::gridArray_t multiDimentional {};
 
     //copy it to the actual game grid
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
             multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
-
-    while (!solvableGrid(multiDimentional))//it's fixed, but it is inefficient. We have to try to make this better in the fix-unsolvable-grid-generation branch
-    {
-        const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
-        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
-
-
-        //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
-    }
 
     return multiDimentional;
 }
@@ -316,87 +303,6 @@ Grid generateRandomGrid()
     reIndex(newGrid);
 
     return newGrid;
-}
-
-/** \brief Checks if a grid is solvable or not.
- *
- * Portions of this function are someone else's code.
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
- *
- * \param gridArray The grid array to check
- * \return If the grid is solvable or not
- * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
- */
-bool solvableGrid(const Grid::gridArray_t &gridArray)
-{
-    Grid tempGrid {gridArray};
-
-    reIndex(tempGrid);
-
-    return solvableGrid(tempGrid);
-}
-
-/** \brief Checks if a grid is solvable or not.
- *
- * Portions of this function are someone else's code.
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
- *
- * \param grid The Grid to check
- * \return If the Grid is  (index and/or grid array) or not
- * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
- */
-bool solvableGrid(const Grid &grid)
-{
-    if (validGrid(grid))
-    {
-        std::array<std::uint8_t, 16> tempGrid;
-
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                tempGrid[(i * 4) + j] = {grid.gridArray[i][j]};
-
-        auto inversionCount
-        {
-            [](const std::array<std::uint8_t, 16> arr)
-            {
-                int inv_count = 0;
-                for (int i = 0; i < 4 * 4 - 1; i++)
-                {
-                    for (int j = i + 1; j < 4 * 4; j++)
-                    {
-                        // count pairs(i, j) such that i appears
-                        // before j, but i > j.
-                        if (arr[j] && arr[i] && arr[i] > arr[j])
-                            inv_count++;
-                    }
-                }
-
-                return inv_count;
-            }
-        };
-
-        auto noTilePositionFromBottom//uses Grid::index instead of the borowed source code; already avaliable and a bit faster
-        {
-            [](const Grid15::Grid &aGrid)
-            {
-                return 4 - aGrid.index[Grid15::Grid::NO_TILE][0];
-            }
-        };
-
-
-        if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
-            return !(inversionCount(tempGrid) & 1);
-        else//if no tile row is even
-            return inversionCount(tempGrid) & 1;
-    }
-    else
-        throw std::invalid_argument {"Grid invalid!"};
 }
 
 /** \brief Saves a Grid to disk (not the index)

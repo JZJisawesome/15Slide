@@ -14,7 +14,6 @@
  *
  * \brief A UI for commands from the terminal for 15Slide
  *
- * \author John Jekel 
  * \date 2017-2018
  *
  * Valid Commands
