@@ -320,7 +320,7 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
- * Portions of this function are someone else's code.
+ * Portions of this function are someone else's code, and may not be bound by 15Slide licences
  * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
  * Accessed and modified 29 June 2018.
  * Unknown author and code version.
@@ -341,7 +341,7 @@ bool solvableGrid(const Grid::gridArray_t &gridArray)
 
 /** \brief Checks if a grid is solvable or not.
  *
- * Portions of this function are someone else's code.
+ * Portions of this function are someone else's code, and may not be bound by 15Slide licences
  * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
  * Accessed and modified 29 June 2018.
  * Unknown author and code version.
