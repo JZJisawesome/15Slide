@@ -15,7 +15,7 @@ README.md|This file, with build instructions and much more
 build.sh|The build file for Linux
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/))
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
 ## Thanks to...
 * My parents and family for their support
-* Various amazing snippets from websites (cites in code)
+* Amazing snippets from websites (cites in code, may not be bound by LICENCE.txt)
