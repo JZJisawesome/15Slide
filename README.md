@@ -13,7 +13,7 @@ File/Folder|Description
 [CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
 [LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide (currently MIT)
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file, with build instructions and much more
-[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build file for Linux
+[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
