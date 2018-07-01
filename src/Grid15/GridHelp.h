@@ -3,12 +3,13 @@
 #ifndef GRIDHELP_H
 #define GRIDHELP_H
 
+
 #include "Grid15/Grid.h"
 
 #include <cstdint>
-
 #include <string>
 #include <array>
+
 
 namespace Grid15
 {
