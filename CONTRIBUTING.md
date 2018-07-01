@@ -13,6 +13,6 @@ In the first and second line of all 15Slide source and header files, put:
 ## Including
 Including files (`#include`) should be done in this order, with spaces in between each section. Omit a step if no header of that type is used.
 1. The source file's header
-2. 15Slide headers
+2. 15Slide headers starting with ProgramStuff.h
 3. External library headers
 4. STL and C headers (use angle brackets and "c" headers (eg. `<cstdint>` instead of `<stdint.h>`))
