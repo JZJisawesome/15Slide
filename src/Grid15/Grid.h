@@ -1,9 +1,12 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #ifndef GRID_H
 #define GRID_H
 
-#include <cstdint>
 
+#include <cstdint>
 #include <array>
+
 
 namespace Grid15
 {
@@ -11,7 +14,7 @@ namespace Grid15
  *
  * \brief A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide
  *
- * \author John Jekel 
+ * \author John Jekel
  * \date 2018-2018
  */
 class Grid

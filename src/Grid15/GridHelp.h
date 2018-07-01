@@ -1,18 +1,21 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #ifndef GRIDHELP_H
 #define GRIDHELP_H
+
 
 #include "Grid15/Grid.h"
 
 #include <cstdint>
-
 #include <string>
 #include <array>
+
 
 namespace Grid15
 {
 /** \brief Helps with movement of tiles, saving/loading, and other management features for a Grid
  *
- * \author John Jekel 
+ * \author John Jekel
  * \date 2018-2018
  */
 namespace GridHelp

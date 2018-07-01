@@ -1,18 +1,19 @@
 # 15Slide
-A cross-platform(ish) slidy-tile game written with C++17!
+A fun, cross-platform(ish) slidy-tile game written with C++17!
 
 <img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
-## Building 15Slide
-Steps for your platform are probably avaliable [in the 15Slide wiki.](https://github.com/JZJisawesome/15Slide/wiki/Building-15Slide "Building 15Slide")
+## Installing or Building 15Slide
+Steps for your platform are probably avaliable [in the 15Slide wiki](https://github.com/JZJisawesome/15Slide/wiki "15Slide Wiki"). Go to the right pane and look for "Installing 15Slide."
 ## Files and Folders (not done)
 File/Folder|Description
 -----------|-----------
-images|Images of 15Slide in action
-src|15Slide source code
-CODE_OF_CONDUCT.md|The code of conduct for this project
-LICENCE|The licence for 15Slide (currently MIT)
-README.md|This file, with build instructions and much more
-build.sh|The build file for Linux
+[images](https://github.com/JZJisawesome/15Slide/tree/master/images)|Images and screenshots of 15Slide related stuff
+[src](https://github.com/JZJisawesome/15Slide/tree/master/src)|15Slide source code
+[CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
+[CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
+[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide (currently MIT)
+[README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file, with build instructions and much more
+[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch

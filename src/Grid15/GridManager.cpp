@@ -1,21 +1,21 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
+
+
 #include "GridManager.h"
+
 #include "ProgramStuff.h"
 
 #include <iostream>
 #include <istream>
 #include <cstdint>
-
 #include <fstream>
-
 #include <string>
 #include <array>
-
 #include <algorithm>
 #include <random>
 #include <chrono>
-
 #include <exception>
-
 //#include <execution>//include when supported finally
 
 
