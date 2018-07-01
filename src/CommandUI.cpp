@@ -1,24 +1,21 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
-#include "ProgramStuff.h"
+
 
 #include "CommandUI.h"
+
+#include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
 
 #include "termcolor/termcolor.hpp"
 
-
 #include <cstdint>
-
 #include <iostream>
 #include <cstdio>
-
 #include <string>
 #include <sstream>
-
 #include <array>
-
 #include <exception>
 
 

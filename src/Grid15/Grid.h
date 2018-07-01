@@ -3,9 +3,10 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <cstdint>
 
+#include <cstdint>
 #include <array>
+
 
 namespace Grid15
 {

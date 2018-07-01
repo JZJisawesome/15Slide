@@ -10,32 +10,27 @@
  *
  * \author John Jekel
  * \date 2017-2018
- * \copyright MIT License
+ * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">MIT License</a>
  */
 
 
 #include "ProgramStuff.h"
-
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
 #include "CommandUI.h"
 
-
 #include "termcolor/termcolor.hpp"
 
 #include <cstdint>
-
 #include <iostream>
-
 #include <memory>
-
 #include <exception>
+
 
 /** \brief 15Slide main loop
  *
  * \author John Jekel
  * \date 2017-2018
- * \copyright MIT License
 **/
 int main(int argc, char *argv[])
 {

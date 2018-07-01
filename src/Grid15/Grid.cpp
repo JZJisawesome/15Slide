@@ -1,12 +1,13 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
+
+
 #include "Grid.h"
 
 #include <cstdint>
-
 #include <array>
-
 #include <algorithm>
+
 
 namespace Grid15
 {

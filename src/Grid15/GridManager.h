@@ -1,11 +1,13 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms#ifndef GRIDMANAGER_H
+#ifndef GRIDMANAGER_H
 #define GRIDMANAGER_H
 
-#include <cstdint>
 
+#include <cstdint>
 #include <string>
 #include <array>
+
 
 namespace Grid15
 {

@@ -1,20 +1,18 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
+
+
 #include "Grid15/GridHelp.h"
 
 #include <iostream>
 #include <cstdint>
-
 #include <fstream>
 #include <sstream>
-
 #include <string>
 #include <array>
-
 #include <algorithm>
 #include <random>
 #include <chrono>
-
 #include <exception>
 
 namespace Grid15
