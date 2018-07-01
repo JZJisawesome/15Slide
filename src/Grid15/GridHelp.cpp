@@ -1,3 +1,5 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #include "Grid15/GridHelp.h"
 
 #include <iostream>
@@ -277,7 +279,7 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
         9,  10, 11, 12,
         13, 14, 15, Grid::NO_TILE
     };
-  
+
     Grid::gridArray_t multiDimentional {};
 
     //so the first loop run through does not throw exceptions

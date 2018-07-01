@@ -1,13 +1,16 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 /** \mainpage
  *
  * \section welcome_sec Welcome!!!
  *
  * Welcome to 15Slide, a fun, cross-platform(ish) slidy-tile game written with C++17!
  *
- * To contribute, to learn about used libraries and for much more, go to: <a href="https://github.com/JZJisawesome/15Slide">https://github.com/JZJisawesome/15Slide</a>
+ * To contribute, to learn about used libraries and for much more, go to <a href="https://github.com/JZJisawesome/15Slide">the 15Slide Github repo</a>.
  *
  * \author John Jekel
  * \date 2017-2018
+ * \copyright MIT License
  */
 
 
@@ -30,12 +33,17 @@
 
 /** \brief 15Slide main loop
  *
+ * \author John Jekel
  * \date 2017-2018
+ * \copyright MIT License
 **/
 int main(int argc, char *argv[])
 {
     if constexpr (ProgramStuff::Build::DEBUG)
+    {
+        std::clog << "(debug)Debug mode enabled because ProgramStuff::Build::DEBUG == true" << "\n";
         std::clog << "(debug)Entering main() try block" << "\n";
+    }
 
     try
     {

@@ -1,3 +1,5 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #ifndef COMMANDHANDLER_H
 #define COMMANDHANDLER_H
 
@@ -14,7 +16,7 @@
  *
  * \brief A UI for commands from the terminal for 15Slide
  *
- * \author John Jekel 
+ * \author John Jekel
  * \date 2017-2018
  *
  * Valid Commands

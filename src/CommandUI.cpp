@@ -1,3 +1,5 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #include "ProgramStuff.h"
 
 #include "CommandUI.h"

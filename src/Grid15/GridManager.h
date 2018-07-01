@@ -1,4 +1,5 @@
-#ifndef GRIDMANAGER_H
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms#ifndef GRIDMANAGER_H
 #define GRIDMANAGER_H
 
 #include <cstdint>
@@ -12,7 +13,7 @@ namespace Grid15
  *
  * \brief Manages storage, initialization, movement of tiles, and saving/loading of a grid. DONT USE: IT'S DECPRECATED
  *
- * \author John Jekel 
+ * \author John Jekel
  * \date 2017-2018
  *
  * \deprecated Use Grid and GridHelp instead
