@@ -16,3 +16,6 @@ Including files (`#include`) should be done in this order, with spaces in betwee
 2. 15Slide headers starting with ProgramStuff.h
 3. External library headers
 4. STL and C headers (use angle brackets and "c" headers (eg. `<cstdint>` instead of `<stdint.h>`))
+5. Headers that may be enabled or disabled by _preprocessing_.
+
+Also put two blank lines before and after the includes.
