@@ -9,3 +9,10 @@ In the first and second line of all 15Slide source and header files, put:
 
 ## Documentation
 15Slide uses Doxygen comments to document the code. Please be sure to document all functions in source files, classes in their header files, and varibles in the header files. LEAVE NOTHING UNDOCUMENTED, and be sure to use plenty of comments _inside_ functions.
+
+## Including
+Including files (`#include`) should be done in this order, with spaces in between each section. Omit a step if no header of that type is used.
+1. The source file's header
+2. 15Slide headers
+3. External library headers
+4. STL and C headers (use angle brackets and "c" headers (eg. `<cstdint>` instead of `<stdint.h>`))
