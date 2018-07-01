@@ -19,3 +19,24 @@ Including files (`#include`) should be done in this order, with spaces in betwee
 5. Headers that may be enabled or disabled by _preprocessing_.
 
 Also put two blank lines before and after the includes.
+
+## Everything Combined
+### Class Header (.h)
+1. Licence comments
+2. Header guard
+3. 2 spaces
+4. Includes
+5. 2 spaces
+6. Class documentation
+7. Class definition
+8. Member variable documentation/definition and function definition (any order)
+9. Header guard end
+### Source File (.cpp)
+1. Licence comments
+2. Header guard
+3. 2 spaces
+4. Includes
+5. 2 spaces
+6. Function documentation
+7. Function implementation
+8. (repeat 6 and 7 for each function)
