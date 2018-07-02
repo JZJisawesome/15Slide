@@ -4,9 +4,12 @@ A fun, cross-platform, slidy-tile game written with C++17!
 <img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
 ## Installing or Building 15Slide
 Steps for your platform are probably avaliable [in the 15Slide wiki](https://github.com/JZJisawesome/15Slide/wiki "15Slide Wiki"). Go to the right pane and look for "Installing 15Slide."
+## Source Documentation
+Find the Doxygen documentation at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
 ## Files and Folders (not done)
 File/Folder|Description
 -----------|-----------
+[docs](https://github.com/JZJisawesome/15Slide/tree/master/docs)|Github Pages and Doxygen documentation
 [images](https://github.com/JZJisawesome/15Slide/tree/master/images)|Images and screenshots of 15Slide related stuff
 [src](https://github.com/JZJisawesome/15Slide/tree/master/src)|15Slide source code
 [CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
