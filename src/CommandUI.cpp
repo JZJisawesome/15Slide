@@ -266,7 +266,7 @@ void CommandUI::runDemo()
     cout << termcolor::reset;
     cout << endl;
 
-    cout << "Welcome to 15Slide, a slidy-tile game. The object is to make the grid like this:" << "\n";
+    cout << "Welcome to 15Slide, a fun slidy-tile game. The object is to make the grid like this:" << "\n";
     cout << endl;
 
     printGrid(Grid15::Grid::GOAL_GRID);
@@ -336,9 +336,12 @@ void CommandUI::displayAbout()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide" << "\n";
     cout << termcolor::reset;
+    cout << "Copyright 2018 John Jekel";
+    cout << "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms";
     cout << endl;
 
-    cout << "15Slide is a fun, cross-platform(ish) slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
+
+    cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << endl;
 
     cout << "To contribute, to learn about used libraries and for much more, go to: ";
