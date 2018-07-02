@@ -10,7 +10,7 @@
  *
  * \author John Jekel
  * \date 2017-2018
- * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">MIT License</a>
+ * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">Lesser GNU Public Licence (LGPL)</a>
  */
 
 
