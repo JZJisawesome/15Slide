@@ -2,7 +2,7 @@
 ## Installing or Building 15Slide
 Steps for your platform are probably avaliable [in the 15Slide wiki](https://github.com/JZJisawesome/15Slide/wiki "15Slide Wiki"). Go to the right pane and look for "Installing 15Slide."
 ## Source Documentation
-Find the doxygen documentation at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
+Find the Doxygen documentation at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
