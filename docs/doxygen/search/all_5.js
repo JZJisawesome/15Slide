@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['gamegrid',['gameGrid',['../class_grid15_1_1_grid_manager.html#a64e940d685a0904a21302dcfafaf340d',1,'Grid15::GridManager']]],
+  ['gcc',['GCC',['../namespace_program_stuff_1_1_build.html#ae82e287395b4032b88190c9926f7f128',1,'ProgramStuff::Build']]],
+  ['generaterandomgrid',['generateRandomGrid',['../class_grid15_1_1_grid_manager.html#abfe6a6daf1b847e87cf335532d684de6',1,'Grid15::GridManager::generateRandomGrid()'],['../namespace_grid15_1_1_grid_help.html#aba6d19702b34d4b5594bdad7b0129a93',1,'Grid15::GridHelp::generateRandomGrid()']]],
+  ['generaterandomgridarray',['generateRandomGridArray',['../namespace_grid15_1_1_grid_help.html#a2d584a7aaae840c42584dc173780e97b',1,'Grid15::GridHelp']]],
+  ['getgrid',['getGrid',['../class_grid15_1_1_grid_manager.html#acb656242a817e83fa4dc4c1d0ddfa169',1,'Grid15::GridManager']]],
+  ['gettile',['getTile',['../class_grid15_1_1_grid_manager.html#a16500233c5ee91348de346a1371b4f3c',1,'Grid15::GridManager::getTile()'],['../namespace_grid15_1_1_grid_help.html#a6042d9bd6ca2e5cd70219326cee7f6f3',1,'Grid15::GridHelp::getTile()']]],
+  ['getx',['getX',['../class_grid15_1_1_grid_manager.html#a0a7a0f66871e3f8cc721dcfc49f26198',1,'Grid15::GridManager::getX()'],['../namespace_grid15_1_1_grid_help.html#a5bfe93618da293d4b36e6ed96ab643c4',1,'Grid15::GridHelp::getX()']]],
+  ['gety',['getY',['../class_grid15_1_1_grid_manager.html#af389a27a62d41a8f13f35a5594c9d5c3',1,'Grid15::GridManager::getY()'],['../namespace_grid15_1_1_grid_help.html#a380df80e0895b9b245069f2ab17a4be5',1,'Grid15::GridHelp::getY()']]],
+  ['goal_5fgrid',['GOAL_GRID',['../class_grid15_1_1_grid_manager.html#a93d0ca472c5fc0228d0c3ee01a62d2f9',1,'Grid15::GridManager::GOAL_GRID()'],['../class_grid15_1_1_grid.html#a50366f79ba51a37955b21c747434157c',1,'Grid15::Grid::GOAL_GRID()']]],
+  ['grid',['Grid',['../class_grid15_1_1_grid.html',1,'Grid15::Grid'],['../class_grid15_1_1_grid.html#afd394072c2addbd213e56b5ffdff9313',1,'Grid15::Grid::Grid()'],['../class_grid15_1_1_grid.html#a944f57ea31790eed6964a56add7f1b07',1,'Grid15::Grid::Grid(const gridArray_t &amp;newGrid)'],['../class_grid15_1_1_grid.html#aabf04a68b1903790aaaa204195588789',1,'Grid15::Grid::Grid(const index_t &amp;newIndex)'],['../class_grid15_1_1_grid.html#a66a456e606b636bc16f0fccf962d55b4',1,'Grid15::Grid::Grid(const gridArray_t &amp;newGrid, const index_t &amp;newIndex)'],['../class_grid15_1_1_grid.html#ab611ba2af8d1715224d73bbca911bc46',1,'Grid15::Grid::Grid(const Grid &amp;other)']]],
+  ['grid_2ecpp',['Grid.cpp',['../_grid_8cpp.html',1,'']]],
+  ['grid_2eh',['Grid.h',['../_grid_8h.html',1,'']]],
+  ['grid15',['Grid15',['../namespace_grid15.html',1,'']]],
+  ['grid15_2eh',['Grid15.h',['../_grid15_8h.html',1,'']]],
+  ['gridarray',['gridArray',['../class_grid15_1_1_grid.html#a854d137412caef33aba96ae91b0b46b5',1,'Grid15::Grid']]],
+  ['gridarray_5ft',['gridArray_t',['../class_grid15_1_1_grid.html#a08fbc54d10a627ba663420e2653f0ae3',1,'Grid15::Grid']]],
+  ['gridhelp',['GridHelp',['../namespace_grid15_1_1_grid_help.html',1,'Grid15']]],
+  ['gridhelp_2ecpp',['GridHelp.cpp',['../_grid_help_8cpp.html',1,'']]],
+  ['gridhelp_2eh',['GridHelp.h',['../_grid_help_8h.html',1,'']]],
+  ['gridmanager',['GridManager',['../class_grid15_1_1_grid_manager.html',1,'Grid15::GridManager'],['../class_grid15_1_1_grid_manager.html#ac4eb5378ae84d7396e81f8a06468d4c9',1,'Grid15::GridManager::GridManager()'],['../class_grid15_1_1_grid_manager.html#a3c8a024ac7134a6d03d8df29c8322a54',1,'Grid15::GridManager::GridManager(const std::string &amp;saveFile)'],['../class_grid15_1_1_grid_manager.html#aec9c6e04f94bd724f1e0d7ef9304ce70',1,'Grid15::GridManager::GridManager(const std::array&lt; std::array&lt; std::uint8_t, 4 &gt;, 4 &gt; &amp;newGrid)'],['../class_grid15_1_1_grid_manager.html#a82cf9e97ebc6b82713584ec44399616b',1,'Grid15::GridManager::GridManager(const std::uint8_t newGrid[4][4])']]],
+  ['gridmanager_2ecpp',['GridManager.cpp',['../_grid_manager_8cpp.html',1,'']]],
+  ['gridmanager_2eh',['GridManager.h',['../_grid_manager_8h.html',1,'']]]
+];
