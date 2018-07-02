@@ -10,4 +10,4 @@ Steps for your platform are probably avaliable [in the 15Slide wiki](https://git
 * My parents and family for their support
 * Amazing snippets from websites (cites in code, may not be bound by LICENCE.txt)
 ## Licencing
-15Slide is licenced under the Lesser GNU Public Licence, or GPL. Please keep this in mind.
+15Slide is licenced under the Lesser GNU Public Licence (LGPL). Please keep this in mind.
