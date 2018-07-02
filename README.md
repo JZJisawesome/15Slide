@@ -20,3 +20,5 @@ File/Folder|Description
 ## Thanks to...
 * My parents and family for their support
 * Amazing snippets from websites (cites in code, may not be bound by LICENCE.txt)
+## Licencing
+15Slide is licenced under the Lesser GNU Public Licence (LGPL). Please keep this in mind.
