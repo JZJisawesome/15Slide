@@ -1,38 +1,22 @@
 # 15Slide
-A cross-platform(ish) slidy-tile game written with C++17!
+A fun, cross-platform, slidy-tile game written with C++17!
 
 <img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
-## Building
-### Linux (not done)
-1. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
-2. Install the gtkmm libraries for your distrubution (see [https://developer.gnome.org/gtkmm-tutorial/](https://developer.gnome.org/gtkmm-tutorial/))
-3. 
-#### Cross-platform for Windows (to do)
-### Windows (to do)
-### macOS (to do)
+## Installing or Building 15Slide
+Steps for your platform are probably avaliable [in the 15Slide wiki](https://github.com/JZJisawesome/15Slide/wiki "15Slide Wiki"). Go to the right pane and look for "Installing 15Slide."
 ## Files and Folders (not done)
 File/Folder|Description
 -----------|-----------
-images|Images of 15Slide in action
-src|15Slide source code
-CODE_OF_CONDUCT.md|The code of conduct for this project
-README.md|This file, with build instructions and much more
-## Status and general To Do List
-* Grid15 classes are done except for more optomization
-* CommandUI is pretty much done, except for better parsing of invalid arguments and commands
-* Making a GUI (see the GTKSlide branch) and one that works with Windows too
-* Setup command line parser
-* Create consistent versioning
-* Setup makefiles or some other build system
-* Spelling needs work, and UTF-8 support with Windows builds needs fixing
-* Better/more documentation (espicially this file)
-* Testing for macOS (I don't have a mac of any kind)
-* More support for Windows in general
-* Choose a licence
-* Setup a code formating standard (probably ansi)
+[images](https://github.com/JZJisawesome/15Slide/tree/master/images)|Images and screenshots of 15Slide related stuff
+[src](https://github.com/JZJisawesome/15Slide/tree/master/src)|15Slide source code
+[CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
+[CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
+[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide
+[README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file, with build instructions and much more
+[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/))
-## Credits
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
+## Thanks to...
 * My parents and family for their support
-* Various amazing snipits from websites (cites in code)
+* Amazing snippets from websites (cites in code, may not be bound by LICENCE.txt)

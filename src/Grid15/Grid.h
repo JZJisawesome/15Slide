@@ -1,9 +1,12 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #ifndef GRID_H
 #define GRID_H
 
-#include <cstdint>
 
+#include <cstdint>
 #include <array>
+
 
 namespace Grid15
 {

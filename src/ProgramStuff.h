@@ -1,5 +1,8 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #ifndef PROGRAMSTUFF_H
 #define PROGRAMSTUFF_H
+
 
 #include <cstdint>
 
