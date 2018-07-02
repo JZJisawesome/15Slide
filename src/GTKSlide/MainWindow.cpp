@@ -1,3 +1,5 @@
+//Copyright 2018 John Jekel
+//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 #include "GTKSlide/MainWindow.h"
 
 #include "Grid15/Grid.h"
