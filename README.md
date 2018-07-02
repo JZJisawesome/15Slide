@@ -11,7 +11,7 @@ File/Folder|Description
 [src](https://github.com/JZJisawesome/15Slide/tree/master/src)|15Slide source code
 [CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
 [CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
-[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide (currently MIT)
+[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file, with build instructions and much more
 [build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 ## Dependencies
