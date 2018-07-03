@@ -32,4 +32,4 @@ File/Folder|Description
 * Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
 
 ## Licencing
-15Slide is licenced under the Lesser GNU Public Licence (LGPL), Copyright 2018 John Jekel. Please be sure to keep this in mind.
+Copyright 2018 John Jekel. 15Slide is licenced under the Lesser GNU Public Licence (LGPL).
