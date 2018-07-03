@@ -344,8 +344,7 @@ void CommandUI::displayAbout()
     cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << endl;
 
-    cout << "To contribute, to learn about used libraries and for much more, go to: ";
-    cout << "https://github.com/JZJisawesome/15Slide" << "\n";
+    cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
     cout << endl;
 
     cout << termcolor::underline;
