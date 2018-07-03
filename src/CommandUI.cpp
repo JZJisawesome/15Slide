@@ -293,7 +293,7 @@ void CommandUI::runDemo()
     cout << endl;
 }
 
-/// \brief List of commands
+/// \brief List commands to user
 void CommandUI::displayHelp()
 {
     using namespace std;
@@ -336,14 +336,12 @@ void CommandUI::displayAbout()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide" << "\n";
     cout << termcolor::reset;
-    cout << "Copyright 2018 John Jekel";
+    cout << "Copyright 2018 John Jekel" << "\n";
     cout << "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms";
     cout << endl;
 
-
-    cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << endl;
-
+    cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
     cout << endl;
 
@@ -373,7 +371,7 @@ void CommandUI::displayAbout()
     cout << endl;
 }
 
-/// \brief List of options
+/// \brief List options to user
 void CommandUI::displayOptions()
 {
     using namespace std;
