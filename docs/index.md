@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/><img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
+<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/>
 
 ## What is 15Slide?
 15Slide is a fun, cross-platform, slidy-tile game written with C++17!
