@@ -2,7 +2,7 @@ var searchData=
 [
   ['save',['save',['../class_grid15_1_1_grid_manager.html#a5f5568c2bd198c0ed4636e14b0c737c1',1,'Grid15::GridManager::save()'],['../class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a43781db5c40ecc39fd718685594f0956',1,'CommandUI::save()'],['../namespace_grid15_1_1_grid_help.html#a59ce85d0780bdfc1fbd03cfa088efef3',1,'Grid15::GridHelp::save()']]],
   ['savegame',['saveGame',['../class_command_u_i.html#ad4642b8f33a00c290b8cb8e97cfbe251',1,'CommandUI']]],
-  ['setgrid',['setGrid',['../class_grid15_1_1_grid_manager.html#a5c7742a55bf0f335a6aaef36313ae4c3',1,'Grid15::GridManager::setGrid(const std::array&lt; std::array&lt; std::uint8_t, 4 &gt;, 4 &gt; &amp;newGrid)'],['../class_grid15_1_1_grid_manager.html#a9f383eb004e7d9763b08fe7ab1faf512',1,'Grid15::GridManager::setGrid(const std::uint8_t newGrid[4][4])'],['../class_grid15_1_1_grid.html#aec07a25390c890d8f93114cc7fb44ff1',1,'Grid15::Grid::setGrid()']]],
+  ['setgrid',['setGrid',['../class_grid15_1_1_grid.html#aec07a25390c890d8f93114cc7fb44ff1',1,'Grid15::Grid::setGrid()'],['../class_grid15_1_1_grid_manager.html#a5c7742a55bf0f335a6aaef36313ae4c3',1,'Grid15::GridManager::setGrid(const std::array&lt; std::array&lt; std::uint8_t, 4 &gt;, 4 &gt; &amp;newGrid)'],['../class_grid15_1_1_grid_manager.html#a9f383eb004e7d9763b08fe7ab1faf512',1,'Grid15::GridManager::setGrid(const std::uint8_t newGrid[4][4])']]],
   ['setgridarray',['setGridArray',['../class_grid15_1_1_grid.html#a3a5c9cd33e6ad088c69bf89d0f048efe',1,'Grid15::Grid']]],
   ['setindex',['setIndex',['../class_grid15_1_1_grid.html#ab56a147433a48dd8b1d847c10b7eb25f',1,'Grid15::Grid']]],
   ['slide',['slide',['../class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6ae02bd40f5c8fe41d28e4b72550a8bdd5',1,'CommandUI']]],

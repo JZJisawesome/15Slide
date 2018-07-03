@@ -23,13 +23,13 @@ File/Folder|Description
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file
 [build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 
-## Dependencies
-* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
-
 ## Thanks to...
 * My parents and family for their support
 * Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
+
+## Dependencies
+* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
 
 ## Licencing
 Copyright 2018 John Jekel. 15Slide is licenced under the Lesser GNU Public Licence (LGPL).

@@ -11,13 +11,13 @@ Steps to build or install 15Slide on your platform are probably avaliable [in th
 ## Source Documentation
 Find the Doxygen documentation of 15Slide source at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
 
-## Dependencies
-* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for GTKSlide
-
 ## Thanks to...
 * My parents and family for their support
 * Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
+
+## Dependencies
+* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for GTKSlide
 
 ## Licencing
 Copyright 2018 John Jekel. 15Slide is licenced under the Lesser GNU Public Licence (LGPL).
