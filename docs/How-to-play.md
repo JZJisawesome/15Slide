@@ -9,7 +9,7 @@ In the _slide»_ prompt, simply type a number and press enter to move that tile 
 Click on a numbered tile to slide it to the empty space (aka no tile).
 # Saving and Loading
 ## Terminal
-In the _slide»_ prompt, type "save" or load. Type an additional space, and then type your filename.
+In the _slide»_ prompt, type "save" or "load". Type an additional space, and then type your filename.
 BE CAREFUL!!! This overwrites any existing file, and there is no going back.
 ## GTKSlide (to do)
 # Starting a new game
