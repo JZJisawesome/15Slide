@@ -1,8 +1,7 @@
 # Contributing to 15Slide
 Thanks for taking time to contribute to 15Slide. Here are a few thing you can help with
 ## Coding
-### Profiling (to do)
-### Code Format
+### Code Formating Guidelines
 #### Licencing
 In the first and second line of all 15Slide source and header files, put:
 
@@ -10,8 +9,8 @@ In the first and second line of all 15Slide source and header files, put:
 
 `//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms`
 
-#### Documentation
-15Slide uses Doxygen comments to document the code. Please be sure to document all functions in source files, classes in their header files, and varibles in the header files. LEAVE NOTHING UNDOCUMENTED, and be sure to use plenty of comments _inside_ functions.
+#### Source Documentation
+15Slide uses Doxygen comments to document the code. Please try to document all functions in source files, classes in their header files, and varibles in the header files. Be sure to use plenty of comments _inside_ functions as well.
 
 #### Including
 Including files (`#include`) should be done in this order, with spaces in between each section. Omit a step if no header of that type is used.
@@ -24,6 +23,7 @@ Including files (`#include`) should be done in this order, with spaces in betwee
 Also put two blank lines before and after the includes.
 
 #### Everything Combined
+Try to make source and header files similar to this.
 ##### Class Header (.h)
 1. Licence comments
 2. Header guard
@@ -43,4 +43,10 @@ Also put two blank lines before and after the includes.
 6. Function documentation
 7. Function implementation
 8. (repeat 6 and 7 for each function)
-## Documentation (to do)
+### Bug Squashing (to do)
+### Profiling (to do)
+## Documentation
+As you can probably see, my spelling is not so good (I'm 14!!!). You can help...
+* With the [wiki](https://github.com/JZJisawesome/15Slide/wiki)
+* With the [website](https://github.com/JZJisawesome/15Slide/tree/master/docs)
+* With documentation in code
