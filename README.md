@@ -6,7 +6,7 @@ Visit the [wiki](https://github.com/JZJisawesome/15Slide/wiki/) and the [15Slide
 <img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/>
 
 ## Where do I start?
-Steps to build or install 15Slide on your platform are probably avaliable [in the wiki](https://github.com/JZJisawesome/15Slide/wiki/Installing-15Slide "Installing 15Slide"). Once you have 15Slide, [start it](https://github.com/JZJisawesome/15Slide/wiki/Running-15Slide "Running 15Slide"), [learn how to play](https://github.com/JZJisawesome/15Slide/wiki/How-to-play "How to play"), and [contribute](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md).
+You should start by [installing or building 15Slide](https://jzjisawesome.github.io/15Slide/Installing-15Slide). Once you have 15Slide, [start it](https://jzjisawesome.github.io/15Slide/Running-15Slide), [learn how to play](https://jzjisawesome.github.io/15Slide/How-to-play), and [contribute](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md).
 
 ## Source Documentation
 Find the Doxygen documentation of 15Slide source at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
