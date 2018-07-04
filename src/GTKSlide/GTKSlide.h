@@ -4,6 +4,7 @@
 #define GTKSLIDE_H
 
 #include "GTKSlide/MainWindow.h"
+#include "GTKSlide/TileGrid.h"
 
 /** \namespace GTKSlide
  *

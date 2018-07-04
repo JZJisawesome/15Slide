@@ -1,26 +1,24 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
-#ifndef GUIGRID_H
-#define GUIGRID_H
+#ifndef TILEGRID_H
+#define TILEGRID_H
 
-// author John Jekel
 
 #include "Grid15/Grid.h"
 
 #include <gtkmm.h>
-
 #include <memory>
-
 #include <utility>
+
 
 namespace GTKSlide
 {
-class GUIGrid : public Gtk::Grid
+class TileGrid : public Gtk::Grid
 {
 public:
-    GUIGrid();
-    GUIGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
-    virtual ~GUIGrid();
+    TileGrid();
+    TileGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
+    virtual ~TileGrid();
 
     void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
 protected:
@@ -34,4 +32,4 @@ protected:
 };
 }
 
-#endif //GUIGRID_H
+#endif //TILEGRID_H

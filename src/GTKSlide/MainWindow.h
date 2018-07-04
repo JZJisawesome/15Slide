@@ -5,7 +5,7 @@
 
 #include "Grid15/Grid.h"
 
-#include "GTKSlide/GUIGrid.h"
+#include "GTKSlide/TileGrid.h"
 
 #include <gtkmm.h>
 
@@ -27,17 +27,17 @@ public:
 protected:
     //Signal handlers:
     void on_menubar_test();
+    Gtk::MenuBar createMenuBar(const Glib::RefPtr<Gtk::Application> &application);
 
     //Member widgets:
-    Gtk::Box mainBox;
+    //Gtk::Box mainBox {Gtk::ORIENTATION_HORIZONTAL};
+    Gtk::Grid mainGrid;
 
-    Glib::RefPtr<Gtk::Builder> menuBuilder;
-    Glib::RefPtr<Gio::SimpleActionGroup> actionGroup {};
-
-    GUIGrid guiGrid {};
+    Gtk::MenuBar mainMenu;
+    TileGrid tileGrid;
 
     //Grid
-    std::shared_ptr<Grid15::Grid> gridPtr {};
+    std::shared_ptr<Grid15::Grid> gridPtr;
 };
 }
 

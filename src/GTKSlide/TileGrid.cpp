@@ -1,6 +1,6 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
-#include "GTKSlide/GUIGrid.h"
+#include "GTKSlide/TileGrid.h"
 
 #include <gtkmm.h>
 
@@ -12,35 +12,37 @@
 
 namespace GTKSlide
 {
-GUIGrid::GUIGrid() {}
+TileGrid::TileGrid() {}
 
-GUIGrid::GUIGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
+TileGrid::TileGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
 {
     setupGrid(newGridPtr);
 }
 
-GUIGrid::~GUIGrid() {}
+TileGrid::~TileGrid() {}
 
-void GUIGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
+void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
 {
     gridPtr = newGridPtr;
 
+    //create the first row of tiles
     for (std::uint_fast32_t j {0}; j < 4; ++j)
     {
         gridButtons[0][j].signal_clicked().connect
         (
-            sigc::bind<std::pair<int,int>> (sigc::mem_fun(*this, &GUIGrid::on_tile_clicked), std::make_pair(0, j))
+            sigc::bind<std::pair<int,int>> (sigc::mem_fun(*this, &TileGrid::on_tile_clicked), std::make_pair(0, j))//bind the tile coordinates
         );
 
         add(gridButtons[0][j]);
     }
 
+    //attach remaning tiles underneath first row
     for (std::uint_fast32_t i {1}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
         {
             gridButtons[i][j].signal_clicked().connect
             (
-                sigc::bind<std::pair<int,int>> (sigc::mem_fun(*this, &GUIGrid::on_tile_clicked), std::make_pair(i, j))
+                sigc::bind<std::pair<int,int>> (sigc::mem_fun(*this, &TileGrid::on_tile_clicked), std::make_pair(i, j))//bind the tile coordinates
             );
 
             attach_next_to(gridButtons[i][j], gridButtons[i - 1][j], Gtk::POS_BOTTOM, 1, 1);
@@ -49,7 +51,7 @@ void GUIGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
     lableTiles();
 }
 
-void GUIGrid::on_tile_clicked(std::pair<int,int> &coordinates)
+void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
 {
     if (gridPtr)
     {
@@ -64,18 +66,18 @@ void GUIGrid::on_tile_clicked(std::pair<int,int> &coordinates)
             std::cout << "Swapping tile..." << std::endl;
             Grid15::GridHelp::swapTile(x, y, *gridPtr);
 
-            lableTiles();
+            lableTiles();//fixme: just relable the 2 tiles instead
 
             std::cout << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << std::endl;
         }
 
         std::cout << std::noboolalpha;
 
-        std::cout.flush();
+        std::cout.flush();//sometimes nothing prints until cout is flushed
     }
 }
 
-void GUIGrid::lableTiles()
+void TileGrid::lableTiles()
 {
     if (gridPtr)
     {
@@ -83,9 +85,9 @@ void GUIGrid::lableTiles()
             for (std::uint_fast32_t j {0}; j < 4; ++j)
             {
                 if ((*gridPtr).gridArray[i][j] != 0)
-                    gridButtons[i][j].set_label(std::to_string((*gridPtr).gridArray[i][j]));
+                    gridButtons[i][j].set_label(std::to_string((*gridPtr).gridArray[i][j]));//set the lable to the tile number
                 else
-                    gridButtons[i][j].set_label("◉");
+                    gridButtons[i][j].set_label("◉");//special character for the no tile
             }
     }
 }
