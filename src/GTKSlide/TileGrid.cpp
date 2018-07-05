@@ -7,6 +7,8 @@
 #include <iostream>
 #include <utility>
 
+
+#include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
 
@@ -58,22 +60,31 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
         int &x = coordinates.first;
         int &y = coordinates.second;
 
-        std::cout << std::boolalpha;
+        if constexpr (ProgramStuff::Build::DEBUG)
+        {
+            std::cout << std::boolalpha;
+            std::cout << "(debug)Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]) << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << std::endl;
+        }
 
-        std::cout << "Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]) << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << std::endl;
         if (Grid15::GridHelp::validMove(x, y, *gridPtr))
         {
-            std::cout << "Swapping tile..." << std::endl;
+            if constexpr (ProgramStuff::Build::DEBUG)
+                std::cout << "(debug)Swapping tile..." << std::endl;
+
             Grid15::GridHelp::swapTile(x, y, *gridPtr);
 
             lableTiles();//fixme: just relable the 2 tiles instead
 
-            std::cout << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << std::endl;
+            if constexpr (ProgramStuff::Build::DEBUG)
+                std::cout << "(debug)Won: " << Grid15::GridHelp::hasWon(*gridPtr) << std::endl;
         }
 
-        std::cout << std::noboolalpha;
+        if constexpr (ProgramStuff::Build::DEBUG)
+        {
+            std::cout << std::noboolalpha;
+            std::cout.flush();//sometimes nothing prints until cout is flushed
+        }
 
-        std::cout.flush();//sometimes nothing prints until cout is flushed
     }
 }
 

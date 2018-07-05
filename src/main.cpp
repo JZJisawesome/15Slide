@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         std::cout << "15Slide" << "\n";
         std::cout << termcolor::reset;
         std::cout << std::endl;
-        
+
 #if defined(GUI)
         Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
@@ -102,6 +102,21 @@ int main(int argc, char *argv[])
         //throw e;
         throw;//so we get the authentic exceptiony goodness
     }
+    #if defined(GUI)
+    catch (Glib::Error &e)
+    {
+        std::cerr << termcolor::bold << termcolor::red;
+        std::cerr << "A fatal error has occured and 15Slide has crashed." << "\n";
+        std::cerr << termcolor::reset;
+        std::cerr << std::endl;
+
+        if constexpr (ProgramStuff::Build::DEBUG)
+            std::clog << "(debug)Rethrowing Exception" << "\n";
+
+        //throw e;
+        throw;//so we get the authentic exceptiony goodness
+    }
+    #endif
 
     std::cout << std::endl;
     std::cout << "Thanks for playing 15Slide. Goodbye!";

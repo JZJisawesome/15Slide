@@ -21,23 +21,31 @@ namespace GTKSlide
 class MainWindow : public Gtk::Window
 {
 public:
-    MainWindow(const Glib::RefPtr<Gtk::Application>& application, std::shared_ptr<Grid15::Grid> &newGridPtr);
+    MainWindow(Glib::RefPtr<Gtk::Application> & pplication, std::shared_ptr<Grid15::Grid> &newGridPtr);
     virtual ~MainWindow();
 
 protected:
-    //Signal handlers:
-    void on_menubar_test();
-    Gtk::MenuBar createMenuBar(const Glib::RefPtr<Gtk::Application> &application);
-
-    //Member widgets:
-    //Gtk::Box mainBox {Gtk::ORIENTATION_HORIZONTAL};
     Gtk::Grid mainGrid;
 
     Gtk::MenuBar mainMenu;
+    Gtk::MenuBar createMenuBar();
+
+    void menuBar_test();
+    void menuBar_save();
+    void menuBar_saveAs();
+    void menuBar_load();
+    void menuBar_exit();
+
+    void menuBar_autoSave();
+
+    void menuBar_demo();
+    void menuBar_about();
+
     TileGrid tileGrid;
 
-    //Grid
+
     std::shared_ptr<Grid15::Grid> gridPtr;
+    Glib::RefPtr<Gtk::Application> &applicationPtr;
 };
 }
 
