@@ -13,7 +13,7 @@ public:
     AboutSlide(Gtk::Window &window);
     virtual ~AboutSlide();
 
-    void display(Gtk::Window &window);
+    void display();
 };
 }
 #endif //ABOUTSLIDE_H

@@ -4,7 +4,8 @@
 
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
-#include "AboutSlide.h"
+#include "GTKSlide/AboutSlide.h"
+#include "GTKSlide/SlideFileDialog.h"
 #include "CommandUI.h"
 
 #include "ProgramStuff.h"
@@ -43,29 +44,29 @@ Gtk::MenuBar MainWindow::createMenuBar()
 
     if constexpr (ProgramStuff::Build::DEBUG)
     {
-        actionGroup->add_action("test", sigc::mem_fun(*this, &MainWindow::menuBar_test));
+        actionGroup->add_action("test", sigc::mem_fun(*this, &MainWindow::on_menuBar_test));
         applicationPtr->set_accel_for_action("actionGroup.test", "<Primary>t");
     }
 
-    actionGroup->add_action("save", sigc::mem_fun(*this, &MainWindow::menuBar_save));
+    actionGroup->add_action("save", sigc::mem_fun(*this, &MainWindow::on_menuBar_save));
     applicationPtr->set_accel_for_action("actionGroup.save", "<Primary>s");
 
-    actionGroup->add_action("saveAs", sigc::mem_fun(*this, &MainWindow::menuBar_saveAs));
+    actionGroup->add_action("saveAs", sigc::mem_fun(*this, &MainWindow::on_menuBar_saveAs));
 
-    actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::menuBar_load));
+    actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
     applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
 
-    actionGroup->add_action("exit", sigc::mem_fun(*this, &MainWindow::menuBar_exit));
+    actionGroup->add_action("exit", sigc::mem_fun(*this, &MainWindow::on_menuBar_exit));
 
 
-    actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::menuBar_autoSave));
+    actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
     applicationPtr->set_accel_for_action("actionGroup.autoSave", "<Primary>a");
 
 
-    actionGroup->add_action("demo", sigc::mem_fun(*this, &MainWindow::menuBar_demo));
+    actionGroup->add_action("demo", sigc::mem_fun(*this, &MainWindow::on_menuBar_demo));
     applicationPtr->set_accel_for_action("actionGroup.demo", "<Primary>h");
 
-    actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::menuBar_about));
+    actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::on_menuBar_about));
 
 
     const char* menuXML
@@ -137,72 +138,120 @@ Gtk::MenuBar MainWindow::createMenuBar()
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
 
     //build the menu
-    try
-    {
-        menuBuilder->add_from_string(menuXML);
-        //menuBuilder->add_from_resource("data/toolbars/mainMenu.glade");
-    }
-    catch (Glib::Error &e)
-    {
-        std::cout << "Gtk::Builder ERROR: " << e.what() << std::endl;
-    }
+    menuBuilder->add_from_string(menuXML);
+    //menuBuilder->add_from_resource("data/toolbars/mainMenu.glade");
 
     //return it
     Glib::RefPtr<Glib::Object> menuObject = menuBuilder->get_object("menuBar");
     Glib::RefPtr<Gio::Menu> newMenuBar = Glib::RefPtr<Gio::Menu>::cast_dynamic(menuObject);
     if (!newMenuBar)
     {
-        g_warning("GMenu not found");
+        g_warning("newMenuBar not found");
 
         return Gtk::MenuBar {};
     }
     else
+    {
         return Gtk::MenuBar {newMenuBar};
+    }
 }
 
-void MainWindow::menuBar_test()
+void MainWindow::on_menuBar_test()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)Hey! It works!!!" << std::endl;
+        std::clog << "(debug)Hey! It works!!!" << std::endl;
 }
 
-void MainWindow::menuBar_save()
+void MainWindow::on_menuBar_save()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+        std::clog << "(debug)to do" << std::endl;
 }
 
-void MainWindow::menuBar_saveAs()
+void MainWindow::on_menuBar_saveAs()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+        std::clog << "(debug)not done" << std::endl;
+
+    SlideFileDialog saveDialog(*this, "Choose a file to save to");
+
+    switch(saveDialog.run())
+    {
+    case(Gtk::RESPONSE_OK):
+    {
+        saveFile = {saveDialog.get_filename()};
+
+        Grid15::GridHelp::save(saveFile, *gridPtr);//fixme error handeling
+
+        tileGrid.saveFile = {saveFile};
+
+        break;
+    }
+    case(Gtk::RESPONSE_CANCEL):
+    {
+        //std::cout << "Cancel clicked." << std::endl;
+        break;
+    }
+    default:
+    {
+        //std::cout << "Unexpected button clicked." << std::endl;
+        break;
+    }
+    }
 }
 
-void MainWindow::menuBar_load()
+void MainWindow::on_menuBar_load()//fixme make dialog own class
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+        std::clog << "(debug)not done" << std::endl;
+
+    SlideFileDialog loadDialog(*this, "Choose a file to load");
+
+    switch(loadDialog.run())
+    {
+    case(Gtk::RESPONSE_OK):
+    {
+        saveFile = {loadDialog.get_filename()};
+
+        Grid15::GridHelp::load(saveFile, *gridPtr);//fixme error handeling
+
+        tileGrid.saveFile = {saveFile};
+        tileGrid.lableTiles();
+
+        break;
+    }
+    case(Gtk::RESPONSE_CANCEL):
+    {
+        //std::cout << "Cancel clicked." << std::endl;
+        break;
+    }
+    default:
+    {
+        //std::cout << "Unexpected button clicked." << std::endl;
+        break;
+    }
+    }
 }
 
-void MainWindow::menuBar_exit()
+void MainWindow::on_menuBar_exit()
 {
     applicationPtr->quit();
 }
 
-void MainWindow::menuBar_autoSave()
+void MainWindow::on_menuBar_autoSave()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+        std::clog << "(debug)to do" << std::endl;
 }
 
-void MainWindow::menuBar_demo()
+void MainWindow::on_menuBar_demo()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+        std::clog << "(debug)to do" << std::endl;
 }
 
-void MainWindow::menuBar_about()
+void MainWindow::on_menuBar_about()
 {
-    (AboutSlide {*this}).display(*this);
+    (AboutSlide {*this}).display();
 }
 }

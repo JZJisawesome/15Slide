@@ -62,27 +62,37 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
 
         if constexpr (ProgramStuff::Build::DEBUG)
         {
-            std::cout << std::boolalpha;
-            std::cout << "(debug)Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]) << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << std::endl;
+            std::clog << std::boolalpha;
+            std::clog << "(debug)Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]) << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << "\n";
         }
 
         if (Grid15::GridHelp::validMove(x, y, *gridPtr))
         {
             if constexpr (ProgramStuff::Build::DEBUG)
-                std::cout << "(debug)Swapping tile..." << std::endl;
+                std::clog << "(debug)Swapping tile..." << "\n";
 
             Grid15::GridHelp::swapTile(x, y, *gridPtr);
 
             lableTiles();//fixme: just relable the 2 tiles instead
 
             if constexpr (ProgramStuff::Build::DEBUG)
-                std::cout << "(debug)Won: " << Grid15::GridHelp::hasWon(*gridPtr) << std::endl;
+                std::clog << "(debug)Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
+
+            if (saveOnSlide)
+            {
+                Grid15::GridHelp::save(saveFile, *gridPtr);
+
+                if constexpr (ProgramStuff::Build::DEBUG)
+                    std::clog << "(debug)Auto-saved the game" << "\n";
+            }
         }
+
+
 
         if constexpr (ProgramStuff::Build::DEBUG)
         {
-            std::cout << std::noboolalpha;
-            std::cout.flush();//sometimes nothing prints until cout is flushed
+            std::clog << std::noboolalpha;
+            std::clog.flush();//sometimes nothing prints until clog is flushed
         }
 
     }

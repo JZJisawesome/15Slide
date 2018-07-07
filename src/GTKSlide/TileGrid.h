@@ -21,14 +21,17 @@ public:
     virtual ~TileGrid();
 
     void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
+
+    bool saveOnSlide {false};
+    std::string saveFile {""};
+
+    void lableTiles();
 protected:
     Gtk::Button gridButtons[4][4];
 
     std::shared_ptr<Grid15::Grid> gridPtr {nullptr};
 
     void on_tile_clicked(std::pair<int,int> &coordinates);
-
-    void lableTiles();
 };
 }
 

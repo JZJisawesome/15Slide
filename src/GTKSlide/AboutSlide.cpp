@@ -20,10 +20,6 @@ AboutSlide::AboutSlide(Gtk::Window &window)
         "Lesser GNU Public Licence\n"
         "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms"
     );
-
-    set_website("https://jzjisawesome.github.io/15Slide/");
-    set_website_label("15Slide Website");
-
     set_authors
     (
         {
@@ -31,16 +27,16 @@ AboutSlide::AboutSlide(Gtk::Window &window)
         }
     );
 
+    set_website("https://jzjisawesome.github.io/15Slide/");
+    set_website_label("15Slide Website");
 }
 
 AboutSlide::~AboutSlide() {}
 
-void AboutSlide::display(Gtk::Window &window)
+void AboutSlide::display()
 {
     show_all();
     present();
     run();
-
-    window.show_all_children();
 }
 }

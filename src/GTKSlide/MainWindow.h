@@ -30,21 +30,23 @@ protected:
     Gtk::MenuBar mainMenu;
     Gtk::MenuBar createMenuBar();
 
-    void menuBar_test();
-    void menuBar_save();
-    void menuBar_saveAs();
-    void menuBar_load();
-    void menuBar_exit();
+    void on_menuBar_test();
+    void on_menuBar_save();
+    void on_menuBar_saveAs();
+    void on_menuBar_load();
+    void on_menuBar_exit();
 
-    void menuBar_autoSave();
+    void on_menuBar_autoSave();
 
-    void menuBar_demo();
-    void menuBar_about();
+    void on_menuBar_demo();
+    void on_menuBar_about();
 
     TileGrid tileGrid;
 
 
     std::shared_ptr<Grid15::Grid> gridPtr;
+    std::string saveFile {""};
+
     Glib::RefPtr<Gtk::Application> &applicationPtr;
 };
 }
