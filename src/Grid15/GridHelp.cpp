@@ -445,12 +445,7 @@ void load(const std::string& saveFile, Grid& grid)
 
     short temp {};
 
-    std::string saveFileBuffer {};
-
-
     saveFileStream.open(saveFile);
-
-    std::getline(saveFileStream, saveFileBuffer);
 
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
