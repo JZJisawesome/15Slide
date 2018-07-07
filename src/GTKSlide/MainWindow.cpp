@@ -4,6 +4,7 @@
 
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
+#include "AboutSlide.h"
 #include "CommandUI.h"
 
 #include "ProgramStuff.h"
@@ -62,7 +63,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
 
 
     actionGroup->add_action("demo", sigc::mem_fun(*this, &MainWindow::menuBar_demo));
-    applicationPtr->set_accel_for_action("actionGroup.demo", "<Primary>d");
+    applicationPtr->set_accel_for_action("actionGroup.demo", "<Primary>h");
 
     actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::menuBar_about));
 
@@ -121,7 +122,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "                   <item>"//How to play
         "                       <attribute name='label' translatable='yes'>_How to play</attribute>"
         "                       <attribute name='action'>actionGroup.demo</attribute>"
-        "                       <attribute name='accel'>&lt;Primary&gt;d</attribute>"
+        "                       <attribute name='accel'>&lt;Primary&gt;h</attribute>"
         "                   </item>"
         "                   <item>"//About
         "                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>"
@@ -202,7 +203,6 @@ void MainWindow::menuBar_demo()
 
 void MainWindow::menuBar_about()
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-        std::cout << "(debug)to do" << std::endl;
+    (AboutSlide {*this}).display(*this);
 }
 }

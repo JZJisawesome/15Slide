@@ -26,7 +26,7 @@
 #include <memory>
 #include <exception>
 
-#if defined(GUI)
+#if defined(ENABLE_GUI)
 #include "GTKSlide/MainWindow.h"
 #include <gtkmm/application.h>
 #endif
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
-#if defined(GUI)
+#if defined(ENABLE_GUI)
         Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
         GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         terminalUI.start(*gameGrid);
 #endif
     }
-    catch (std::exception &e)
+    catch (...)
     {
         std::cerr << termcolor::bold << termcolor::red;
         std::cerr << "A fatal error has occured and 15Slide has crashed." << "\n";
@@ -99,24 +99,8 @@ int main(int argc, char *argv[])
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)Rethrowing Exception" << "\n";
 
-        //throw e;
-        throw;//so we get the authentic exceptiony goodness
+        throw;
     }
-    #if defined(GUI)
-    catch (Glib::Error &e)
-    {
-        std::cerr << termcolor::bold << termcolor::red;
-        std::cerr << "A fatal error has occured and 15Slide has crashed." << "\n";
-        std::cerr << termcolor::reset;
-        std::cerr << std::endl;
-
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)Rethrowing Exception" << "\n";
-
-        //throw e;
-        throw;//so we get the authentic exceptiony goodness
-    }
-    #endif
 
     std::cout << std::endl;
     std::cout << "Thanks for playing 15Slide. Goodbye!";

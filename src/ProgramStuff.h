@@ -123,12 +123,13 @@ constexpr bool USE_UTF8_TERMINAL {true && !OS::WINDOWS};///<Use UTF-8 throuought
 constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsii code
 
 #ifndef __SLIDEWINDOWS
-#define GUI 1
+#define ENABLE_GUI 1
 #endif
 
 namespace Build
 {
-constexpr float SLIDE_VERSION   {0.9};      ///<15Slide Version
+constexpr float SLIDE_VERSION   {0.9};                  ///<15Slide Version
+constexpr char  SLIDE_VERSION_STRING[]   {"0.9-debug"}; ///<15Slide Version String
 
 constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
