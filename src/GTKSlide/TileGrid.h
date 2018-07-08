@@ -17,7 +17,7 @@ class TileGrid : public Gtk::Grid
 {
 public:
     TileGrid();
-    TileGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
+    TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr);
     virtual ~TileGrid();
 
     void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
@@ -29,6 +29,7 @@ public:
 protected:
     Gtk::Button gridButtons[4][4];
 
+    Gtk::Window *parentPtr {nullptr};//not smart because window will be on stack
     std::shared_ptr<Grid15::Grid> gridPtr {nullptr};
 
     void on_tile_clicked(std::pair<int,int> &coordinates);

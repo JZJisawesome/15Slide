@@ -17,7 +17,7 @@
 
 namespace GTKSlide
 {
-MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid(newGridPtr), gridPtr(newGridPtr), applicationPtr(application)
+MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid(*this, newGridPtr), gridPtr(newGridPtr), applicationPtr(application)
 {
     set_title("15Slide");// + std::to_string(ProgramStuff::Build::SLIDE_VERSION));//fixme: too many decimal points
     //set_border_width(10);//fixme makes menu bar look weird
@@ -175,41 +175,24 @@ void MainWindow::on_menuBar_saveAs()
 
     SlideFileDialog saveDialog(*this, "Choose a file to save to");
 
-    switch(saveDialog.run())
-    {
-    case(Gtk::RESPONSE_OK):
+    if (saveDialog.run() == Gtk::RESPONSE_OK)
     {
         saveFile = {saveDialog.get_filename()};
 
         Grid15::GridHelp::save(saveFile, *gridPtr);//fixme error handeling
 
         tileGrid.saveFile = {saveFile};
-
-        break;
-    }
-    case(Gtk::RESPONSE_CANCEL):
-    {
-        //std::cout << "Cancel clicked." << std::endl;
-        break;
-    }
-    default:
-    {
-        //std::cout << "Unexpected button clicked." << std::endl;
-        break;
-    }
     }
 }
 
-void MainWindow::on_menuBar_load()//fixme make dialog own class
+void MainWindow::on_menuBar_load()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)not done" << std::endl;
 
     SlideFileDialog loadDialog(*this, "Choose a file to load");
 
-    switch(loadDialog.run())
-    {
-    case(Gtk::RESPONSE_OK):
+    if (loadDialog.run() == Gtk::RESPONSE_OK)
     {
         saveFile = {loadDialog.get_filename()};
 
@@ -217,19 +200,6 @@ void MainWindow::on_menuBar_load()//fixme make dialog own class
 
         tileGrid.saveFile = {saveFile};
         tileGrid.lableTiles();
-
-        break;
-    }
-    case(Gtk::RESPONSE_CANCEL):
-    {
-        //std::cout << "Cancel clicked." << std::endl;
-        break;
-    }
-    default:
-    {
-        //std::cout << "Unexpected button clicked." << std::endl;
-        break;
-    }
     }
 }
 

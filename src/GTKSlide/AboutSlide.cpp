@@ -6,15 +6,15 @@
 
 namespace GTKSlide
 {
-AboutSlide::AboutSlide(Gtk::Window &window)
+AboutSlide::AboutSlide(Gtk::Window &parent)
 {
-    set_transient_for(window);
+    set_transient_for(parent);
 
     set_program_name("15Slide");
     set_version(ProgramStuff::Build::SLIDE_VERSION_STRING);
     set_comments("A fun, cross-platform, slidy-tile game written with C++ 17!");
 
-    set_copyright("John Jekel");
+    set_copyright("John Jekel @JZJisawesome");
     set_license
     (
         "Lesser GNU Public Licence\n"
@@ -23,7 +23,7 @@ AboutSlide::AboutSlide(Gtk::Window &window)
     set_authors
     (
         {
-            "John Jekel"
+            "John Jekel @JZJisawesome"
         }
     );
 

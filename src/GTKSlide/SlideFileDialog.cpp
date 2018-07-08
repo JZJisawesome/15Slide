@@ -6,9 +6,9 @@
 
 namespace GTKSlide
 {
-SlideFileDialog::SlideFileDialog(Gtk::Window &window, const std::string &title) : Gtk::FileChooserDialog(title, Gtk::FILE_CHOOSER_ACTION_OPEN)
+SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title) : Gtk::FileChooserDialog(title, Gtk::FILE_CHOOSER_ACTION_OPEN)
 {
-    set_transient_for(window);
+    set_transient_for(parent);
 
     add_button("_Cancel", Gtk::RESPONSE_CANCEL);
     add_button("_Open", Gtk::RESPONSE_OK);

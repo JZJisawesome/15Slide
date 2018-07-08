@@ -14,19 +14,18 @@
 
 namespace GTKSlide
 {
-TileGrid::TileGrid() {}
-
-TileGrid::TileGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
+TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr)
 {
-    setupGrid(newGridPtr);
+    parentPtr = {&parent};
+
+    gridPtr = newGridPtr;
+    setupGrid(gridPtr);
 }
 
 TileGrid::~TileGrid() {}
 
 void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
 {
-    gridPtr = newGridPtr;
-
     //create the first row of tiles
     for (std::uint_fast32_t j {0}; j < 4; ++j)
     {
@@ -69,14 +68,30 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
         if (Grid15::GridHelp::validMove(x, y, *gridPtr))
         {
             if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "(debug)Swapping tile..." << "\n";
+                std::clog << "(debug)Swapping tile... ";
 
             Grid15::GridHelp::swapTile(x, y, *gridPtr);
 
             lableTiles();//fixme: just relable the 2 tiles instead
 
             if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "(debug)Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
+                std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
+
+            if (Grid15::GridHelp::hasWon(*gridPtr))//maybe make seperate class
+            {
+                Gtk::MessageDialog wonDialog("YOU WON!!!" "\xf0\x9f\x8f\x86");//second string is a trophy
+                wonDialog.set_title("YOU WON!!!");
+
+                if constexpr (ProgramStuff::CHEAT_MODE)
+                    wonDialog.set_secondary_text("BUT YOU CHEATED (CHEAT_MODE = true)");
+                else
+                    wonDialog.set_secondary_text("Great Work!!!");
+
+                wonDialog.set_transient_for(*parentPtr);
+                wonDialog.show_all();
+                wonDialog.present();
+                wonDialog.run();
+            }
 
             if (saveOnSlide)
             {
@@ -86,7 +101,6 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
                     std::clog << "(debug)Auto-saved the game" << "\n";
             }
         }
-
 
 
         if constexpr (ProgramStuff::Build::DEBUG)

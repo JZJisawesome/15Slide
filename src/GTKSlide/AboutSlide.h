@@ -10,7 +10,7 @@ namespace GTKSlide
 class AboutSlide : public Gtk::AboutDialog
 {
 public:
-    AboutSlide(Gtk::Window &window);
+    AboutSlide(Gtk::Window &parent);
     virtual ~AboutSlide();
 
     void display();
