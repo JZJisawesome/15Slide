@@ -19,7 +19,7 @@ namespace GTKSlide
 {
 MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid(*this, newGridPtr), gridPtr(newGridPtr), applicationPtr(application)
 {
-    set_title("15Slide");// + std::to_string(ProgramStuff::Build::SLIDE_VERSION));//fixme: too many decimal points
+    set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
     set_resizable(false);
 
@@ -42,11 +42,8 @@ Gtk::MenuBar MainWindow::createMenuBar()
     Glib::RefPtr<Gio::SimpleActionGroup> actionGroup {Gio::SimpleActionGroup::create()};
     insert_action_group("actionGroup", actionGroup);
 
-    if constexpr (ProgramStuff::Build::DEBUG)
-    {
-        actionGroup->add_action("test", sigc::mem_fun(*this, &MainWindow::on_menuBar_test));
-        applicationPtr->set_accel_for_action("actionGroup.test", "<Primary>t");
-    }
+    actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::on_menuBar_newGame));
+    applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
 
     actionGroup->add_action("save", sigc::mem_fun(*this, &MainWindow::on_menuBar_save));
     applicationPtr->set_accel_for_action("actionGroup.save", "<Primary>s");
@@ -57,6 +54,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
     applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
 
     actionGroup->add_action("exit", sigc::mem_fun(*this, &MainWindow::on_menuBar_exit));
+    applicationPtr->set_accel_for_action("actionGroup.exit", "<Primary>q");
 
 
     actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
@@ -77,13 +75,11 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "           <attribute name='label' translatable='yes'>_File</attribute>"//File menu
         "           <section>"
         "               <section>"
-        "                   <item>"//Test
-        "                       <attribute name='label' translatable='yes'>_Test</attribute>"
-        "                       <attribute name='action'>actionGroup.test</attribute>"
-        "                       <attribute name='accel'>&lt;Primary&gt;t</attribute>"
+        "                   <item>"//New Game
+        "                       <attribute name='label' translatable='yes'>_New Game</attribute>"
+        "                       <attribute name='action'>actionGroup.newGame</attribute>"
+        "                       <attribute name='accel'>&lt;Primary&gt;n</attribute>"
         "                   </item>"
-        "               </section>"
-        "               <section>"
         "                   <item>"//Save
         "                       <attribute name='label' translatable='yes'>_Save</attribute>"
         "                       <attribute name='action'>actionGroup.save</attribute>"
@@ -103,6 +99,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "                   <item>"//Exit
         "                       <attribute name='label' translatable='yes'>_Exit</attribute>"
         "                       <attribute name='action'>actionGroup.exit</attribute>"
+        "                       <attribute name='accel'>&lt;Primary&gt;q</attribute>"
         "                   </item>"
         "               </section>"
         "           </section>"
@@ -156,56 +153,111 @@ Gtk::MenuBar MainWindow::createMenuBar()
     }
 }
 
-void MainWindow::on_menuBar_test()
+void MainWindow::on_menuBar_newGame()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)Hey! It works!!!" << std::endl;
+        std::clog << "(debug)not done" << std::endl;
+
+    //check if grid was not saved
+
+    saveFile = {""};
+    tileGrid.saveFile = {""};
+
+    (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
+
+    tileGrid.lableTiles();
 }
 
 void MainWindow::on_menuBar_save()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)to do" << std::endl;
+        std::clog << "(debug)not done" << std::endl;
+
+    if (saveFile != "")
+        Grid15::GridHelp::save(saveFile, *gridPtr);//error handlign needed
+    else
+        on_menuBar_saveAs();
 }
 
 void MainWindow::on_menuBar_saveAs()
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)not done" << std::endl;
-
-    SlideFileDialog saveDialog(*this, "Choose a file to save to");
+    SlideFileDialog saveDialog(*this, "Choose a file to save to", Gtk::FILE_CHOOSER_ACTION_SAVE);
 
     if (saveDialog.run() == Gtk::RESPONSE_OK)
     {
-        saveFile = {saveDialog.get_filename()};
+        try
+        {
+            Grid15::GridHelp::save(saveDialog.get_filename(), *gridPtr);
 
-        Grid15::GridHelp::save(saveFile, *gridPtr);//fixme error handeling
+            //we only get here if the file works
+            saveFile = {saveDialog.get_filename()};
 
-        tileGrid.saveFile = {saveFile};
+            tileGrid.saveFile = {saveFile};
+        }
+        catch (std::ios_base::failure &e)
+        {
+            Gtk::MessageDialog wonDialog("Some this went wrong while saving");//second string is a trophy
+            wonDialog.set_title("Oh no!");
+
+            wonDialog.set_secondary_text("Try a diffrent file/location, or change permissions to allow writing");
+
+            wonDialog.set_transient_for(*this);
+            wonDialog.show_all();
+            wonDialog.present();
+            wonDialog.run();
+        }
     }
 }
 
 void MainWindow::on_menuBar_load()
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)not done" << std::endl;
-
-    SlideFileDialog loadDialog(*this, "Choose a file to load");
+    SlideFileDialog loadDialog(*this, "Choose a file to load", Gtk::FILE_CHOOSER_ACTION_OPEN);
 
     if (loadDialog.run() == Gtk::RESPONSE_OK)
     {
-        saveFile = {loadDialog.get_filename()};
+        try
+        {
+            Grid15::GridHelp::load(loadDialog.get_filename(), *gridPtr);
 
-        Grid15::GridHelp::load(saveFile, *gridPtr);//fixme error handeling
+            //we only get here if the file works
+            saveFile = {loadDialog.get_filename()};
 
-        tileGrid.saveFile = {saveFile};
-        tileGrid.lableTiles();
+            tileGrid.saveFile = {saveFile};
+            tileGrid.lableTiles();
+        }
+        catch (std::ios_base::failure &e)
+        {
+            Gtk::MessageDialog wonDialog("Some this went wrong while loading");//second string is a trophy
+            wonDialog.set_title("Oh no!");
+
+            wonDialog.set_secondary_text("Try a diffrent file/location, change permissions to allow reading, and make sure it is a valid 15Slide save file");
+
+            wonDialog.set_transient_for(*this);
+            wonDialog.show_all();
+            wonDialog.present();
+            wonDialog.run();
+        }
+        catch (std::invalid_argument &e)
+        {
+            Gtk::MessageDialog wonDialog("Some this went wrong while importing the grid");//second string is a trophy
+            wonDialog.set_title("Oh no!");
+
+            wonDialog.set_secondary_text("The file was read sucessfully, but the grid may be corrupted");
+
+            wonDialog.set_transient_for(*this);
+            wonDialog.show_all();
+            wonDialog.present();
+            wonDialog.run();
+        }
     }
 }
 
 void MainWindow::on_menuBar_exit()
 {
-    applicationPtr->quit();
+    if constexpr (ProgramStuff::Build::DEBUG)
+        std::clog << "(debug)not done" << std::endl;
+    //check if grid was not saved
+    hide();
 }
 
 void MainWindow::on_menuBar_autoSave()

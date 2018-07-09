@@ -30,7 +30,7 @@ protected:
     Gtk::MenuBar mainMenu;
     Gtk::MenuBar createMenuBar();
 
-    void on_menuBar_test();
+    void on_menuBar_newGame();
     void on_menuBar_save();
     void on_menuBar_saveAs();
     void on_menuBar_load();

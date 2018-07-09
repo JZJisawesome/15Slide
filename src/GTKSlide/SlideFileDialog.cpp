@@ -1,17 +1,23 @@
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
 
-#include "SlideFileDialog.h"
+#include "GTKSlide/SlideFileDialog.h"
 #include <gtkmm.h>
 
 namespace GTKSlide
 {
-SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title) : Gtk::FileChooserDialog(title, Gtk::FILE_CHOOSER_ACTION_OPEN)
+SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action) : Gtk::FileChooserDialog(title, action)
 {
     set_transient_for(parent);
 
     add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-    add_button("_Open", Gtk::RESPONSE_OK);
+
+    if (action == Gtk::FILE_CHOOSER_ACTION_OPEN)
+        add_button("_Open", Gtk::RESPONSE_OK);
+    else if (action == Gtk::FILE_CHOOSER_ACTION_SAVE)
+        add_button("_Save", Gtk::RESPONSE_OK);
+    else
+        throw std::invalid_argument {"Invalid File Chooser Action"};
 
     Glib::RefPtr<Gtk::FileFilter> filter_slideSave = Gtk::FileFilter::create();
     filter_slideSave->set_name("15Slide save files");

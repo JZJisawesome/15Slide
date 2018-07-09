@@ -564,7 +564,7 @@ void CommandUI::saveGame(const std::string &saveFile, const Grid15::Grid &grid)
     catch (std::ios_base::failure &e)
     {
         std::cerr << termcolor::bold << termcolor::red;
-        std::cerr << "Something went wrong while writing. ";
+        std::cerr << "Something went wrong while saving. ";
         std::cerr << termcolor::reset;
         std::cerr << "Try a diffrent file name/location, or change permissions to allow writing.";
         std::cerr << std::endl;
@@ -596,10 +596,10 @@ void CommandUI::loadGame(const std::string &saveFile, Grid15::Grid &grid)
     catch (std::ios_base::failure &e)
     {
         std::cerr << termcolor::bold << termcolor::red;
-        std::cerr << "Something went wrong while reading. ";
+        std::cerr << "Something went wrong while loading. ";
         std::cerr << termcolor::reset;
 
-        std::cerr << "Try a diffrent file name/location.";
+        std::cerr << "Try a diffrent file name/location, or change permissions to allow reading.";
         std::cerr << std::endl;
     }
     catch (std::invalid_argument &e)

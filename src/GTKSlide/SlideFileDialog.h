@@ -12,7 +12,7 @@ namespace GTKSlide
 class SlideFileDialog : public Gtk::FileChooserDialog
 {
 public:
-    SlideFileDialog(Gtk::Window &parent, const std::string &title);
+    SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action);
     virtual ~SlideFileDialog();
 
     void display();
