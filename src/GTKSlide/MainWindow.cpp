@@ -14,10 +14,11 @@
 #include <iostream>
 
 #include <memory>
+#include <exception>
 
 namespace GTKSlide
 {
-MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid(*this, newGridPtr), gridPtr(newGridPtr), applicationPtr(application)
+MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid{*this, newGridPtr}, gridPtr{newGridPtr}, applicationPtr{application}
 {
     set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
@@ -142,15 +143,9 @@ Gtk::MenuBar MainWindow::createMenuBar()
     Glib::RefPtr<Glib::Object> menuObject = menuBuilder->get_object("menuBar");
     Glib::RefPtr<Gio::Menu> newMenuBar = Glib::RefPtr<Gio::Menu>::cast_dynamic(menuObject);
     if (!newMenuBar)
-    {
-        g_warning("newMenuBar not found");
-
-        return Gtk::MenuBar {};
-    }
+        throw std::runtime_error {"Could not create a menu bar"};
     else
-    {
         return Gtk::MenuBar {newMenuBar};
-    }
 }
 
 void MainWindow::on_menuBar_newGame()
@@ -181,6 +176,9 @@ void MainWindow::on_menuBar_save()
 
 void MainWindow::on_menuBar_saveAs()
 {
+    if constexpr (ProgramStuff::Build::DEBUG)
+        std::clog << "(debug)final touches" << std::endl;
+
     SlideFileDialog saveDialog(*this, "Choose a file to save to", Gtk::FILE_CHOOSER_ACTION_SAVE);
 
     if (saveDialog.run() == Gtk::RESPONSE_OK)
@@ -196,6 +194,8 @@ void MainWindow::on_menuBar_saveAs()
         }
         catch (std::ios_base::failure &e)
         {
+            saveDialog.hide();
+
             Gtk::MessageDialog wonDialog("Some this went wrong while saving");//second string is a trophy
             wonDialog.set_title("Oh no!");
 
@@ -211,7 +211,10 @@ void MainWindow::on_menuBar_saveAs()
 
 void MainWindow::on_menuBar_load()
 {
-    SlideFileDialog loadDialog(*this, "Choose a file to load", Gtk::FILE_CHOOSER_ACTION_OPEN);
+    if constexpr (ProgramStuff::Build::DEBUG)
+        std::clog << "(debug)final touches" << std::endl;
+
+    SlideFileDialog loadDialog(*this, "Choose a file to load from", Gtk::FILE_CHOOSER_ACTION_OPEN);
 
     if (loadDialog.run() == Gtk::RESPONSE_OK)
     {
@@ -227,6 +230,8 @@ void MainWindow::on_menuBar_load()
         }
         catch (std::ios_base::failure &e)
         {
+            loadDialog.hide();
+
             Gtk::MessageDialog wonDialog("Some this went wrong while loading");//second string is a trophy
             wonDialog.set_title("Oh no!");
 
@@ -239,6 +244,8 @@ void MainWindow::on_menuBar_load()
         }
         catch (std::invalid_argument &e)
         {
+            loadDialog.hide();
+
             Gtk::MessageDialog wonDialog("Some this went wrong while importing the grid");//second string is a trophy
             wonDialog.set_title("Oh no!");
 
@@ -257,6 +264,7 @@ void MainWindow::on_menuBar_exit()
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)not done" << std::endl;
     //check if grid was not saved
+
     hide();
 }
 
@@ -268,8 +276,8 @@ void MainWindow::on_menuBar_autoSave()
 
 void MainWindow::on_menuBar_demo()
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)to do" << std::endl;
+    //had to use c function
+    gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
 }
 
 void MainWindow::on_menuBar_about()

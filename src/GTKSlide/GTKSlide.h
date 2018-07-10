@@ -5,6 +5,8 @@
 
 #include "GTKSlide/MainWindow.h"
 #include "GTKSlide/TileGrid.h"
+#include "GTKSlide/AboutSlide.h"
+#include "GTKSlide/SlideFileDialog.h"
 
 /** \namespace GTKSlide
  *

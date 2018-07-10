@@ -29,8 +29,8 @@ public:
 protected:
     Gtk::Button gridButtons[4][4];
 
-    Gtk::Window *parentPtr {nullptr};//not smart because window will be on stack
-    std::shared_ptr<Grid15::Grid> gridPtr {nullptr};
+    Gtk::Window *parentPtr {};//not smart pointer because window will be on stack
+    std::shared_ptr<Grid15::Grid> gridPtr {};
 
     void on_tile_clicked(std::pair<int,int> &coordinates);
 };

@@ -44,7 +44,7 @@ protected:
     TileGrid tileGrid;
 
 
-    std::shared_ptr<Grid15::Grid> gridPtr {nullptr};
+    std::shared_ptr<Grid15::Grid> gridPtr {};
     std::string saveFile {""};
 
     Glib::RefPtr<Gtk::Application> &applicationPtr;
