@@ -72,7 +72,8 @@ int main(int argc, char *argv[])
 #if defined(ENABLE_GUI)
         Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
-        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI
+        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
+        //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
 
         return application->run(window);
 #else

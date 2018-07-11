@@ -5,6 +5,7 @@
 
 
 #include "Grid15/Grid.h"
+#include "GTKSlide/SaveManager.h"
 
 #include <gtkmm.h>
 #include <memory>
@@ -16,23 +17,21 @@ namespace GTKSlide
 class TileGrid : public Gtk::Grid
 {
 public:
-    TileGrid();
-    TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr);
+    TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr, std::shared_ptr<SaveManager> &saveManagerPtr);
     virtual ~TileGrid();
 
     void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
-
-    bool saveOnSlide {false};
-    std::string saveFile {""};
-
     void lableTiles();
 protected:
-    Gtk::Button gridButtons[4][4];
-
     Gtk::Window *parentPtr {};//not smart pointer because window will be on stack
     std::shared_ptr<Grid15::Grid> gridPtr {};
 
     void on_tile_clicked(std::pair<int,int> &coordinates);
+    Gtk::Button gridButtons[4][4];
+    //std::unique_ptr<Gtk::Button>//this array takes up lots of space
+
+    void displayWonDialog();
+    std::shared_ptr<SaveManager> saveManager {};
 };
 }
 

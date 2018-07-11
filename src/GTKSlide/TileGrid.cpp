@@ -11,12 +11,14 @@
 #include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
+#include "GTKSlide/SaveManager.h"
 
 namespace GTKSlide
 {
-TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr)
+TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr, std::shared_ptr<SaveManager> &saveManagerPtr)
 {
     parentPtr = {&parent};
+    saveManager = {saveManagerPtr};
 
     gridPtr = newGridPtr;
     setupGrid(gridPtr);
@@ -71,31 +73,22 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
                 std::clog << "(debug)Swapping tile... ";
 
             Grid15::GridHelp::swapTile(x, y, *gridPtr);
+            saveManager->isSaved = {false};
 
             lableTiles();//fixme: just relable the 2 tiles instead
 
             if constexpr (ProgramStuff::Build::DEBUG)
                 std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
 
-            if (Grid15::GridHelp::hasWon(*gridPtr))//maybe make seperate class
+
+            if (Grid15::GridHelp::hasWon(*gridPtr))
+                displayWonDialog();
+
+            if (saveManager->autoSave && (saveManager->saveFile != ""))
             {
-                Gtk::MessageDialog wonDialog("YOU WON!!!" "\xf0\x9f\x8f\x86");//second string is a trophy
-                wonDialog.set_title("YOU WON!!!");
+                Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
 
-                if constexpr (ProgramStuff::CHEAT_MODE)
-                    wonDialog.set_secondary_text("BUT YOU CHEATED (CHEAT_MODE = true)");
-                else
-                    wonDialog.set_secondary_text("Great Work!!!");
-
-                wonDialog.set_transient_for(*parentPtr);
-                wonDialog.show_all();
-                wonDialog.present();
-                wonDialog.run();
-            }
-
-            if (saveOnSlide)
-            {
-                Grid15::GridHelp::save(saveFile, *gridPtr);
+                saveManager->isSaved = {true};
 
                 if constexpr (ProgramStuff::Build::DEBUG)
                     std::clog << "(debug)Auto-saved the game" << "\n";
@@ -125,5 +118,21 @@ void TileGrid::lableTiles()
                     gridButtons[i][j].set_label("◉");//special character for the no tile
             }
     }
+}
+
+void TileGrid::displayWonDialog()
+{
+    Gtk::MessageDialog wonDialog("YOU WON!!!" "\xf0\x9f\x8f\x86");//second string is a trophy
+    wonDialog.set_title("YOU WON!!!");
+
+    if constexpr (ProgramStuff::CHEAT_MODE)
+        wonDialog.set_secondary_text("BUT YOU CHEATED (CHEAT_MODE = true)");
+    else
+        wonDialog.set_secondary_text("Great Work!!!");
+
+    wonDialog.set_transient_for(*parentPtr);
+    wonDialog.show_all();
+    wonDialog.present();
+    wonDialog.run();
 }
 }

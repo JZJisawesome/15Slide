@@ -6,6 +6,7 @@
 #include "Grid15/Grid.h"
 
 #include "GTKSlide/TileGrid.h"
+#include "GTKSlide/SaveManager.h"
 
 #include <gtkmm.h>
 
@@ -21,7 +22,7 @@ namespace GTKSlide
 class MainWindow : public Gtk::Window
 {
 public:
-    MainWindow(Glib::RefPtr<Gtk::Application> & application, std::shared_ptr<Grid15::Grid> &newGridPtr);
+    MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr);
     virtual ~MainWindow();
 
 protected:
@@ -41,11 +42,10 @@ protected:
     void on_menuBar_demo();
     void on_menuBar_about();
 
+    std::shared_ptr<SaveManager> saveManager {};
+
     TileGrid tileGrid;
-
-
     std::shared_ptr<Grid15::Grid> gridPtr {};
-    std::string saveFile {""};
 
     Glib::RefPtr<Gtk::Application> &applicationPtr;
 };

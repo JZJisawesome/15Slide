@@ -6,6 +6,7 @@
 #include "Grid15/GridHelp.h"
 #include "GTKSlide/AboutSlide.h"
 #include "GTKSlide/SlideFileDialog.h"
+#include "GTKSlide/SaveManager.h"
 #include "CommandUI.h"
 
 #include "ProgramStuff.h"
@@ -18,7 +19,7 @@
 
 namespace GTKSlide
 {
-MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): tileGrid{*this, newGridPtr}, gridPtr{newGridPtr}, applicationPtr{application}
+MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr): saveManager {new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
 {
     set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
@@ -50,6 +51,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
     applicationPtr->set_accel_for_action("actionGroup.save", "<Primary>s");
 
     actionGroup->add_action("saveAs", sigc::mem_fun(*this, &MainWindow::on_menuBar_saveAs));
+    //applicationPtr->set_accel_for_action("actionGroup.load", "<Secondary>l");
 
     actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
     applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
@@ -89,6 +91,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "                   <item>"//Save As
         "                       <attribute name='label' translatable='yes'>_Save As</attribute>"
         "                       <attribute name='action'>actionGroup.saveAs</attribute>"
+        //"                       <attribute name='accel'>&lt;Secondary&gt;s</attribute>"
         "                   </item>"
         "                   <item>"//Load
         "                       <attribute name='label' translatable='yes'>_Load</attribute>"
@@ -153,10 +156,8 @@ void MainWindow::on_menuBar_newGame()
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)not done" << std::endl;
 
-    //check if grid was not saved
-
-    saveFile = {""};
-    tileGrid.saveFile = {""};
+    saveManager->saveFile = {""};
+    saveManager->isSaved = {false};
 
     (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
 
@@ -168,8 +169,8 @@ void MainWindow::on_menuBar_save()
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)not done" << std::endl;
 
-    if (saveFile != "")
-        Grid15::GridHelp::save(saveFile, *gridPtr);//error handlign needed
+    if (saveManager->saveFile != "")
+        Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//error handlign needed
     else
         on_menuBar_saveAs();
 }
@@ -188,23 +189,25 @@ void MainWindow::on_menuBar_saveAs()
             Grid15::GridHelp::save(saveDialog.get_filename(), *gridPtr);
 
             //we only get here if the file works
-            saveFile = {saveDialog.get_filename()};
+            //saveFile = {saveDialog.get_filename()};
+            saveManager->saveFile = {saveDialog.get_filename()};
+            saveManager->isSaved = {true};
 
-            tileGrid.saveFile = {saveFile};
+            tileGrid.lableTiles();
         }
         catch (std::ios_base::failure &e)
         {
             saveDialog.hide();
 
-            Gtk::MessageDialog wonDialog("Some this went wrong while saving");//second string is a trophy
-            wonDialog.set_title("Oh no!");
+            Gtk::MessageDialog errorDialog("Some this went wrong while saving");//second string is a trophy
+            errorDialog.set_title("Oh no!");
 
-            wonDialog.set_secondary_text("Try a diffrent file/location, or change permissions to allow writing");
+            errorDialog.set_secondary_text("Try a diffrent file/location, or change permissions to allow writing");
 
-            wonDialog.set_transient_for(*this);
-            wonDialog.show_all();
-            wonDialog.present();
-            wonDialog.run();
+            errorDialog.set_transient_for(*this);
+            errorDialog.show_all();
+            errorDialog.present();
+            errorDialog.run();
         }
     }
 }
@@ -223,38 +226,39 @@ void MainWindow::on_menuBar_load()
             Grid15::GridHelp::load(loadDialog.get_filename(), *gridPtr);
 
             //we only get here if the file works
-            saveFile = {loadDialog.get_filename()};
+            //saveFile = {saveDialog.get_filename()};
+            saveManager->saveFile = {loadDialog.get_filename()};
+            saveManager->isSaved = {true};
 
-            tileGrid.saveFile = {saveFile};
             tileGrid.lableTiles();
         }
         catch (std::ios_base::failure &e)
         {
             loadDialog.hide();
 
-            Gtk::MessageDialog wonDialog("Some this went wrong while loading");//second string is a trophy
-            wonDialog.set_title("Oh no!");
+            Gtk::MessageDialog errorDialog("Some this went wrong while loading");//second string is a trophy
+            errorDialog.set_title("Oh no!");
 
-            wonDialog.set_secondary_text("Try a diffrent file/location, change permissions to allow reading, and make sure it is a valid 15Slide save file");
+            errorDialog.set_secondary_text("Try a diffrent file/location, change permissions to allow reading, and make sure it is a valid 15Slide save file");
 
-            wonDialog.set_transient_for(*this);
-            wonDialog.show_all();
-            wonDialog.present();
-            wonDialog.run();
+            errorDialog.set_transient_for(*this);
+            errorDialog.show_all();
+            errorDialog.present();
+            errorDialog.run();
         }
         catch (std::invalid_argument &e)
         {
             loadDialog.hide();
 
-            Gtk::MessageDialog wonDialog("Some this went wrong while importing the grid");//second string is a trophy
-            wonDialog.set_title("Oh no!");
+            Gtk::MessageDialog errorDialog("Some this went wrong while importing the grid");//second string is a trophy
+            errorDialog.set_title("Oh no!");
 
-            wonDialog.set_secondary_text("The file was read sucessfully, but the grid may be corrupted");
+            errorDialog.set_secondary_text("The file was read sucessfully, but the grid may be corrupted");
 
-            wonDialog.set_transient_for(*this);
-            wonDialog.show_all();
-            wonDialog.present();
-            wonDialog.run();
+            errorDialog.set_transient_for(*this);
+            errorDialog.show_all();
+            errorDialog.present();
+            errorDialog.run();
         }
     }
 }
@@ -277,7 +281,7 @@ void MainWindow::on_menuBar_autoSave()
 void MainWindow::on_menuBar_demo()
 {
     //had to use c function
-    gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
+    gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play/", GDK_CURRENT_TIME, nullptr);
 }
 
 void MainWindow::on_menuBar_about()

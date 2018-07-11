@@ -22,9 +22,9 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     );
     set_authors
     (
-        {
-            "John Jekel @JZJisawesome"
-        }
+    {
+        "John Jekel @JZJisawesome"
+    }
     );
 
     set_website("https://jzjisawesome.github.io/15Slide/");
