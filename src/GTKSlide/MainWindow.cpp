@@ -24,8 +24,10 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
     set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
     set_resizable(false);
+    signal_delete_event().connect(sigc::mem_fun(*this, &MainWindow::onExit));
 
     add(mainGrid);
+
 
     mainMenu = createMenuBar();//create a menu bar
     mainGrid.add(mainMenu);//adds a menu bar to the box
@@ -265,11 +267,7 @@ void MainWindow::on_menuBar_load()
 
 void MainWindow::on_menuBar_exit()
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)not done" << std::endl;
-    //check if grid was not saved
-
-    hide();
+    onExit(nullptr);
 }
 
 void MainWindow::on_menuBar_autoSave()
@@ -287,5 +285,17 @@ void MainWindow::on_menuBar_demo()
 void MainWindow::on_menuBar_about()
 {
     (AboutSlide {*this}).display();
+}
+
+bool MainWindow::onExit(GdkEventAny* event)
+{
+    if constexpr (ProgramStuff::Build::DEBUG)
+        std::clog << "(debug)not done" << std::endl;
+
+    //fixme: check if grid was not saved
+
+    hide();
+
+    return true;
 }
 }

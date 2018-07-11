@@ -42,6 +42,9 @@ protected:
     void on_menuBar_demo();
     void on_menuBar_about();
 
+    bool onExit(GdkEventAny* event);
+
+
     std::shared_ptr<SaveManager> saveManager {};
 
     TileGrid tileGrid;
