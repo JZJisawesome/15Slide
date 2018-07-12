@@ -63,10 +63,8 @@ Gtk::MenuBar MainWindow::createMenuBar()
     actionGroup->add_action("exit", [this](){ onExit(nullptr); });//lambda calls onExit function (same one as x button)
     applicationPtr->set_accel_for_action("actionGroup.exit", "<control>q");
 
-
     //actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
-
 
     //lambda opens browser with link to How to play 15Slide
     actionGroup->add_action("demo", [](){ gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr); });
@@ -114,7 +112,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "               </section>"
         "           </section>"
         "       </submenu>"
-        //might make into settings dialog
+        //might make into settings dialog instead
         //"       <submenu>"
         //"           <attribute name='label' translatable='yes'>_Options</attribute>"//Options menu
         //"           <section>"
@@ -199,7 +197,7 @@ void MainWindow::on_menuBar_newGame()
 
             (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
 
-            tileGrid.lableTiles();
+            tileGrid.updateTiles();
             break;
         }
         case Gtk::RESPONSE_CANCEL:
@@ -215,7 +213,7 @@ void MainWindow::on_menuBar_newGame()
 
         (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
 
-        tileGrid.lableTiles();
+        tileGrid.updateTiles();
     }
 }
 
@@ -247,7 +245,7 @@ void MainWindow::on_menuBar_saveAs()
             saveManager->saveFile = {saveDialog.get_filename()};
             saveManager->isSaved = {true};
 
-            tileGrid.lableTiles();
+            tileGrid.updateTiles();
         }
         catch (std::ios_base::failure &e)
         {
@@ -305,7 +303,7 @@ void MainWindow::on_menuBar_load()
 
             (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
 
-            tileGrid.lableTiles();
+            tileGrid.updateTiles();
             break;
         }
         case Gtk::RESPONSE_CANCEL:
@@ -330,7 +328,7 @@ void MainWindow::on_menuBar_load()
             saveManager->saveFile = {loadDialog.get_filename()};
             saveManager->isSaved = {true};
 
-            tileGrid.lableTiles();
+            tileGrid.updateTiles();
         }
         catch (std::ios_base::failure &e)
         {

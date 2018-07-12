@@ -10,6 +10,7 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
 {
     set_transient_for(parent);
 
+    //set_logo(Gdk::Pixbuf::create_from_resource("test.png", -1, 40, true));
     set_program_name("15Slide");
     set_version(ProgramStuff::Build::SLIDE_VERSION_STRING);
     set_comments("A fun, cross-platform, slidy-tile game written with C++ 17!");
@@ -17,8 +18,8 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     set_copyright("John Jekel @JZJisawesome");
     set_license
     (
-        "Lesser GNU Public Licence\n"
-        "https://github.com/JZJisawesome/15Slide/blob/master/LICENSE"
+        "This program comes with absolutely no warranty.\n"
+        "See the GNU Lesser General Public License, version 3 or later for details."
     );
     set_authors
     (

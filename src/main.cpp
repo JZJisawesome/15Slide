@@ -69,26 +69,35 @@ int main(int argc, char *argv[])
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
-#if defined(ENABLE_GUI)
-        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
+        if constexpr (ProgramStuff::GTKSlide::ENABLED)
+        {
+            Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
-        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
-        //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
+            GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
+            //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
 
-        return application->run(window);
-#else
-        std::cout << "Type \"help\" for a list of commands." << "\n";
-        std::cout << termcolor::underline;
-        std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
-        std::cout << termcolor::reset;
-        std::cout << std::endl;
+            return application->run(window);
+        }
+        else
+        {
+            std::cout << "Type \"help\" for a list of commands." << "\n";
+            std::cout << termcolor::underline;
+            std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
+            std::cout << termcolor::reset;
+            std::cout << std::endl;
 
-        CommandUI::printGrid(*gameGrid);
-        std::cout << std::endl;
+            CommandUI::printGrid(*gameGrid);
+            std::cout << std::endl;
 
-        CommandUI terminalUI {};
-        terminalUI.start(*gameGrid);
-#endif
+            CommandUI terminalUI {};
+            terminalUI.start(*gameGrid);
+
+            std::cout << std::endl;
+            std::cout << "Thanks for playing 15Slide. Goodbye!";
+            if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
+                std::cout << "\xF0\x9F\x91\x8B";//waving hand
+            std::cout << "\n";
+        }
     }
     catch (...)
     {
@@ -102,12 +111,6 @@ int main(int argc, char *argv[])
 
         throw;
     }
-
-    std::cout << std::endl;
-    std::cout << "Thanks for playing 15Slide. Goodbye!";
-    if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
-        std::cout << "\xF0\x9F\x91\x8B";//waving hand
-    std::cout << "\n";
 
     return 0;
 }

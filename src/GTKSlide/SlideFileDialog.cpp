@@ -6,7 +6,7 @@
 
 namespace GTKSlide
 {
-SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action) : Gtk::FileChooserDialog(title, action)
+SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action) : Gtk::FileChooserDialog{title, action}
 {
     set_transient_for(parent);
 

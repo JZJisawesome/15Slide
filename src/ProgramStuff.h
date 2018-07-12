@@ -122,10 +122,6 @@ constexpr bool USE_UTF8_TERMINAL {true && !OS::WINDOWS};///<Use UTF-8 throuought
 
 constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsii code
 
-#ifndef __SLIDEWINDOWS
-#define ENABLE_GUI 1
-#endif
-
 namespace Build
 {
 constexpr float SLIDE_VERSION   {0.9};                  ///<15Slide Version
@@ -133,6 +129,21 @@ constexpr char  SLIDE_VERSION_STRING[]   {"0.9-debug"}; ///<15Slide Version Stri
 
 constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
+}
+
+namespace GTKSlide
+{
+    #ifndef __SLIDEWINDOWS
+    #define ENABLE_GUI 1
+    #endif
+
+    #if defined(ENABLE_GUI)
+    constexpr bool ENABLED {true};
+    #else
+    constexpr bool ENABLED {false};
+    #endif
+
+    constexpr bool SENSITIZE_VALID_MOVES_ONLY {false};
 }
 }
 #endif //PROGRAMSTUFF_H

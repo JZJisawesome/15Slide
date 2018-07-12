@@ -20,8 +20,9 @@ public:
     TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr, std::shared_ptr<SaveManager> &saveManagerPtr);
     virtual ~TileGrid();
 
-    void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
     void lableTiles();
+    void sensitizeTiles();
+    void updateTiles();
 protected:
     Gtk::Window *parentPtr {};//not smart pointer because window will be on stack
     std::shared_ptr<Grid15::Grid> gridPtr {};
@@ -32,6 +33,8 @@ protected:
 
     void displayWonDialog();
     std::shared_ptr<SaveManager> saveManager {};
+
+    void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
 };
 }
 

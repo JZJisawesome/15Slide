@@ -51,7 +51,7 @@ void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
             attach_next_to(gridButtons[i][j], gridButtons[i - 1][j], Gtk::POS_BOTTOM, 1, 1);
         }
 
-    lableTiles();
+    updateTiles();
 }
 
 void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
@@ -74,7 +74,7 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
         Grid15::GridHelp::swapTile(x, y, *gridPtr);
         saveManager->isSaved = {false};
 
-        lableTiles();//fixme: just relable the 2 tiles instead
+        updateTiles();//fixme: just relable the 2 tiles instead
 
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
@@ -102,6 +102,14 @@ void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
     }
 }
 
+void TileGrid::updateTiles()
+{
+    lableTiles();
+
+    if constexpr (ProgramStuff::GTKSlide::SENSITIZE_VALID_MOVES_ONLY)
+        sensitizeTiles();
+}
+
 void TileGrid::lableTiles()
 {
     for (std::uint_fast32_t i {0}; i < 4; ++i)
@@ -112,6 +120,13 @@ void TileGrid::lableTiles()
             else
                 gridButtons[i][j].set_label("◉");//special character for the no tile
         }
+}
+
+void TileGrid::sensitizeTiles()
+{
+    for (std::uint_fast32_t i {0}; i < 4; ++i)
+        for (std::uint_fast32_t j {0}; j < 4; ++j)
+            gridButtons[i][j].set_sensitive(Grid15::GridHelp::validMove(i, j, *gridPtr));//allows the button to be pressed if the move is valid
 }
 
 void TileGrid::displayWonDialog()
