@@ -18,13 +18,13 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     set_license
     (
         "Lesser GNU Public Licence\n"
-        "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms"
+        "https://github.com/JZJisawesome/15Slide/blob/master/LICENSE"
     );
     set_authors
     (
-    {
-        "John Jekel @JZJisawesome"
-    }
+        {
+            "John Jekel @JZJisawesome"
+        }
     );
 
     set_website("https://jzjisawesome.github.io/15Slide/");

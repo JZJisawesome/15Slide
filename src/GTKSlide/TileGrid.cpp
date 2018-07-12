@@ -56,68 +56,62 @@ void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
 
 void TileGrid::on_tile_clicked(std::pair<int,int> &coordinates)
 {
-    if (gridPtr)
+    int &x = coordinates.first;
+    int &y = coordinates.second;
+
+    if constexpr (ProgramStuff::Build::DEBUG)
     {
-        int &x = coordinates.first;
-        int &y = coordinates.second;
+        std::clog << std::boolalpha;
+        std::clog << "(debug)Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]);
+        std::clog << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << "\n";
+    }
+
+    if (Grid15::GridHelp::validMove(x, y, *gridPtr))
+    {
+        if constexpr (ProgramStuff::Build::DEBUG)
+            std::clog << "(debug)Swapping tile... ";
+
+        Grid15::GridHelp::swapTile(x, y, *gridPtr);
+        saveManager->isSaved = {false};
+
+        lableTiles();//fixme: just relable the 2 tiles instead
 
         if constexpr (ProgramStuff::Build::DEBUG)
+            std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
+
+
+        if (Grid15::GridHelp::hasWon(*gridPtr))
+            displayWonDialog();
+
+        if (saveManager->autoSave && (saveManager->saveFile != ""))
         {
-            std::clog << std::boolalpha;
-            std::clog << "(debug)Coordinates (" << x << ", " << y << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]) << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << "\n";
-        }
+            Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
 
-        if (Grid15::GridHelp::validMove(x, y, *gridPtr))
-        {
-            if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "(debug)Swapping tile... ";
-
-            Grid15::GridHelp::swapTile(x, y, *gridPtr);
-            saveManager->isSaved = {false};
-
-            lableTiles();//fixme: just relable the 2 tiles instead
+            saveManager->isSaved = {true};
 
             if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
-
-
-            if (Grid15::GridHelp::hasWon(*gridPtr))
-                displayWonDialog();
-
-            if (saveManager->autoSave && (saveManager->saveFile != ""))
-            {
-                Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
-
-                saveManager->isSaved = {true};
-
-                if constexpr (ProgramStuff::Build::DEBUG)
-                    std::clog << "(debug)Auto-saved the game" << "\n";
-            }
+                std::clog << "(debug)Auto-saved the game" << "\n";
         }
+    }
 
 
-        if constexpr (ProgramStuff::Build::DEBUG)
-        {
-            std::clog << std::noboolalpha;
-            std::clog.flush();//sometimes nothing prints until clog is flushed
-        }
-
+    if constexpr (ProgramStuff::Build::DEBUG)
+    {
+        std::clog << std::noboolalpha;
+        std::clog.flush();//sometimes nothing prints until clog is flushed
     }
 }
 
 void TileGrid::lableTiles()
 {
-    if (gridPtr)
-    {
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-            {
-                if ((*gridPtr).gridArray[i][j] != 0)
-                    gridButtons[i][j].set_label(std::to_string((*gridPtr).gridArray[i][j]));//set the lable to the tile number
-                else
-                    gridButtons[i][j].set_label("◉");//special character for the no tile
-            }
-    }
+    for (std::uint_fast32_t i {0}; i < 4; ++i)
+        for (std::uint_fast32_t j {0}; j < 4; ++j)
+        {
+            if ((*gridPtr).gridArray[i][j] != 0)
+                gridButtons[i][j].set_label(std::to_string((*gridPtr).gridArray[i][j]));//set the lable to the tile number
+            else
+                gridButtons[i][j].set_label("◉");//special character for the no tile
+        }
 }
 
 void TileGrid::displayWonDialog()
@@ -129,6 +123,14 @@ void TileGrid::displayWonDialog()
         wonDialog.set_secondary_text("BUT YOU CHEATED (CHEAT_MODE = true)");
     else
         wonDialog.set_secondary_text("Great Work!!!");
+
+    //super jankey looking and discouraged way to remove ok button
+    wonDialog.get_action_area()->remove
+    (
+        *(wonDialog.get_action_area()->get_children()[0])//1st and only element is ok button (gone now)
+    );
+
+    wonDialog.add_button("YAY!", Gtk::RESPONSE_OK);
 
     wonDialog.set_transient_for(*parentPtr);
     wonDialog.show_all();

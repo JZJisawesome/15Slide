@@ -35,12 +35,13 @@ protected:
     void on_menuBar_save();
     void on_menuBar_saveAs();
     void on_menuBar_load();
-    void on_menuBar_exit();
 
     void on_menuBar_autoSave();
 
-    void on_menuBar_demo();
-    void on_menuBar_about();
+    //replaced with lambdas
+    //void on_menuBar_exit();
+    //void on_menubar_demo();
+    //void on_menubar_about();
 
     bool onExit(GdkEventAny* event);
 
