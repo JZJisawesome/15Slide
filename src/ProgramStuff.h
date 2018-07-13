@@ -127,6 +127,7 @@ namespace Build
 constexpr float SLIDE_VERSION   {0.9};                  ///<15Slide Version
 constexpr char  SLIDE_VERSION_STRING[]   {"0.9-debug"}; ///<15Slide Version String
 
+
 constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
 }
@@ -143,7 +144,7 @@ namespace GTKSlide
     constexpr bool ENABLED {false};
     #endif
 
-    constexpr bool SENSITIZE_VALID_MOVES_ONLY {false};
+    constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};
 }
 }
 #endif //PROGRAMSTUFF_H
