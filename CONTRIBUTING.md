@@ -3,9 +3,9 @@ Thanks for taking time to contribute to 15Slide. Here are a few thing you can he
 ## Coding
 ### Code Formating Guidelines
 #### Licencing
-In the first lines of all 15Slide source and header files, put a comment:
-`   
+In the first lines of all new 15Slide source and header files, put a comment:`   
 
+    Copyright DATE AUTHOR
     This file is part of 15Slide.
 
     15Slide is free software: you can redistribute it and/or modify
@@ -20,8 +20,7 @@ In the first lines of all 15Slide source and header files, put a comment:
 
     You should have received a copy of the GNU Lesser General Public License
     along with 15Slide.  If not, see <https://www.gnu.org/licenses/>.`
-
-
+    
 #### Source Documentation
 15Slide uses Doxygen comments to document the code. Please try to document all functions in source files, classes in their header files, and varibles in the header files. Be sure to use plenty of comments _inside_ functions as well.
 
