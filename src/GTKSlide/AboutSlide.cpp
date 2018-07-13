@@ -18,13 +18,24 @@
 
 #include "ProgramStuff.h"
 
+#include <iostream>
+
 namespace GTKSlide
 {
 AboutSlide::AboutSlide(Gtk::Window &parent)
 {
     set_transient_for(parent);
 
-    //set_logo(Gdk::Pixbuf::create_from_resource("test.png", -1, 40, true));
+    try
+    {
+        set_logo(Gdk::Pixbuf::create_from_file("data/logo.png", 25, 25));
+    }
+    catch (...)
+    {
+        if constexpr (ProgramStuff::Build::DEBUG)
+            std::clog << "(debug)Could not open 15Slide logo in data/logo.png" << std::endl;
+    }
+
     set_program_name("15Slide");
     set_version(ProgramStuff::Build::SLIDE_VERSION_STRING);
     set_comments("A fun, cross-platform, slidy-tile game written with C++ 17!");

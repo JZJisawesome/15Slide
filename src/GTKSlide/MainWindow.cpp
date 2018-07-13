@@ -36,6 +36,16 @@ namespace GTKSlide
 MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
 : saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
 {
+    try
+    {
+        Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file("data/logo.png"));
+    }
+    catch (...)
+    {
+        if constexpr (ProgramStuff::Build::DEBUG)
+            std::clog << "(debug)Could not open 15Slide logo in data/logo.png" << std::endl;
+    }
+
     set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
     set_resizable(false);
@@ -86,8 +96,10 @@ Gtk::MenuBar MainWindow::createMenuBar()
     applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
-    const char* menuXML
-    {
+    Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
+        //build the menu
+    menuBuilder->add_from_string
+    (
         "<interface>"
         "   <menu id='menuBar'>"
         "       <submenu>"
@@ -152,13 +164,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         "       </submenu>"
         "   </menu>"
         "</interface>"
-    };
-
-    Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
-
-    //build the menu
-    menuBuilder->add_from_string(menuXML);
-    //menuBuilder->add_from_resource("data/toolbars/mainMenu.glade");
+    );
 
     //return it
     Glib::RefPtr<Glib::Object> menuObject = menuBuilder->get_object("menuBar");
@@ -172,12 +178,12 @@ Gtk::MenuBar MainWindow::createMenuBar()
 void MainWindow::on_menuBar_newGame()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)not done" << std::endl;
+        std::clog << "(debug)final touches" << std::endl;
 
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");//fixme clicking x on dialog exits 155Slide
+        Gtk::MessageDialog notSavedDialog("Wait!");
         notSavedDialog.set_title("Wait!");
 
         notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
@@ -204,6 +210,7 @@ void MainWindow::on_menuBar_newGame()
             on_menuBar_save();//no break statement here on purpose
         case Gtk::RESPONSE_REJECT:
         {
+            //reset previous save file
             saveManager->saveFile = {""};
             saveManager->isSaved = {false};
 
@@ -213,7 +220,7 @@ void MainWindow::on_menuBar_newGame()
             break;
         }
         case Gtk::RESPONSE_CANCEL:
-        case Gtk::RESPONSE_DELETE_EVENT:
+        case Gtk::RESPONSE_DELETE_EVENT://x button
         default:
             break;
         }
@@ -319,7 +326,7 @@ void MainWindow::on_menuBar_load()
             break;
         }
         case Gtk::RESPONSE_CANCEL:
-        case Gtk::RESPONSE_DELETE_EVENT:
+        case Gtk::RESPONSE_DELETE_EVENT://x button
         default:
         {
             return;//instead of continuing to the load dialog, reutrn from the function
@@ -386,7 +393,7 @@ bool MainWindow::onExit(GdkEventAny* event)
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");//fixme clicking x on dialog exits 155Slide
+        Gtk::MessageDialog notSavedDialog("Wait!");
         notSavedDialog.set_title("Wait!");
 
         notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
@@ -421,7 +428,7 @@ bool MainWindow::onExit(GdkEventAny* event)
             break;
         }
         case Gtk::RESPONSE_CANCEL:
-        case Gtk::RESPONSE_DELETE_EVENT:
+        case Gtk::RESPONSE_DELETE_EVENT://x button
         default:
             break;
         }
