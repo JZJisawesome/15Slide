@@ -25,6 +25,7 @@
 #include <iostream>
 #include <memory>
 #include <exception>
+#include <filesystem>
 
 #if defined(ENABLE_GUI)
 #include "GTKSlide/MainWindow.h"
@@ -71,6 +72,9 @@ int main(int argc, char *argv[])
 
         if constexpr (ProgramStuff::GTKSlide::ENABLED)
         {
+            if (!(std::filesystem::exists("data/")))
+                throw std::runtime_error {"The nessasary 15Slide \"data\" folder could not be found"};
+
             Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
             GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)

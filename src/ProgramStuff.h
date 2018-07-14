@@ -148,7 +148,7 @@ constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};
 
 constexpr bool USE_EXTERNAL_MENUBAR_XML {true};
 
-namespace Reasources
+namespace Resources
 {
 constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};
 constexpr char  LOGO[] {"data/logo.png"};

@@ -28,12 +28,11 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
 
     try
     {
-        set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Reasources::LOGO, 25, 25));
+        set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
     }
     catch (...)
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)Could not open 15Slide logo in " << ProgramStuff::GTKSlide::Reasources::LOGO << std::endl;
+        g_warning("Could not open 15Slide logo");
     }
 
     set_program_name("15Slide");

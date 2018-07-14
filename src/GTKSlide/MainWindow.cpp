@@ -38,12 +38,11 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
 {
     try
     {
-        Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Reasources::LOGO));
+        Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO));
     }
     catch (...)
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)Could not open 15Slide logo in " << ProgramStuff::GTKSlide::Reasources::LOGO << std::endl;
+        g_warning("Could not open 15Slide logo");
     }
 
     set_title("15Slide");
@@ -82,33 +81,32 @@ Gtk::MenuBar MainWindow::createMenuBar()
     actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
     applicationPtr->set_accel_for_action("actionGroup.load", "<control>l");
 
-    actionGroup->add_action("exit", [this]()
-    {
+    actionGroup->add_action("exit", [this]
+    {//lambda calls onExit function (same one as x button)
         onExit(nullptr);
-    });//lambda calls onExit function (same one as x button)
+    });
     applicationPtr->set_accel_for_action("actionGroup.exit", "<control>q");
 
     //actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
 
-    //lambda opens browser with link to How to play 15Slide
-    actionGroup->add_action("demo", []()
-    {
+    actionGroup->add_action("demo", []
+    {//lambda creates temporary about dialog and displays it
         gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
     });
     applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
 
-    actionGroup->add_action("about", [this]()
-    {
+    actionGroup->add_action("about", [this]
+    {//lambda creates temporary about dialog and displays it
         (AboutSlide {*this}).display();
-    });//lambda creates temporary about dialog and displays it
+    });
     applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
     //build the menu
     if constexpr (ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML)
-        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Reasources::MENUBAR_XML);
+        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML);
     else
     {
         menuBuilder->add_from_string
