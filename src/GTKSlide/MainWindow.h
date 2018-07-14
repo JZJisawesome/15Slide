@@ -50,7 +50,7 @@ protected:
     void on_menuBar_saveAs();
     void on_menuBar_load();
 
-    void on_menuBar_autoSave();
+    //void on_menuBar_autoSave();
 
     //replaced with lambdas
     //void on_menuBar_exit();

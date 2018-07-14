@@ -134,17 +134,25 @@ constexpr bool RELEASE          {!DEBUG};   ///<Release build
 
 namespace GTKSlide
 {
-    #ifndef __SLIDEWINDOWS
-    #define ENABLE_GUI 1
-    #endif
+#ifndef __SLIDEWINDOWS
+#define ENABLE_GUI 1
+#endif
 
-    #if defined(ENABLE_GUI)
-    constexpr bool ENABLED {true};
-    #else
-    constexpr bool ENABLED {false};
-    #endif
+#if defined(ENABLE_GUI)
+constexpr bool ENABLED {true};
+#else
+constexpr bool ENABLED {false};
+#endif
 
-    constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};
+constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};
+
+constexpr bool USE_EXTERNAL_MENUBAR_XML {true};
+
+namespace Reasources
+{
+constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};
+constexpr char  LOGO[] {"data/logo.png"};
+}
 }
 }
 #endif //PROGRAMSTUFF_H

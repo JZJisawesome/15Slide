@@ -34,16 +34,16 @@
 namespace GTKSlide
 {
 MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
-: saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
+    : saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
 {
     try
     {
-        Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file("data/logo.png"));
+        Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Reasources::LOGO));
     }
     catch (...)
     {
         if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)Could not open 15Slide logo in data/logo.png" << std::endl;
+            std::clog << "(debug)Could not open 15Slide logo in " << ProgramStuff::GTKSlide::Reasources::LOGO << std::endl;
     }
 
     set_title("15Slide");
@@ -82,89 +82,103 @@ Gtk::MenuBar MainWindow::createMenuBar()
     actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
     applicationPtr->set_accel_for_action("actionGroup.load", "<control>l");
 
-    actionGroup->add_action("exit", [this](){ onExit(nullptr); });//lambda calls onExit function (same one as x button)
+    actionGroup->add_action("exit", [this]()
+    {
+        onExit(nullptr);
+    });//lambda calls onExit function (same one as x button)
     applicationPtr->set_accel_for_action("actionGroup.exit", "<control>q");
 
     //actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
 
     //lambda opens browser with link to How to play 15Slide
-    actionGroup->add_action("demo", [](){ gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr); });
+    actionGroup->add_action("demo", []()
+    {
+        gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
+    });
     applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
 
-    actionGroup->add_action("about", [this](){ (AboutSlide {*this}).display(); });//lambda creates temporary about dialog and displays it
+    actionGroup->add_action("about", [this]()
+    {
+        (AboutSlide {*this}).display();
+    });//lambda creates temporary about dialog and displays it
     applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
-        //build the menu
-    menuBuilder->add_from_string
-    (
-        "<interface>"
-        "   <menu id='menuBar'>"
-        "       <submenu>"
-        "           <attribute name='label' translatable='yes'>_File</attribute>"//File menu
-        "           <section>"
-        "               <section>"
-        "                   <item>"//New Game
-        "                       <attribute name='label' translatable='yes'>_New Game</attribute>"
-        "                       <attribute name='action'>actionGroup.newGame</attribute>"
-        "                       <attribute name='accel'>&lt;control&gt;n</attribute>"
-        "                   </item>"
-        "                   <item>"//Save
-        "                       <attribute name='label' translatable='yes'>_Save</attribute>"
-        "                       <attribute name='action'>actionGroup.save</attribute>"
-        "                       <attribute name='accel'>&lt;control&gt;s</attribute>"
-        "                   </item>"
-        "                   <item>"//Save As
-        "                       <attribute name='label' translatable='yes'>_Save As</attribute>"
-        "                       <attribute name='action'>actionGroup.saveAs</attribute>"
-        "                       <attribute name='accel'>&lt;control&gt;&lt;shift&gt;s</attribute>"
-        "                   </item>"
-        "                   <item>"//Load
-        "                       <attribute name='label' translatable='yes'>_Load</attribute>"
-        "                       <attribute name='action'>actionGroup.load</attribute>"
-        "                       <attribute name='accel'>&lt;control&gt;l</attribute>"
-        "                   </item>"
-        "               </section>"
-        "               <section>"
-        "                   <item>"//Exit
-        "                       <attribute name='label' translatable='yes'>_Exit</attribute>"
-        "                       <attribute name='action'>actionGroup.exit</attribute>"
-        "                       <attribute name='accel'>&lt;control&gt;q</attribute>"
-        "                   </item>"
-        "               </section>"
-        "           </section>"
-        "       </submenu>"
-        //might make into settings dialog instead
-        //"       <submenu>"
-        //"           <attribute name='label' translatable='yes'>_Options</attribute>"//Options menu
-        //"           <section>"
-        //"                   <item>"//Auto Save
-        //"                       <attribute name='label' translatable='yes'>_Auto Save</attribute>"
-        //"                       <attribute name='action'>actionGroup.autoSave</attribute>"
-        //"                       <attribute name='accel'>&lt;control&gt;a</attribute>"
-        //"                   </item>"
-        //"           </section>"
-        //"       </submenu>"
-        "       <submenu>"
-        "           <attribute name='label' translatable='yes'>_Help</attribute>"//Help menu
-        "           <section>"
-        "                   <item>"//How to play
-        "                       <attribute name='label' translatable='yes'>_How to play</attribute>"
-        "                       <attribute name='action'>actionGroup.demo</attribute>"
-        "                       <attribute name='accel'>F1</attribute>"
-        "                   </item>"
-        "                   <item>"//About
-        "                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>"
-        "                       <attribute name='action'>actionGroup.about</attribute>"
-        "                       <attribute name='accel'>a</attribute>"
-        "                   </item>"
-        "           </section>"
-        "       </submenu>"
-        "   </menu>"
-        "</interface>"
-    );
+    //build the menu
+    if constexpr (ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML)
+        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Reasources::MENUBAR_XML);
+    else
+    {
+        menuBuilder->add_from_string
+        (
+            "<interface>"
+            "   <menu id='menuBar'>"
+            "       <submenu>"
+            "           <attribute name='label' translatable='yes'>_File</attribute>"//File menu
+            "           <section>"
+            "               <section>"
+            "                   <item>"//New Game
+            "                       <attribute name='label' translatable='yes'>_New Game</attribute>"
+            "                       <attribute name='action'>actionGroup.newGame</attribute>"
+            "                       <attribute name='accel'>&lt;control&gt;n</attribute>"
+            "                   </item>"
+            "                   <item>"//Save
+            "                       <attribute name='label' translatable='yes'>_Save</attribute>"
+            "                       <attribute name='action'>actionGroup.save</attribute>"
+            "                       <attribute name='accel'>&lt;control&gt;s</attribute>"
+            "                   </item>"
+            "                   <item>"//Save As
+            "                       <attribute name='label' translatable='yes'>_Save As</attribute>"
+            "                       <attribute name='action'>actionGroup.saveAs</attribute>"
+            "                       <attribute name='accel'>&lt;control&gt;&lt;shift&gt;s</attribute>"
+            "                   </item>"
+            "                   <item>"//Load
+            "                       <attribute name='label' translatable='yes'>_Load</attribute>"
+            "                       <attribute name='action'>actionGroup.load</attribute>"
+            "                       <attribute name='accel'>&lt;control&gt;l</attribute>"
+            "                   </item>"
+            "               </section>"
+            "               <section>"
+            "                   <item>"//Exit
+            "                       <attribute name='label' translatable='yes'>_Exit</attribute>"
+            "                       <attribute name='action'>actionGroup.exit</attribute>"
+            "                       <attribute name='accel'>&lt;control&gt;q</attribute>"
+            "                   </item>"
+            "               </section>"
+            "           </section>"
+            "       </submenu>"
+            //might make into settings dialog instead
+            //"       <submenu>"
+            //"           <attribute name='label' translatable='yes'>_Options</attribute>"//Options menu
+            //"           <section>"
+            //"                   <item>"//Auto Save
+            //"                       <attribute name='label' translatable='yes'>_Auto Save</attribute>"
+            //"                       <attribute name='action'>actionGroup.autoSave</attribute>"
+            //"                       <attribute name='accel'>&lt;control&gt;a</attribute>"
+            //"                   </item>"
+            //"           </section>"
+            //"       </submenu>"
+            "       <submenu>"
+            "           <attribute name='label' translatable='yes'>_Help</attribute>"//Help menu
+            "           <section>"
+            "                   <item>"//How to play
+            "                       <attribute name='label' translatable='yes'>_How to play</attribute>"
+            "                       <attribute name='action'>actionGroup.demo</attribute>"
+            "                       <attribute name='accel'>F1</attribute>"
+            "                   </item>"
+            "                   <item>"//About
+            "                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>"
+            "                       <attribute name='action'>actionGroup.about</attribute>"
+            "                       <attribute name='accel'>a</attribute>"
+            "                   </item>"
+            "           </section>"
+            "       </submenu>"
+            "   </menu>"
+            "</interface>"
+        );
+    }
 
     //return it
     Glib::RefPtr<Glib::Object> menuObject = menuBuilder->get_object("menuBar");
@@ -379,17 +393,18 @@ void MainWindow::on_menuBar_load()
         }
     }
 }
-
+/*
 void MainWindow::on_menuBar_autoSave()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)to do" << std::endl;
 }
+*/
 
 bool MainWindow::onExit(GdkEventAny* event)
 {
     if constexpr (ProgramStuff::Build::DEBUG)
-        std::clog << "(debug)not done" << std::endl;
+        std::clog << "(debug)final touches" << std::endl;
 
     if (!saveManager->isSaved)
     {

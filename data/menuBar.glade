@@ -1,0 +1,53 @@
+<interface>
+   <menu id='menuBar'>
+       <submenu>
+           <attribute name='label' translatable='yes'>_File</attribute>
+           <section>
+               <section>
+                   <item>
+                       <attribute name='label' translatable='yes'>_New Game</attribute>
+                       <attribute name='action'>actionGroup.newGame</attribute>
+                       <attribute name='accel'>&lt;control&gt;n</attribute>
+                   </item>
+                   <item>
+                       <attribute name='label' translatable='yes'>_Save</attribute>
+                       <attribute name='action'>actionGroup.save</attribute>
+                       <attribute name='accel'>&lt;control&gt;s</attribute>
+                   </item>
+                   <item>
+                       <attribute name='label' translatable='yes'>_Save As</attribute>
+                       <attribute name='action'>actionGroup.saveAs</attribute>
+                       <attribute name='accel'>&lt;control&gt;&lt;shift&gt;s</attribute>
+                   </item>
+                   <item>
+                       <attribute name='label' translatable='yes'>_Load</attribute>
+                       <attribute name='action'>actionGroup.load</attribute>
+                       <attribute name='accel'>&lt;control&gt;l</attribute>
+                   </item>
+               </section>
+               <section>
+                   <item>
+                       <attribute name='label' translatable='yes'>_Exit</attribute>
+                       <attribute name='action'>actionGroup.exit</attribute>
+                       <attribute name='accel'>&lt;control&gt;q</attribute>
+                   </item>
+               </section>
+           </section>
+       </submenu>
+       <submenu>
+           <attribute name='label' translatable='yes'>_Help</attribute>
+           <section>
+                   <item>
+                       <attribute name='label' translatable='yes'>_How to play</attribute>
+                       <attribute name='action'>actionGroup.demo</attribute>
+                       <attribute name='accel'>F1</attribute>
+                   </item>
+                   <item>
+                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>
+                       <attribute name='action'>actionGroup.about</attribute>
+                       <attribute name='accel'>a</attribute>
+                   </item>
+           </section>
+       </submenu>
+   </menu>
+</interface>

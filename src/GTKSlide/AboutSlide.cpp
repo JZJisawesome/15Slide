@@ -28,12 +28,12 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
 
     try
     {
-        set_logo(Gdk::Pixbuf::create_from_file("data/logo.png", 25, 25));
+        set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Reasources::LOGO, 25, 25));
     }
     catch (...)
     {
         if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)Could not open 15Slide logo in data/logo.png" << std::endl;
+            std::clog << "(debug)Could not open 15Slide logo in " << ProgramStuff::GTKSlide::Reasources::LOGO << std::endl;
     }
 
     set_program_name("15Slide");
@@ -59,9 +59,9 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     set_wrap_license(true);
     set_authors
     (
-        {
-            "John Jekel @JZJisawesome"
-        }
+    {
+        "John Jekel @JZJisawesome"
+    }
     );
 
     set_website("https://jzjisawesome.github.io/15Slide/");
