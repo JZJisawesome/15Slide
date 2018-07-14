@@ -24,6 +24,7 @@
 #include <gtkmm.h>
 #include <memory>
 #include <utility>
+#include <cstdint>
 
 
 namespace GTKSlide
@@ -41,14 +42,16 @@ protected:
     Gtk::Window *parentPtr {};//not smart pointer because window will be on stack
     std::shared_ptr<Grid15::Grid> gridPtr {};
 
-    void on_tile_clicked(std::pair<int,int> &coordinates);
-    Gtk::Button gridButtons[4][4];
-    //std::unique_ptr<Gtk::Button>//this array takes up lots of space
+    void on_tile_clicked(std::uint8_t coordinates);
+    std::unique_ptr<Gtk::Button[]> gridButtons {new Gtk::Button [16]};//saves around lots of bytes from the stack
 
     void displayWonDialog();
     std::shared_ptr<SaveManager> saveManager {};
 
     void setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr);
+
+    std::pair<std::uint8_t, std::uint8_t> singleToTwoD(std::uint8_t num);
+    std::uint8_t twoDToSingle(std::uint8_t x, std::uint8_t y);
 };
 }
 

@@ -25,6 +25,7 @@ namespace GTKSlide
 AboutSlide::AboutSlide(Gtk::Window &parent)
 {
     set_transient_for(parent);
+    //set_modal(false);
 
     try
     {
@@ -32,7 +33,7 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     }
     catch (...)
     {
-        g_warning("Could not open 15Slide logo");
+        g_warning("Could not open 15Slide logo");//not catostrophic if logo cannot be found
     }
 
     set_program_name("15Slide");
@@ -45,13 +46,13 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
         "15Slide is free software: you can redistribute it and/or modify "
         "it under the terms of the GNU Lesser General Public License as published by "
         "the Free Software Foundation, either version 3 of the License, or "
-        "(at your option) any later version.\n\n"
-
+        "(at your option) any later version.\n"
+        "\n"
         "15Slide is distributed in the hope that it will be useful, "
         "but WITHOUT ANY WARRANTY; without even the implied warranty of "
         "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
-        "GNU Lesser General Public License for more details.\n\n"
-
+        "GNU Lesser General Public License for more details.\n"
+        "\n"
         "You should have received a copy of the GNU Lesser General Public License "
         "along with 15Slide.  If not, see <https://www.gnu.org/licenses/>."
     );

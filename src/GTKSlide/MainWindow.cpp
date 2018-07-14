@@ -42,14 +42,15 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
     }
     catch (...)
     {
-        g_warning("Could not open 15Slide logo");
+        g_warning("Could not open 15Slide logo");//not catostrophic if logo cannot be found
     }
 
     set_title("15Slide");
     //set_border_width(10);//fixme makes menu bar look weird
+
     set_resizable(false);
     set_position(Gtk::WIN_POS_CENTER);
-    signal_delete_event().connect(sigc::mem_fun(*this, &MainWindow::onExit));
+    signal_delete_event().connect(sigc::mem_fun(*this, &MainWindow::exit));
 
     add(mainGrid);
 
@@ -72,18 +73,24 @@ Gtk::MenuBar MainWindow::createMenuBar()
     actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::on_menuBar_newGame));
     applicationPtr->set_accel_for_action("actionGroup.newGame", "<control>n");
 
-    actionGroup->add_action("save", sigc::mem_fun(*this, &MainWindow::on_menuBar_save));
+    actionGroup->add_action("save", [this]
+    {//lambda calls save and does not care about return value
+        save();
+    });
     applicationPtr->set_accel_for_action("actionGroup.save", "<control>s");
 
-    actionGroup->add_action("saveAs", sigc::mem_fun(*this, &MainWindow::on_menuBar_saveAs));
+    actionGroup->add_action("saveAs", [this]
+    {//lambda calls save and does not care about return value
+        saveAs();
+    });
     applicationPtr->set_accel_for_action("actionGroup.saveAs", "<control><shift>s");
 
     actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
     applicationPtr->set_accel_for_action("actionGroup.load", "<control>l");
 
     actionGroup->add_action("exit", [this]
-    {//lambda calls onExit function (same one as x button)
-        onExit(nullptr);
+    {//lambda calls exit function (same one as x button)
+        exit(nullptr);
     });
     applicationPtr->set_accel_for_action("actionGroup.exit", "<control>q");
 
@@ -91,7 +98,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
 
     actionGroup->add_action("demo", []
-    {//lambda creates temporary about dialog and displays it
+    {//lambda opens 15Slide website in browser
         gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
     });
     applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
@@ -106,7 +113,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
     //build the menu
     if constexpr (ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML)
-        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML);
+        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML);//no try catch; this is a fatal error
     else
     {
         menuBuilder->add_from_string
@@ -218,8 +225,8 @@ void MainWindow::on_menuBar_newGame()
 
         switch (notSavedDialog.run())
         {
-        case Gtk::RESPONSE_OK://fixme if user presses cancel in next dialog program closes without saving
-            on_menuBar_save();//no break statement here on purpose
+        case Gtk::RESPONSE_OK:
+            save();//no break statement here on purpose
         case Gtk::RESPONSE_REJECT:
         {
             //reset previous save file
@@ -248,25 +255,30 @@ void MainWindow::on_menuBar_newGame()
     }
 }
 
-void MainWindow::on_menuBar_save()
+bool MainWindow::save()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)not done" << std::endl;
 
     if (saveManager->saveFile != "")
-        Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//error handlign needed
+    {
+        Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handeling needed
+        return true;//here too
+    }
     else
-        on_menuBar_saveAs();
+        return saveAs();
 }
 
-void MainWindow::on_menuBar_saveAs()
+bool MainWindow::saveAs()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)final touches" << std::endl;
 
     SlideFileDialog saveDialog(*this, "Choose a file to save to", Gtk::FILE_CHOOSER_ACTION_SAVE);
 
-    if (saveDialog.run() == Gtk::RESPONSE_OK)
+    const int result {saveDialog.run()};
+
+    if (result == Gtk::RESPONSE_OK)
     {
         try
         {
@@ -277,10 +289,12 @@ void MainWindow::on_menuBar_saveAs()
             saveManager->isSaved = {true};
 
             tileGrid.updateTiles();
+
+            return true;
         }
         catch (std::ios_base::failure &e)
         {
-            saveDialog.hide();
+            saveDialog.hide();//hide the file dialog first
 
             Gtk::MessageDialog errorDialog("Some this went wrong while saving");
             errorDialog.set_title("Oh no!");
@@ -291,8 +305,12 @@ void MainWindow::on_menuBar_saveAs()
             errorDialog.show_all();
             errorDialog.present();
             errorDialog.run();
+
+            return false;
         }
     }
+    else
+        return false;
 }
 
 void MainWindow::on_menuBar_load()
@@ -302,7 +320,7 @@ void MainWindow::on_menuBar_load()
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");//fixme clicking x on dialog exits 155Slide
+        Gtk::MessageDialog notSavedDialog("Wait!");
         notSavedDialog.set_title("Wait!");
 
         notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
@@ -325,8 +343,8 @@ void MainWindow::on_menuBar_load()
 
         switch (notSavedDialog.run())
         {
-        case Gtk::RESPONSE_OK://fixme if user presses cancel in next dialog program closes without saving
-            on_menuBar_save();//no break statement here on purpose
+        case Gtk::RESPONSE_OK:
+            save();//no break statement here on purpose
         case Gtk::RESPONSE_REJECT:
         {
             saveManager->saveFile = {""};
@@ -341,7 +359,7 @@ void MainWindow::on_menuBar_load()
         case Gtk::RESPONSE_DELETE_EVENT://x button
         default:
         {
-            return;//instead of continuing to the load dialog, reutrn from the function
+            return;//instead of continuing to the load dialog, return from the function
             break;
         }
         }
@@ -363,7 +381,7 @@ void MainWindow::on_menuBar_load()
         }
         catch (std::ios_base::failure &e)
         {
-            loadDialog.hide();
+            loadDialog.hide();//hide the file dialog first
 
             Gtk::MessageDialog errorDialog("Some this went wrong while loading");
             errorDialog.set_title("Oh no!");
@@ -377,7 +395,7 @@ void MainWindow::on_menuBar_load()
         }
         catch (std::invalid_argument &e)
         {
-            loadDialog.hide();
+            loadDialog.hide();//hide the file dialog first
 
             Gtk::MessageDialog errorDialog("Some this went wrong while importing the grid");
             errorDialog.set_title("Oh no!");
@@ -399,7 +417,7 @@ void MainWindow::on_menuBar_autoSave()
 }
 */
 
-bool MainWindow::onExit(GdkEventAny* event)
+bool MainWindow::exit(GdkEventAny* event)
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)final touches" << std::endl;
@@ -436,8 +454,8 @@ bool MainWindow::onExit(GdkEventAny* event)
         }
         case Gtk::RESPONSE_OK://fixme if user presses cancel in next dialog program closes without saving
         {
-            on_menuBar_save();
-            hide();
+            if (save())
+                hide();//only close the program if the user pressed ok and the file was valid
             break;
         }
         case Gtk::RESPONSE_CANCEL:

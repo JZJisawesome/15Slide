@@ -46,18 +46,20 @@ protected:
     Gtk::MenuBar createMenuBar();
 
     void on_menuBar_newGame();
-    void on_menuBar_save();
-    void on_menuBar_saveAs();
+    bool on_menuBar_save();
     void on_menuBar_load();
 
     //void on_menuBar_autoSave();
 
     //replaced with lambdas
+    //void on_menubar_saveAs();
     //void on_menuBar_exit();
     //void on_menubar_demo();
     //void on_menubar_about();
 
-    bool onExit(GdkEventAny* event);
+    bool save();
+    bool saveAs();
+    bool exit(GdkEventAny* event);
 
 
     std::shared_ptr<SaveManager> saveManager {};
