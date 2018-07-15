@@ -21,11 +21,18 @@
 
 namespace GTKSlide
 {
+/** \class AboutSlide
+ *
+ * \brief The about dialog for 15Slide
+ *
+ * \author John Jekel
+ * \date 2018-2018
+ */
 class AboutSlide : public Gtk::AboutDialog
 {
 public:
     AboutSlide(Gtk::Window &parent);
-    virtual ~AboutSlide();
+    //virtual ~AboutSlide();
 
     void display();
 };

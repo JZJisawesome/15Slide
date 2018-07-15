@@ -37,21 +37,21 @@ class MainWindow : public Gtk::Window
 {
 public:
     MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr);
-    virtual ~MainWindow();
+    //virtual ~MainWindow();
 
 protected:
-    Gtk::Grid mainGrid;
+    Gtk::Grid mainGrid;///<The Gtk::Grid used for holding MainWindow::tileGrid and MainWindow::mainMenu
 
-    Gtk::MenuBar mainMenu;
+    Gtk::MenuBar mainMenu;///<The File and Help Gtk::MenuBar at the top of MainWindow
     Gtk::MenuBar createMenuBar();
 
     void on_menuBar_newGame();
-    bool on_menuBar_save();
     void on_menuBar_load();
 
-    //void on_menuBar_autoSave();
+    //void on_menuBar_autoSave();//move to settings dialog
 
     //replaced with lambdas
+    //void on_menubar_save();
     //void on_menubar_saveAs();
     //void on_menuBar_exit();
     //void on_menubar_demo();
@@ -62,12 +62,12 @@ protected:
     bool exit(GdkEventAny* event);
 
 
-    std::shared_ptr<SaveManager> saveManager {};
+    std::shared_ptr<SaveManager> saveManager {};///<A SaveManager to manage autosaving with Gtk::MenuBar
 
-    TileGrid tileGrid;
-    std::shared_ptr<Grid15::Grid> gridPtr {};
+    TileGrid tileGrid;///<A graphical and interactive representation of a Grid15::Grid
+    std::shared_ptr<Grid15::Grid> gridPtr {};///<A pointer to a Grid15::Grid for use with GTKSlide classes
 
-    Glib::RefPtr<Gtk::Application> &applicationPtr;
+    Glib::RefPtr<Gtk::Application> applicationPtr {};///<The Gtk::Application assisiated with this class, because Gtk::Window::get_application() is unreliable
 };
 }
 

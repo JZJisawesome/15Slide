@@ -21,6 +21,7 @@
 #include "GTKSlide/TileGrid.h"
 #include "GTKSlide/AboutSlide.h"
 #include "GTKSlide/SlideFileDialog.h"
+#include "GTKSlide/SaveManager.h"
 
 /** \namespace GTKSlide
  *

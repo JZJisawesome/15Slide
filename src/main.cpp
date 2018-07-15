@@ -25,11 +25,11 @@
 #include <iostream>
 #include <memory>
 #include <exception>
-#include <filesystem>
 
 #if defined(ENABLE_GUI)
 #include "GTKSlide/MainWindow.h"
 #include <gtkmm/application.h>
+#include <filesystem>
 #endif
 
 

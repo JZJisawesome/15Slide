@@ -29,19 +29,23 @@
 
 namespace GTKSlide
 {
+/** \brief Creates and populates the GTKSlide main window
+ *
+ * \param parent The parent window to call the won dialog set_transient_for()
+ * \param newGridPtr The Grid15::Grid to use
+ * \param saveManagerPtr A pointer to a SaveManager for managing autosaving
+ * \throw std::invalid_argument If the Grid15::Grid given is invalid
+ */
 TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr, std::shared_ptr<SaveManager> &saveManagerPtr)
 {
     parentPtr = {&parent};
     saveManager = {saveManagerPtr};
 
-    gridPtr = newGridPtr;
-    setupGrid(gridPtr);
-}
+    if (Grid15::GridHelp::validGrid(*newGridPtr))
+        gridPtr = newGridPtr;
+    else
+        std::invalid_argument {"Grid invalid!"};
 
-TileGrid::~TileGrid() {}
-
-void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
-{
     //create the first row of tiles
     for (std::uint_fast32_t i {0}; i < 4; ++i)
     {
@@ -68,6 +72,13 @@ void TileGrid::setupGrid(std::shared_ptr<Grid15::Grid> &newGridPtr)
     updateTiles();
 }
 
+//not used
+//TileGrid::~TileGrid() {}
+
+/** The signal handler if a tile is clicked
+ *
+ * \param coordinates A 1 dimentional array position that will be converted to 2D for use
+*/
 void TileGrid::on_tile_clicked(std::uint8_t coordinates)
 {
     auto [x, y] = singleToTwoD(coordinates);
@@ -116,6 +127,7 @@ void TileGrid::on_tile_clicked(std::uint8_t coordinates)
     }
 }
 
+///Both lables and sensitizes (depending on ProgramStuff::GTKSlide::SENSITIZE_VALID_MOVES_ONLY) the tiles at one
 void TileGrid::updateTiles()
 {
     lableTiles();
@@ -124,6 +136,7 @@ void TileGrid::updateTiles()
         sensitizeTiles();
 }
 
+///Lables the Gtk::Button tiles based on gridPtr tile values
 void TileGrid::lableTiles()
 {
     for (std::uint_fast32_t i {0}; i < 4; ++i)
@@ -136,6 +149,7 @@ void TileGrid::lableTiles()
         }
 }
 
+///Sensitizes or desensitizes Gtk::Button the tiles based on if moving them would be valid, based on gridPtr tile values
 void TileGrid::sensitizeTiles()
 {
     for (std::uint_fast32_t i {0}; i < 4; ++i)
@@ -143,6 +157,7 @@ void TileGrid::sensitizeTiles()
             gridButtons[twoDToSingle(i, j)].set_sensitive(Grid15::GridHelp::validMove(i, j, *gridPtr));//allows the button to be pressed if the move is valid
 }
 
+///Creates and displays a "won" dialog if the game is won
 void TileGrid::displayWonDialog()
 {
     Gtk::MessageDialog wonDialog("YOU WON!!!" "\xf0\x9f\x8f\x86");//second string is a trophy
@@ -167,10 +182,26 @@ void TileGrid::displayWonDialog()
     wonDialog.run();
 }
 
-std::pair<std::uint8_t, std::uint8_t> TileGrid::singleToTwoD(std::uint8_t num)
+/** \brief A helper function to convert a single number from 0 to 15 to an x and y coordinate from 0 to 3
+ *
+ * Used along with TileGrid::twoDToSingle to convert the other way
+ *
+ * \param coordinates The merged coordinates
+ * \return A std::pair with first = x coordinate and second = y coordinate
+ */
+std::pair<std::uint8_t, std::uint8_t> TileGrid::singleToTwoD(std::uint8_t coordinates)
 {
-    return std::pair<std::uint8_t, std::uint8_t> {num / 4, num % 4};
+    return std::pair<std::uint8_t, std::uint8_t> {coordinates / 4, coordinates % 4};
 }
+
+/** \brief A helper function to convert an x and y coordinate from 0 to 3 to a single number from 0 to 15
+ *
+ * Used to access the single dimentional array of Gtk::Buttons like a 2D one
+ *
+ * \param x The x coordinate (rows)
+ * \param y The y coordinate (colums)
+ * \return The merged coordinates
+ */
 std::uint8_t TileGrid::twoDToSingle(std::uint8_t x, std::uint8_t y)
 {
     return (x * 4) + y;

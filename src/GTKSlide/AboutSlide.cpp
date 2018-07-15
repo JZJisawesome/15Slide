@@ -22,6 +22,10 @@
 
 namespace GTKSlide
 {
+/** \brief Creates and populates an about dialog for 15Slide
+ *
+ * \param parent To automatically call Gtk::AboutDialog::set_transient_for()
+ */
 AboutSlide::AboutSlide(Gtk::Window &parent)
 {
     set_transient_for(parent);
@@ -68,8 +72,10 @@ AboutSlide::AboutSlide(Gtk::Window &parent)
     set_website_label("15Slide Website");
 }
 
-AboutSlide::~AboutSlide() {}
+//not used
+//AboutSlide::~AboutSlide() {}
 
+///Calls show_all(), present() and run() in one handy function
 void AboutSlide::display()
 {
     show_all();

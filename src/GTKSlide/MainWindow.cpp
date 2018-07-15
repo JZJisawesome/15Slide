@@ -33,6 +33,15 @@
 
 namespace GTKSlide
 {
+/** \brief Creates and populates the GTKSlide main window
+ *
+ * \param application The Gtk::Application being used to run the window
+ * \param newGridPtr The Grid15::Grid to use
+ * \throw Gtk::BuilderError If something goes wrong during parse
+ * \throw Glib::Markup error If something goes wrong during parse
+ * \throw Glib::FileError If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs
+ * \throw std::runtime_error If a menuBar cannot be created from the glade XML
+ */
 MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
     : saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
 {
@@ -63,8 +72,17 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
     show_all_children();
 }
 
-MainWindow::~MainWindow() {}
+//not used
+//MainWindow::~MainWindow() {}
 
+/** \brief Creates a menu bar for the window
+ *
+ * \return A Gtk::MenuBar built from a string or a file, depending on ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML
+ * \throw Gtk::BuilderError If something goes wrong during parse
+ * \throw Glib::MarkupError If something goes wrong during parse
+ * \throw Glib::FileError If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs
+ * \throw std::runtime_error If a menuBar cannot be created from the glade XML
+ */
 Gtk::MenuBar MainWindow::createMenuBar()
 {
     Glib::RefPtr<Gio::SimpleActionGroup> actionGroup {Gio::SimpleActionGroup::create()};
@@ -194,6 +212,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
         return Gtk::MenuBar {newMenuBar};
 }
 
+///Resets the grid and handles the old one if it is not saved
 void MainWindow::on_menuBar_newGame()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -226,7 +245,8 @@ void MainWindow::on_menuBar_newGame()
         switch (notSavedDialog.run())
         {
         case Gtk::RESPONSE_OK:
-            save();//no break statement here on purpose
+            save();
+            [[fallthrough]]
         case Gtk::RESPONSE_REJECT:
         {
             //reset previous save file
@@ -255,6 +275,10 @@ void MainWindow::on_menuBar_newGame()
     }
 }
 
+/** \brief Saves the grid
+ *
+ * \return True if the save works, or if it does not, the user choses a valid file and not cancel
+ */
 bool MainWindow::save()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -269,6 +293,10 @@ bool MainWindow::save()
         return saveAs();
 }
 
+/** \brief Saves the grid to a new file and updates MainWindow::saveManager
+ *
+ * \return True if the user choses a valid file and did not choose cancel
+ */
 bool MainWindow::saveAs()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -313,6 +341,7 @@ bool MainWindow::saveAs()
         return false;
 }
 
+///Loads the grid from a file and updates MainWindow::saveManager
 void MainWindow::on_menuBar_load()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -344,7 +373,8 @@ void MainWindow::on_menuBar_load()
         switch (notSavedDialog.run())
         {
         case Gtk::RESPONSE_OK:
-            save();//no break statement here on purpose
+            save();
+            [[fallthrough]]
         case Gtk::RESPONSE_REJECT:
         {
             saveManager->saveFile = {""};
@@ -364,6 +394,8 @@ void MainWindow::on_menuBar_load()
         }
         }
     }
+
+    //now that the old grid is saved, we load a new one
 
     SlideFileDialog loadDialog(*this, "Choose a file to load from", Gtk::FILE_CHOOSER_ACTION_OPEN);
 
@@ -417,6 +449,11 @@ void MainWindow::on_menuBar_autoSave()
 }
 */
 
+/** \brief Exits 15Slide after checking if the grid is saved and handeling it
+ *
+ * \param event Unused; allows connecting to Gtk::Window::signal_delete_event() which requires it
+ * \return Unused; allows connecting to Gtk::Window::signal_delete_event() which requires it
+ */
 bool MainWindow::exit(GdkEventAny* event)
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -467,6 +504,6 @@ bool MainWindow::exit(GdkEventAny* event)
     else
         hide();
 
-    return true;
+    return true;//not important really
 }
 }

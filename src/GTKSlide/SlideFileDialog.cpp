@@ -19,6 +19,13 @@
 
 namespace GTKSlide
 {
+/** \brief Creates and populates a SlideFileDialog, ready to run()
+ *
+ * \param parent To automatically call Gtk::AboutDialog::set_transient_for()
+ * \param title A title for the window
+ * \param action Whether to save or load
+ * \throw std::invalid_argument If action is not Gtk::FILE_CHOOSER_ACTION_OPEN or Gtk::FILE_CHOOSER_ACTION_SAVE
+ */
 SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action) : Gtk::FileChooserDialog{title, action}
 {
     set_transient_for(parent);
@@ -43,5 +50,6 @@ SlideFileDialog::SlideFileDialog(Gtk::Window &parent, const std::string &title, 
     add_filter(filter_any);
 }
 
-SlideFileDialog::~SlideFileDialog() {}
+//not used
+//SlideFileDialog::~SlideFileDialog() {}
 }

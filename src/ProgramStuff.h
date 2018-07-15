@@ -21,6 +21,10 @@ namespace ProgramStuff
 namespace Build {}
 ///Operating System related constants
 namespace OS {}
+///GTKSlide related constants
+namespace GTKSlide {}
+///File names and locations for GTKSlide reasources
+namespace GTKSlide::Resources {}
 
 
 /* Macros to constants */
@@ -132,6 +136,7 @@ constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
 }
 
+
 namespace GTKSlide
 {
 #ifndef __SLIDEWINDOWS
@@ -139,19 +144,19 @@ namespace GTKSlide
 #endif
 
 #if defined(ENABLE_GUI)
-constexpr bool ENABLED {true};
+constexpr bool ENABLED {true};///<15Slide will use GTKSlide instead of CommandUI
 #else
-constexpr bool ENABLED {false};
+constexpr bool ENABLED {false};///<15Slide will use GTKSlide instead of CommandUI
 #endif
 
-constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};
+constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
-constexpr bool USE_EXTERNAL_MENUBAR_XML {true};
+constexpr bool USE_EXTERNAL_MENUBAR_XML {true};///<Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for GTKSlide::MainWindow
 
 namespace Resources
 {
-constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};
-constexpr char  LOGO[] {"data/logo.png"};
+constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true, use this file to create the menu bar for GTKSlide::MainWindow
+constexpr char  LOGO[] {"data/logo.png"};///<The location of the 15Slide logo
 }
 }
 }
