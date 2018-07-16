@@ -23,7 +23,7 @@ namespace GTKSlide
 {
 /** \class SaveManager
  *
- * \brief A simple class to manage save files, options, and status of saves
+ * \brief A simple class to manage save files, save options, and status of saves
  *
  * \author John Jekel
  * \date 2018-2018
@@ -31,9 +31,9 @@ namespace GTKSlide
 class SaveManager
 {
 public:
-    std::string saveFile {""};///<The save file
-    bool autoSave {true};///<Whether to autosave or not
-    bool isSaved {false};///<Whether the file is saved or not
+    std::string saveFile    {""};       ///<The save file
+    bool autoSave           {true};     ///<Whether to autosave or not
+    bool isSaved            {false};    ///<Whether the file is saved or not
 };
 }
 

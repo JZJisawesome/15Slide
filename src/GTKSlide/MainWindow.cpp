@@ -221,28 +221,7 @@ void MainWindow::on_menuBar_newGame()
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");
-        notSavedDialog.set_title("Wait!");
-
-        notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
-
-        //super jankey looking and discouraged way to remove ok button
-        notSavedDialog.get_action_area()->remove
-        (
-            *(notSavedDialog.get_action_area()->get_children()[0])//1st and only element is ok (gone now)
-        );
-
-        notSavedDialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-        notSavedDialog.add_button("_Discard grid", Gtk::RESPONSE_REJECT);
-        notSavedDialog.add_button("_Save grid", Gtk::RESPONSE_OK);
-
-        notSavedDialog.set_default_response(Gtk::RESPONSE_CANCEL);
-
-        notSavedDialog.set_transient_for(*this);
-        notSavedDialog.show_all();
-        notSavedDialog.present();
-
-        switch (notSavedDialog.run())
+        switch (createNotSavedDialogAndRun())
         {
         case Gtk::RESPONSE_OK:
             save();
@@ -286,8 +265,25 @@ bool MainWindow::save()
 
     if (saveManager->saveFile != "")
     {
-        Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handeling needed
-        return true;//here too
+        try
+        {
+            Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handeling needed
+            return true;
+        }
+        catch (std::ios_base::failure &e)
+        {
+            saveManager->saveFile = {""};
+            saveManager->isSaved = {false};
+
+            int temp {createErrorDialogAndRun("Some this went wrong while saving", "Click \"Ok\" to choose a new save location now")};
+
+            if (temp == Gtk::RESPONSE_OK)
+            {
+                return saveAs();
+            }
+            else
+                return false;
+        }
     }
     else
         return saveAs();
@@ -324,15 +320,7 @@ bool MainWindow::saveAs()
         {
             saveDialog.hide();//hide the file dialog first
 
-            Gtk::MessageDialog errorDialog("Some this went wrong while saving");
-            errorDialog.set_title("Oh no!");
-
-            errorDialog.set_secondary_text("Try a diffrent file/location, or change permissions to allow writing");
-
-            errorDialog.set_transient_for(*this);
-            errorDialog.show_all();
-            errorDialog.present();
-            errorDialog.run();
+            createErrorDialogAndRun("Some this went wrong while saving", "Try a diffrent file/location, or change permissions to allow writing");
 
             return false;
         }
@@ -349,28 +337,7 @@ void MainWindow::on_menuBar_load()
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");
-        notSavedDialog.set_title("Wait!");
-
-        notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
-
-        //super jankey looking and discouraged way to remove ok button
-        notSavedDialog.get_action_area()->remove
-        (
-            *(notSavedDialog.get_action_area()->get_children()[0])//1st and only element is ok (gone now)
-        );
-
-        notSavedDialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-        notSavedDialog.add_button("_Discard grid", Gtk::RESPONSE_REJECT);
-        notSavedDialog.add_button("_Save grid", Gtk::RESPONSE_OK);
-
-        notSavedDialog.set_default_response(Gtk::RESPONSE_CANCEL);
-
-        notSavedDialog.set_transient_for(*this);
-        notSavedDialog.show_all();
-        notSavedDialog.present();
-
-        switch (notSavedDialog.run())
+        switch (createNotSavedDialogAndRun())
         {
         case Gtk::RESPONSE_OK:
             save();
@@ -415,29 +382,13 @@ void MainWindow::on_menuBar_load()
         {
             loadDialog.hide();//hide the file dialog first
 
-            Gtk::MessageDialog errorDialog("Some this went wrong while loading");
-            errorDialog.set_title("Oh no!");
-
-            errorDialog.set_secondary_text("Try a diffrent file/location, change permissions to allow reading, and make sure it is a valid 15Slide save file");
-
-            errorDialog.set_transient_for(*this);
-            errorDialog.show_all();
-            errorDialog.present();
-            errorDialog.run();
+            createErrorDialogAndRun("Some this went wrong while loading", "Try a diffrent file/location, change permissions to allow reading, and make sure it is a valid 15Slide save file");
         }
         catch (std::invalid_argument &e)
         {
             loadDialog.hide();//hide the file dialog first
 
-            Gtk::MessageDialog errorDialog("Some this went wrong while importing the grid");
-            errorDialog.set_title("Oh no!");
-
-            errorDialog.set_secondary_text("The file was read sucessfully, but the grid may be corrupted");
-
-            errorDialog.set_transient_for(*this);
-            errorDialog.show_all();
-            errorDialog.present();
-            errorDialog.run();
+            createErrorDialogAndRun("Some this went wrong while importing the grid", "The file was read sucessfully, but the grid may be corrupted");
         }
     }
 }
@@ -461,28 +412,7 @@ bool MainWindow::exit(GdkEventAny* event)
 
     if (!saveManager->isSaved)
     {
-        Gtk::MessageDialog notSavedDialog("Wait!");
-        notSavedDialog.set_title("Wait!");
-
-        notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
-
-        //super jankey looking and discouraged way to remove ok button
-        notSavedDialog.get_action_area()->remove
-        (
-            *(notSavedDialog.get_action_area()->get_children()[0])//1st and only element is ok (gone now)
-        );
-
-        notSavedDialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-        notSavedDialog.add_button("_Discard grid", Gtk::RESPONSE_REJECT);
-        notSavedDialog.add_button("_Save grid", Gtk::RESPONSE_OK);
-
-        notSavedDialog.set_default_response(Gtk::RESPONSE_CANCEL);
-
-        notSavedDialog.set_transient_for(*this);
-        notSavedDialog.show_all();
-        notSavedDialog.present();
-
-        switch (notSavedDialog.run())
+        switch (createNotSavedDialogAndRun())
         {
         case Gtk::RESPONSE_REJECT:
         {
@@ -505,5 +435,56 @@ bool MainWindow::exit(GdkEventAny* event)
         hide();
 
     return true;//not important really
+}
+
+/** \brief A helper function which creates and runs a Gtk::MessageDialog asking the user what to do with the current unsaved grid
+ *
+ * \return The responce from the user (result of Gtk::MessageDialog::run)
+ */
+int MainWindow::createNotSavedDialogAndRun()
+{
+    Gtk::MessageDialog notSavedDialog("Wait!");
+    notSavedDialog.set_title("Wait!");
+
+    notSavedDialog.set_secondary_text("What do you want to do with this unsaved grid?");
+
+    //super jankey looking and discouraged way to remove ok button
+    notSavedDialog.get_action_area()->remove
+    (
+        *(notSavedDialog.get_action_area()->get_children()[0])//1st and only element is ok (gone now)
+    );
+
+    notSavedDialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
+    notSavedDialog.add_button("_Discard grid", Gtk::RESPONSE_REJECT);
+    notSavedDialog.add_button("_Save grid", Gtk::RESPONSE_OK);
+
+    notSavedDialog.set_default_response(Gtk::RESPONSE_CANCEL);
+
+    notSavedDialog.set_transient_for(*this);
+    notSavedDialog.show_all();
+    notSavedDialog.present();
+
+    return notSavedDialog.run();
+}
+
+/** \brief A helper function which creates and runs a Gtk::MessageDialog informing the user of an error that has occured
+ *
+ * \param errorMessage The error message to display
+ * \param details Extra details to put (Gtk::MessageDialog::set_secondary_text)
+ * \return The responce from the user (result of Gtk::MessageDialog::run)
+ * \bug Parameters are not string refrences (std::string &)
+ */
+int MainWindow::createErrorDialogAndRun(std::string errorMessage, std::string details)
+{
+    Gtk::MessageDialog errorDialog(errorMessage);
+    errorDialog.set_title("Oh no!");
+
+    errorDialog.set_secondary_text(details);
+
+    errorDialog.set_transient_for(*this);
+    errorDialog.show_all();
+    errorDialog.present();
+
+    return errorDialog.run();
 }
 }

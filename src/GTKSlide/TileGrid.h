@@ -47,7 +47,7 @@ public:
     void updateTiles();
 protected:
     //not smart pointer because window will be on stack
-    Gtk::Window *parentPtr {};///<A pointer to the parent window for the won dialog set_transient_for()
+    Gtk::Window *parentPtr {};///<A pointer to the parent window to call various dialogs set_transient_for()
     std::shared_ptr<Grid15::Grid> gridPtr {};///<A pointer to the grid to use
 
     void on_tile_clicked(std::uint8_t coordinates);

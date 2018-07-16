@@ -31,7 +31,7 @@ namespace GTKSlide
 {
 /** \brief Creates and populates the GTKSlide main window
  *
- * \param parent The parent window to call the won dialog set_transient_for()
+ * \param parent The parent window to call various dialogs set_transient_for()
  * \param newGridPtr The Grid15::Grid to use
  * \param saveManagerPtr A pointer to a SaveManager for managing autosaving
  * \throw std::invalid_argument If the Grid15::Grid given is invalid
@@ -110,12 +110,32 @@ void TileGrid::on_tile_clicked(std::uint8_t coordinates)
 
         if (saveManager->autoSave && (saveManager->saveFile != ""))
         {
-            Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
+            try
+            {
+                Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
 
-            saveManager->isSaved = {true};
 
-            if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "(debug)Auto-saved the game" << "\n";
+                //we only get here if above works
+                saveManager->isSaved = {true};
+
+                if constexpr (ProgramStuff::Build::DEBUG)
+                    std::clog << "(debug)Auto-saved the game" << "\n";
+            }
+            catch (std::ios_base::failure &e)
+            {
+                saveManager->saveFile = {""};
+                saveManager->isSaved = {false};
+
+                Gtk::MessageDialog errorDialog("Some this went wrong while auto-saving");
+                errorDialog.set_title("Oh no!");
+
+                errorDialog.set_secondary_text("Go to File -> Save As to choose a new save location");
+
+                errorDialog.set_transient_for(*parentPtr);
+                errorDialog.show_all();
+                errorDialog.present();
+                errorDialog.run();
+            }
         }
     }
 
