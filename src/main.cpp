@@ -29,7 +29,10 @@
 #if defined(ENABLE_GUI)
 #include "GTKSlide/MainWindow.h"
 #include <gtkmm/application.h>
+
+#if defined(GTKSLIDE_DATA_FOLDER_CHECK)
 #include <filesystem>
+#endif
 #endif
 
 
@@ -72,8 +75,10 @@ int main(int argc, char *argv[])
 
         if constexpr (ProgramStuff::GTKSlide::ENABLED)
         {
+#if defined(GTKSLIDE_DATA_FOLDER_CHECK)
             if (!(std::filesystem::exists("data/")))
                 g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird");
+#endif
 
             Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 

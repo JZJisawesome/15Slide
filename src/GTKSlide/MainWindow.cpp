@@ -125,7 +125,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
     {//lambda creates temporary about dialog and displays it
         (AboutSlide {*this}).display();
     });
-    applicationPtr->set_accel_for_action("actionGroup.about", "a");
+    //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
@@ -194,7 +194,7 @@ Gtk::MenuBar MainWindow::createMenuBar()
             "                   <item>"//About
             "                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>"
             "                       <attribute name='action'>actionGroup.about</attribute>"
-            "                       <attribute name='accel'>a</attribute>"
+            //"                       <attribute name='accel'>a</attribute>"
             "                   </item>"
             "           </section>"
             "       </submenu>"

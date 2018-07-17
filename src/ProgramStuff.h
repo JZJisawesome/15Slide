@@ -153,6 +153,8 @@ constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can b
 
 constexpr bool USE_EXTERNAL_MENUBAR_XML {true};///<Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for GTKSlide::MainWindow
 
+//#define GTKSLIDE_DATA_FOLDER_CHECK 1
+
 namespace Resources
 {
 constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true, use this file to create the menu bar for GTKSlide::MainWindow
