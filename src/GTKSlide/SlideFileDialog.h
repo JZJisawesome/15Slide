@@ -36,7 +36,7 @@ public:
     SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action);
     //virtual ~SlideFileDialog();
 
-    void display();
+    std::string getFilenameWithExtention();
 };
 }
 

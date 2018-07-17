@@ -275,7 +275,7 @@ bool MainWindow::save()
             saveManager->saveFile = {""};
             saveManager->isSaved = {false};
 
-            int temp {createErrorDialogAndRun("Some this went wrong while saving", "Click \"Ok\" to choose a new save location now")};
+            int temp {createErrorDialogAndRun("Some this went wrong while saving", "Click \"Ok\" to choose a new save location")};
 
             if (temp == Gtk::RESPONSE_OK)
             {
@@ -306,10 +306,10 @@ bool MainWindow::saveAs()
     {
         try
         {
-            Grid15::GridHelp::save(saveDialog.get_filename(), *gridPtr);
+            Grid15::GridHelp::save(saveDialog.getFilenameWithExtention(), *gridPtr);
 
             //we only get here if the file works
-            saveManager->saveFile = {saveDialog.get_filename()};
+            saveManager->saveFile = {saveDialog.getFilenameWithExtention()};
             saveManager->isSaved = {true};
 
             tileGrid.updateTiles();
