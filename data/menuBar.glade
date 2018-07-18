@@ -1,53 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
 <interface>
-   <menu id='menuBar'>
-       <submenu>
-           <attribute name='label' translatable='yes'>_File</attribute>
-           <section>
-               <section>
-                   <item>
-                       <attribute name='label' translatable='yes'>_New Game</attribute>
-                       <attribute name='action'>actionGroup.newGame</attribute>
-                       <attribute name='accel'>&lt;control&gt;n</attribute>
-                   </item>
-                   <item>
-                       <attribute name='label' translatable='yes'>_Save</attribute>
-                       <attribute name='action'>actionGroup.save</attribute>
-                       <attribute name='accel'>&lt;control&gt;s</attribute>
-                   </item>
-                   <item>
-                       <attribute name='label' translatable='yes'>_Save As</attribute>
-                       <attribute name='action'>actionGroup.saveAs</attribute>
-                       <attribute name='accel'>&lt;control&gt;&lt;shift&gt;s</attribute>
-                   </item>
-                   <item>
-                       <attribute name='label' translatable='yes'>_Load</attribute>
-                       <attribute name='action'>actionGroup.load</attribute>
-                       <attribute name='accel'>&lt;control&gt;l</attribute>
-                   </item>
-               </section>
-               <section>
-                   <item>
-                       <attribute name='label' translatable='yes'>_Exit</attribute>
-                       <attribute name='action'>actionGroup.exit</attribute>
-                       <attribute name='accel'>&lt;control&gt;q</attribute>
-                   </item>
-               </section>
-           </section>
-       </submenu>
-       <submenu>
-           <attribute name='label' translatable='yes'>_Help</attribute>
-           <section>
-                   <item>
-                       <attribute name='label' translatable='yes'>_How to play</attribute>
-                       <attribute name='action'>actionGroup.demo</attribute>
-                       <attribute name='accel'>F1</attribute>
-                   </item>
-                   <item>
-                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>
-                       <attribute name='action'>actionGroup.about</attribute>
-                       <attribute name='accel'>a</attribute>
-                   </item>
-           </section>
-       </submenu>
-   </menu>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkMenuBar" id="menuBar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="hexpand">True</property>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">_File</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-new</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.newGame</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-open</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.load</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="l" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-save</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.save</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-save-as</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.saveAs</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparatorMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-quit</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.exit</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">_Help</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-help</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.demo</property>
+                <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
+                <accelerator key="F1" signal="activate"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem">
+                <property name="label">gtk-about</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.about</property>
+                <property name="use_stock">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

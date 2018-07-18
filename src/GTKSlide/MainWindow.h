@@ -42,8 +42,8 @@ public:
 protected:
     Gtk::Grid mainGrid;///<The Gtk::Grid used for holding MainWindow::tileGrid and MainWindow::mainMenu
 
-    Gtk::MenuBar mainMenu;///<The File and Help Gtk::MenuBar at the top of MainWindow
-    Gtk::MenuBar createMenuBar();
+    Gtk::MenuBar * mainMenu;///<The File and Help Gtk::MenuBar at the top of MainWindow
+    void createMenuBarAndAddToMainGrid();
 
     void on_menuBar_newGame();
     void on_menuBar_load();

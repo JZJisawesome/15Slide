@@ -80,6 +80,9 @@ int main(int argc, char *argv[])
                 g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird");
 #endif
 
+            if constexpr (ProgramStuff::GTKSlide::RUNNING_UNINSTALLED)
+                Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
+
             Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
 
             //application refrence is needed because get_application returns nullptr sometimes

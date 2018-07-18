@@ -149,9 +149,9 @@ constexpr bool ENABLED {true};///<15Slide will use GTKSlide instead of CommandUI
 constexpr bool ENABLED {false};///<15Slide will use GTKSlide instead of CommandUI
 #endif
 
-constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
+constexpr bool RUNNING_UNINSTALLED {true};
 
-constexpr bool USE_EXTERNAL_MENUBAR_XML {true};///<Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for GTKSlide::MainWindow
+constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
 //#define GTKSLIDE_DATA_FOLDER_CHECK 1
 

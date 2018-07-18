@@ -64,10 +64,13 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
     add(mainGrid);
 
 
-    mainMenu = createMenuBar();//create a menu bar
-    mainGrid.add(mainMenu);//adds a menu bar to the box
+    //mainMenu = createMenuBar();//create a menu bar
+    //mainGrid.add(*mainMenu);//adds a menu bar to the box
 
-    mainGrid.attach_next_to(tileGrid, mainMenu, Gtk::POS_BOTTOM, 1, 1);
+
+    createMenuBarAndAddToMainGrid();
+
+    mainGrid.attach_next_to(tileGrid, Gtk::POS_BOTTOM, 1, 1);
 
     show_all_children();
 }
@@ -75,42 +78,41 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
 //not used
 //MainWindow::~MainWindow() {}
 
-/** \brief Creates a menu bar for the window
+/** \brief Creates a menu bar for the window and adds it to GtkSlide::MainWindow::mainGrid (it is manage()ed)
  *
- * \return A Gtk::MenuBar built from a string or a file, depending on ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML
  * \throw Gtk::BuilderError If something goes wrong during parse
  * \throw Glib::MarkupError If something goes wrong during parse
  * \throw Glib::FileError If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs
  * \throw std::runtime_error If a menuBar cannot be created from the glade XML
  */
-Gtk::MenuBar MainWindow::createMenuBar()
+void MainWindow::createMenuBarAndAddToMainGrid()
 {
     Glib::RefPtr<Gio::SimpleActionGroup> actionGroup {Gio::SimpleActionGroup::create()};
     insert_action_group("actionGroup", actionGroup);
 
     actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::on_menuBar_newGame));
-    applicationPtr->set_accel_for_action("actionGroup.newGame", "<control>n");
+    applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
 
     actionGroup->add_action("save", [this]
     {//lambda calls save and does not care about return value
         save();
     });
-    applicationPtr->set_accel_for_action("actionGroup.save", "<control>s");
+    applicationPtr->set_accel_for_action("actionGroup.save", "<Primary>s");
 
     actionGroup->add_action("saveAs", [this]
     {//lambda calls save and does not care about return value
         saveAs();
     });
-    applicationPtr->set_accel_for_action("actionGroup.saveAs", "<control><shift>s");
+    applicationPtr->set_accel_for_action("actionGroup.saveAs", "<Primary><Shift>s");
 
     actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
-    applicationPtr->set_accel_for_action("actionGroup.load", "<control>l");
+    applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
 
     actionGroup->add_action("exit", [this]
     {//lambda calls exit function (same one as x button)
         exit(nullptr);
     });
-    applicationPtr->set_accel_for_action("actionGroup.exit", "<control>q");
+    applicationPtr->set_accel_for_action("actionGroup.exit", "<Primary>q");
 
     //actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
@@ -128,88 +130,18 @@ Gtk::MenuBar MainWindow::createMenuBar()
     //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
-    Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create()};
-    //build the menu
-    if constexpr (ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML)
-        menuBuilder->add_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML);//no try catch; this is a fatal error
-    else
-    {
-        menuBuilder->add_from_string
-        (
-            "<interface>"
-            "   <menu id='menuBar'>"
-            "       <submenu>"
-            "           <attribute name='label' translatable='yes'>_File</attribute>"//File menu
-            "           <section>"
-            "               <section>"
-            "                   <item>"//New Game
-            "                       <attribute name='label' translatable='yes'>_New Game</attribute>"
-            "                       <attribute name='action'>actionGroup.newGame</attribute>"
-            "                       <attribute name='accel'>&lt;control&gt;n</attribute>"
-            "                   </item>"
-            "                   <item>"//Save
-            "                       <attribute name='label' translatable='yes'>_Save</attribute>"
-            "                       <attribute name='action'>actionGroup.save</attribute>"
-            "                       <attribute name='accel'>&lt;control&gt;s</attribute>"
-            "                   </item>"
-            "                   <item>"//Save As
-            "                       <attribute name='label' translatable='yes'>_Save As</attribute>"
-            "                       <attribute name='action'>actionGroup.saveAs</attribute>"
-            "                       <attribute name='accel'>&lt;control&gt;&lt;shift&gt;s</attribute>"
-            "                   </item>"
-            "                   <item>"//Load
-            "                       <attribute name='label' translatable='yes'>_Load</attribute>"
-            "                       <attribute name='action'>actionGroup.load</attribute>"
-            "                       <attribute name='accel'>&lt;control&gt;l</attribute>"
-            "                   </item>"
-            "               </section>"
-            "               <section>"
-            "                   <item>"//Exit
-            "                       <attribute name='label' translatable='yes'>_Exit</attribute>"
-            "                       <attribute name='action'>actionGroup.exit</attribute>"
-            "                       <attribute name='accel'>&lt;control&gt;q</attribute>"
-            "                   </item>"
-            "               </section>"
-            "           </section>"
-            "       </submenu>"
-            //might make into settings dialog instead
-            //"       <submenu>"
-            //"           <attribute name='label' translatable='yes'>_Options</attribute>"//Options menu
-            //"           <section>"
-            //"                   <item>"//Auto Save
-            //"                       <attribute name='label' translatable='yes'>_Auto Save</attribute>"
-            //"                       <attribute name='action'>actionGroup.autoSave</attribute>"
-            //"                       <attribute name='accel'>&lt;control&gt;a</attribute>"
-            //"                   </item>"
-            //"           </section>"
-            //"       </submenu>"
-            "       <submenu>"
-            "           <attribute name='label' translatable='yes'>_Help</attribute>"//Help menu
-            "           <section>"
-            "                   <item>"//How to play
-            "                       <attribute name='label' translatable='yes'>_How to play</attribute>"
-            "                       <attribute name='action'>actionGroup.demo</attribute>"
-            "                       <attribute name='accel'>F1</attribute>"
-            "                   </item>"
-            "                   <item>"//About
-            "                       <attribute name='label' translatable='yes'>_About 15Slide</attribute>"
-            "                       <attribute name='action'>actionGroup.about</attribute>"
-            //"                       <attribute name='accel'>a</attribute>"
-            "                   </item>"
-            "           </section>"
-            "       </submenu>"
-            "   </menu>"
-            "</interface>"
-        );
-    }
 
-    //return it
-    Glib::RefPtr<Glib::Object> menuObject = menuBuilder->get_object("menuBar");
-    Glib::RefPtr<Gio::Menu> newMenuBar = Glib::RefPtr<Gio::Menu>::cast_dynamic(menuObject);
+    Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML)};
+
+    Gtk::MenuBar * newMenuBar = nullptr;
+
+    menuBuilder->get_widget("menuBar", newMenuBar);
     if (!newMenuBar)
         throw std::runtime_error {"Could not create a menu bar"};
-    else
-        return Gtk::MenuBar {newMenuBar};
+
+    Gtk::manage(newMenuBar);
+
+    mainGrid.add(*newMenuBar);
 }
 
 ///Resets the grid and handles the old one if it is not saved
