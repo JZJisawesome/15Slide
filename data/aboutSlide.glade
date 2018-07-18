@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAboutDialog" id="aboutSlide">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">About 15Slide</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="gravity">center</property>
+    <property name="program_name">15Slide</property>
+    <property name="copyright" translatable="yes">Copyright (c) 2018 John Jekel</property>
+    <property name="comments" translatable="yes">A fun, cross-platform, slidy-tile game written with C++ 17!</property>
+    <property name="website">https://jzjisawesome.github.io/15Slide/</property>
+    <property name="website_label" translatable="yes">15Slide Website</property>
+    <property name="license" translatable="yes">15Slide is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+15Slide is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with 15Slide.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</property>
+    <property name="authors">John Jekel @JZJisawesome</property>
+    <property name="documenters">John Jekel @JZJisawesome</property>
+    <property name="artists">John Jekel @JZJisawesome</property>
+    <property name="logo_icon_name"/>
+    <property name="wrap_license">True</property>
+    <property name="license_type">custom</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="box1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -27,8 +27,10 @@ namespace GTKSlide
  *
  * \author John Jekel
  * \date 2018-2018
+ *
+ * \deprecated About dialog is loaded from a glade file in MainWindow instead.
  */
-class AboutSlide : public Gtk::AboutDialog
+class [[deprecated]] AboutSlide : public Gtk::AboutDialog
 {
 public:
     AboutSlide(Gtk::Window &parent);

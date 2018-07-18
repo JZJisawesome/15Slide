@@ -158,6 +158,7 @@ constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can b
 namespace Resources
 {
 constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true, use this file to create the menu bar for GTKSlide::MainWindow
+constexpr char  ABOUTSLIDE_XML[]   {"data/aboutSlide.glade"};
 constexpr char  LOGO[] {"data/logo.png"};///<The location of the 15Slide logo
 }
 }

@@ -82,8 +82,8 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
  *
  * \throw Gtk::BuilderError If something goes wrong during parse
  * \throw Glib::MarkupError If something goes wrong during parse
- * \throw Glib::FileError If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs
- * \throw std::runtime_error If a menuBar cannot be created from the glade XML
+ * \throw Glib::FileError If a file error occurs
+ * \throw std::runtime_error If a something cannot be created from the glade XML
  */
 void MainWindow::createMenuBarAndAddToMainGrid()
 {
@@ -125,15 +125,27 @@ void MainWindow::createMenuBarAndAddToMainGrid()
 
     actionGroup->add_action("about", [this]
     {//lambda creates temporary about dialog and displays it
-        (AboutSlide {*this}).display();
+        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
+        Gtk::AboutDialog * newAboutSlide {};
+        menuBuilder->get_widget("aboutSlide", newAboutSlide);
+
+        if (!newAboutSlide)
+            throw std::runtime_error {"Could not create an about dialog"};
+
+        Gtk::manage(newAboutSlide);
+
+        newAboutSlide->set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
+        newAboutSlide->set_transient_for(*this);
+        newAboutSlide->run();
+        newAboutSlide->hide();//this is odly needed to close dialog if user presses close with glade (not like this with GTKSlide::AboutSlide)
     });
     //applicationPtr->set_accel_for_action("actionGroup.about", "a");
-
 
 
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML)};
 
     Gtk::MenuBar * newMenuBar = nullptr;
+
 
     menuBuilder->get_widget("menuBar", newMenuBar);
     if (!newMenuBar)
