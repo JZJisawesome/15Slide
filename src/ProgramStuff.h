@@ -149,11 +149,13 @@ constexpr bool ENABLED {true};///<15Slide will use GTKSlide instead of CommandUI
 constexpr bool ENABLED {false};///<15Slide will use GTKSlide instead of CommandUI
 #endif
 
-constexpr bool RUNNING_UNINSTALLED {true};
+constexpr bool RUNNING_UNINSTALLED {true};///<Not really important until a settings dialog is created
 
 constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
 //#define GTKSLIDE_DATA_FOLDER_CHECK 1
+
+constexpr bool AUTOSAVE_ON_SLIDE_DEFAULT {true};///<To autosave after each slide by default or not
 
 namespace Resources
 {

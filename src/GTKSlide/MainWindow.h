@@ -63,7 +63,7 @@ protected:
     bool exit(GdkEventAny* event);
 
     int createNotSavedDialogAndRun();
-    int createErrorDialogAndRun(std::string errorMessage, std::string details);
+    int createErrorDialogAndRun(std::string errorMessage, std::string details = "");
 
 
     std::shared_ptr<SaveManager> saveManager {};///<A SaveManager to manage autosaving with Gtk::MenuBar

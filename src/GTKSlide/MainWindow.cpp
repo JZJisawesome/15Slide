@@ -64,10 +64,6 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_
     add(mainGrid);
 
 
-    //mainMenu = createMenuBar();//create a menu bar
-    //mainGrid.add(*mainMenu);//adds a menu bar to the box
-
-
     createMenuBarAndAddToMainGrid();
 
     mainGrid.attach_next_to(tileGrid, Gtk::POS_BOTTOM, 1, 1);
@@ -261,7 +257,7 @@ bool MainWindow::saveAs()
         return false;
 }
 
-///Loads the grid from a file and updates MainWindow::saveManager
+/// \brief Loads the grid from a file and updates MainWindow::saveManager
 void MainWindow::on_menuBar_load()
 {
     if constexpr (ProgramStuff::Build::DEBUG)
@@ -371,15 +367,12 @@ bool MainWindow::exit(GdkEventAny* event)
 
 void MainWindow::on_menubar_about()
 {
-    //lambda creates temporary about dialog and displays it
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
     Gtk::AboutDialog * newAboutSlide {};
     menuBuilder->get_widget("aboutSlide", newAboutSlide);
 
     if (!newAboutSlide)
         throw std::runtime_error {"Could not create an about dialog"};
-
-    Gtk::manage(newAboutSlide);
 
     //version and logo are set here instead of in glade file
     try
@@ -396,6 +389,8 @@ void MainWindow::on_menubar_about()
     newAboutSlide->set_transient_for(*this);
     newAboutSlide->run();
     newAboutSlide->hide();//this is odly needed to close dialog if user presses close with glade (not like this with GTKSlide::AboutSlide)
+
+    delete newAboutSlide;//it is a window so manage does not work
 }
 
 /** \brief A helper function which creates and runs a Gtk::MessageDialog asking the user what to do with the current unsaved grid
@@ -433,7 +428,7 @@ int MainWindow::createNotSavedDialogAndRun()
  * \param errorMessage The error message to display
  * \param details Extra details to put (Gtk::MessageDialog::set_secondary_text)
  * \return The responce from the user (result of Gtk::MessageDialog::run)
- * \bug Parameters are not string refrences (std::string &)
+ * \bug Parameters are not string refrences (const std::string &)
  */
 int MainWindow::createErrorDialogAndRun(std::string errorMessage, std::string details)
 {

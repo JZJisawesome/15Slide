@@ -48,6 +48,7 @@ it under the terms of the GNU Lesser General Public License as published by the 
 You should have received a copy of the GNU Lesser General Public License along with 15Slide.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</property>
     <property name="authors">John Jekel @JZJisawesome</property>
     <property name="documenters">John Jekel @JZJisawesome</property>
+    <property name="translator_credits" translatable="yes">John Jekel @JZJisawesome (English)</property>
     <property name="artists">John Jekel @JZJisawesome</property>
     <property name="logo_icon_name"/>
     <property name="wrap_license">True</property>
@@ -61,7 +62,7 @@ You should have received a copy of the GNU Lesser General Public License along w
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkButtonBox">
+          <object class="GtkButtonBox" id="buttonbox1">
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
           </object>
