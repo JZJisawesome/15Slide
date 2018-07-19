@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.1 
+
+Copyright (C) 2018 John Jekel
+
+This file is part of 15Slide.
+
+15Slide is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+15Slide is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with 15Slide.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: John Jekel @JZJisawesome
+
+-->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <!-- interface-license-type lgplv3 -->
+  <!-- interface-name 15Slide -->
+  <!-- interface-description A fun, cross-platform, slidy-tile game written with C++ 17! -->
+  <!-- interface-copyright 2018 John Jekel -->
+  <!-- interface-authors John Jekel @JZJisawesome -->
   <object class="GtkAboutDialog" id="aboutSlide">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">About 15Slide</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
-    <property name="skip_taskbar_hint">True</property>
     <property name="gravity">center</property>
     <property name="program_name">15Slide</property>
     <property name="copyright" translatable="yes">Copyright (c) 2018 John Jekel</property>

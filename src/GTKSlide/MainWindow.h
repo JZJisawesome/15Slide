@@ -48,6 +48,8 @@ protected:
     void on_menuBar_newGame();
     void on_menuBar_load();
 
+    void on_menubar_about();
+
     //void on_menuBar_autoSave();//move to settings dialog
 
     //replaced with lambdas
@@ -55,7 +57,6 @@ protected:
     //void on_menubar_saveAs();
     //void on_menuBar_exit();
     //void on_menubar_demo();
-    //void on_menubar_about();
 
     bool save();
     bool saveAs();

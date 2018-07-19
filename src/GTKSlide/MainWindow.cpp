@@ -94,13 +94,15 @@ void MainWindow::createMenuBarAndAddToMainGrid()
     applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
 
     actionGroup->add_action("save", [this]
-    {//lambda calls save and does not care about return value
+    {
+        //lambda calls save and does not care about return value
         save();
     });
     applicationPtr->set_accel_for_action("actionGroup.save", "<Primary>s");
 
     actionGroup->add_action("saveAs", [this]
-    {//lambda calls save and does not care about return value
+    {
+        //lambda calls save and does not care about return value
         saveAs();
     });
     applicationPtr->set_accel_for_action("actionGroup.saveAs", "<Primary><Shift>s");
@@ -109,7 +111,8 @@ void MainWindow::createMenuBarAndAddToMainGrid()
     applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
 
     actionGroup->add_action("exit", [this]
-    {//lambda calls exit function (same one as x button)
+    {
+        //lambda calls exit function (same one as x button)
         exit(nullptr);
     });
     applicationPtr->set_accel_for_action("actionGroup.exit", "<Primary>q");
@@ -118,27 +121,12 @@ void MainWindow::createMenuBarAndAddToMainGrid()
     //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
 
     actionGroup->add_action("demo", []
-    {//lambda opens 15Slide website in browser
+    {
+        //lambda opens 15Slide website in browser
         gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
     });
     applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
-
-    actionGroup->add_action("about", [this]
-    {//lambda creates temporary about dialog and displays it
-        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
-        Gtk::AboutDialog * newAboutSlide {};
-        menuBuilder->get_widget("aboutSlide", newAboutSlide);
-
-        if (!newAboutSlide)
-            throw std::runtime_error {"Could not create an about dialog"};
-
-        Gtk::manage(newAboutSlide);
-
-        newAboutSlide->set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
-        newAboutSlide->set_transient_for(*this);
-        newAboutSlide->run();
-        newAboutSlide->hide();//this is odly needed to close dialog if user presses close with glade (not like this with GTKSlide::AboutSlide)
-    });
+    actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::on_menubar_about));
     //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
@@ -379,6 +367,35 @@ bool MainWindow::exit(GdkEventAny* event)
         hide();
 
     return true;//not important really
+}
+
+void MainWindow::on_menubar_about()
+{
+    //lambda creates temporary about dialog and displays it
+    Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
+    Gtk::AboutDialog * newAboutSlide {};
+    menuBuilder->get_widget("aboutSlide", newAboutSlide);
+
+    if (!newAboutSlide)
+        throw std::runtime_error {"Could not create an about dialog"};
+
+    Gtk::manage(newAboutSlide);
+
+    //version and logo are set here instead of in glade file
+    try
+    {
+        newAboutSlide->set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
+    }
+    catch (...)
+    {
+        g_warning("Could not open the 15Slide logo");//not catostrophic if logo cannot be found
+    }
+
+    newAboutSlide->set_version(ProgramStuff::Build::SLIDE_VERSION_STRING);
+
+    newAboutSlide->set_transient_for(*this);
+    newAboutSlide->run();
+    newAboutSlide->hide();//this is odly needed to close dialog if user presses close with glade (not like this with GTKSlide::AboutSlide)
 }
 
 /** \brief A helper function which creates and runs a Gtk::MessageDialog asking the user what to do with the current unsaved grid
