@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
         //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
 
         return application->run(window);
-#elif
+#else
         std::cout << "Type \"help\" for a list of commands." << "\n";
         std::cout << termcolor::underline;
         std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
