@@ -31,6 +31,10 @@
 #include <memory>
 #include <exception>
 
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+#include <filesystem>
+#endif
+
 namespace GTKSlide
 {
 /** \brief Creates and populates the GTKSlide main window
@@ -136,7 +140,6 @@ void MainWindow::createMenuBarAndAddToMainGrid()
         throw std::runtime_error {"Could not create a menu bar"};
 
     Gtk::manage(newMenuBar);
-
     mainGrid.add(*newMenuBar);
 }
 
@@ -232,26 +235,65 @@ bool MainWindow::saveAs()
 
     if (result == Gtk::RESPONSE_OK)
     {
-        try
+        auto saveTo
         {
-            Grid15::GridHelp::save(saveDialog.getFilenameWithExtention(), *gridPtr);
+            [&saveDialog, this](const std::string &fileName) -> bool
+            {
+                try
+                {
+                    Grid15::GridHelp::save(fileName, *gridPtr);
 
-            //we only get here if the file works
-            saveManager->saveFile = {saveDialog.getFilenameWithExtention()};
-            saveManager->isSaved = {true};
+                    //we only get here if the file works
+                    saveManager->saveFile = {fileName};
+                    saveManager->isSaved = {true};
 
-            tileGrid.updateTiles();
+                    tileGrid.updateTiles();
 
-            return true;
-        }
-        catch (std::ios_base::failure &e)
+                    return true;
+                }
+                catch (std::ios_base::failure &e)
+                {
+                    saveDialog.hide();//hide the file dialog first
+
+                    createErrorDialogAndRun("Some this went wrong while saving", "Try a diffrent file/location, or change permissions to allow writing");
+
+                    return false;
+                }
+            }
+        };
+
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+        if (std::filesystem::exists(saveDialog.getFilenameWithExtention()))
         {
-            saveDialog.hide();//hide the file dialog first
+            Gtk::MessageDialog warningDialog("The file " + saveDialog.getFilenameWithExtention() + "exists already");
+            warningDialog.set_title("Wait!");
 
-            createErrorDialogAndRun("Some this went wrong while saving", "Try a diffrent file/location, or change permissions to allow writing");
+            warningDialog.set_secondary_text("Is it ok to overwrite it?");
 
-            return false;
+            warningDialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
+
+            warningDialog.set_transient_for(*this);
+            warningDialog.show_all();
+            warningDialog.present();
+
+            switch (warningDialog.run())
+            {
+            case Gtk::RESPONSE_OK:
+                return saveTo(saveDialog.getFilenameWithExtention());
+            case Gtk::RESPONSE_CANCEL:
+            case Gtk::RESPONSE_DELETE_EVENT://x button
+            default:
+            {
+                return false;
+                break;
+            }
+            }
         }
+        else
+            return saveTo(saveDialog.getFilenameWithExtention());
+#else
+        return saveTo(saveDialog.getFilenameWithExtention());
+#endif
     }
     else
         return false;
@@ -320,6 +362,7 @@ void MainWindow::on_menuBar_load()
         }
     }
 }
+
 /*
 void MainWindow::on_menuBar_autoSave()
 {
@@ -368,7 +411,7 @@ bool MainWindow::exit(GdkEventAny* event)
 void MainWindow::on_menubar_about()
 {
     Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
-    Gtk::AboutDialog * newAboutSlide {};
+    Gtk::AboutDialog *newAboutSlide {};
     menuBuilder->get_widget("aboutSlide", newAboutSlide);
 
     if (!newAboutSlide)

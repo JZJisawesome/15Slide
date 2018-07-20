@@ -30,7 +30,7 @@
 #include "GTKSlide/MainWindow.h"
 #include <gtkmm/application.h>
 
-#if defined(GTKSLIDE_DATA_FOLDER_CHECK)
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
 #include <filesystem>
 #endif
 #endif
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         std::cout << std::endl;
 
 #if defined(ENABLE_GUI)
-#if defined(GTKSLIDE_DATA_FOLDER_CHECK)
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
         if (!(std::filesystem::exists("data/")))
             g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
 #endif

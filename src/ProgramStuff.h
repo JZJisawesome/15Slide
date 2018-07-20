@@ -153,7 +153,8 @@ constexpr bool RUNNING_UNINSTALLED {true};///<Not really important until a setti
 
 constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
-//#define GTKSLIDE_DATA_FOLDER_CHECK 1
+//requires a very recent compiler
+#define ENABLE_CHECKS_WITH_STD_FILESYSTEM 1
 
 constexpr bool AUTOSAVE_ON_SLIDE_DEFAULT {true};///<To autosave after each slide by default or not
 
