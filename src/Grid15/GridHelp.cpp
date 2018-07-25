@@ -29,6 +29,7 @@
 #include <chrono>
 #include <exception>
 
+
 namespace Grid15
 {
 namespace GridHelp
@@ -88,9 +89,9 @@ void swapTile(const std::uint8_t tileNum, Grid &grid)
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid is not valid
  */
-bool validMove(const std::int64_t tileNum, const Grid& grid)
+bool validMove(const std::uint8_t tileNum, const Grid& grid)
 {
-    if (tileNum <= Grid::TILE_MAX && tileNum >= Grid::TILE_MIN)
+    if (tileNum <= Grid::TILE_MAX/* && tileNum >= Grid::TILE_MIN*/)//unsigned integer is always greater than 0
         return validMove(grid.index[tileNum][0], grid.index[tileNum][1], grid);
     else
         return false;
@@ -104,7 +105,7 @@ bool validMove(const std::int64_t tileNum, const Grid& grid)
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid array is not valid
  */
-bool validMove(const std::int64_t tileX, const std::int64_t tileY, const Grid& grid)
+bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid& grid)
 {
     if (validGridArray(grid.gridArray))
     {
