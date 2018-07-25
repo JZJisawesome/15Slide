@@ -47,7 +47,7 @@ namespace GTKSlide
  * \throw std::runtime_error If a menuBar cannot be created from the glade XML
  */
 MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
-    : saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
+    : mainGrid{}, saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
 {
     try
     {
@@ -376,7 +376,7 @@ void MainWindow::on_menuBar_autoSave()
  * \param event Unused; allows connecting to Gtk::Window::signal_delete_event() which requires it
  * \return Unused; allows connecting to Gtk::Window::signal_delete_event() which requires it
  */
-bool MainWindow::exit(GdkEventAny* event)
+bool MainWindow::exit(GdkEventAny* /*event*/)
 {
     if constexpr (ProgramStuff::Build::DEBUG)
         std::clog << "(debug)final touches" << std::endl;

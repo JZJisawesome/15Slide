@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
 
         //application refrence is needed because get_application returns nullptr sometimes
         GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
+
         //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
 
         return application->run(window);
