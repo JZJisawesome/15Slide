@@ -81,49 +81,6 @@ void swapTile(const std::uint8_t tileNum, Grid &grid)
         throw std::invalid_argument {"tileNum or Grid invalid!"};//not a valid move
 }
 
-/** \brief Gets the tile at the given coordinates of a Grid
- *
- * \param tileX The x coordinate
- * \param tileY The y coordinate
- * \param grid The Grid to use
- * \return The tile
- * \throw std::out_of_range From std::array::at; if the coordinates are off the grid (see Grid::X_MAX, Grid::X_MIN, Grid::Y_MAX and Grid::Y_MIN)
- */
-uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid)
-{
-    return grid.gridArray.at(tileX).at(tileY);//no need to do manual out of bounds checks with at()
-}
-
-/** \brief Gets the x coordinate of the given tile of a Grid
- *
- * \param tileNum The tile
- * \param grid The Grid to use
- * \return The x coordinate
- * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
- */
-uint8_t getX(const std::uint8_t tileNum, const Grid &grid)
-{
-    if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
-        return grid.index[tileNum][0];
-    else
-        throw std::invalid_argument {"tileNum invalid!"};
-}
-
-/** \brief Gets the y coordinate of the given tile of a Grid
- *
- * \param tileNum The tile
- * \param grid The Grid to use
- * \return The y coordinate
- * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
- */
-uint8_t getY(const std::uint8_t tileNum, const Grid &grid)
-{
-    if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
-        return grid.index[tileNum][1];
-    else
-        throw std::invalid_argument {"tileNum invalid!"};
-}
-
 /** \brief Checks if the tile movement will be valid between a tile and the no tile of a Grid
  *
  * \param tileNum The tile to check

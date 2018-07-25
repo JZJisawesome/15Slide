@@ -49,10 +49,6 @@ bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index);
 void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid);
 void swapTile(const std::uint8_t tileNum, Grid &grid);
 
-std::uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid);
-std::uint8_t getX(const std::uint8_t tileNum, const Grid &grid);
-std::uint8_t getY(const std::uint8_t tileNum, const Grid &grid);
-
 Grid::gridArray_t generateRandomGridArray();
 Grid generateRandomGrid();
 bool solvableGrid(const Grid &grid);
