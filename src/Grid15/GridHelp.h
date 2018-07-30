@@ -38,8 +38,8 @@ bool validMove(const std::uint8_t tileNum, const Grid &grid);
 bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid);
 bool hasWon(const Grid &grid);
 
-void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid);
-void copyGrid(const Grid &newGrid, Grid &grid);
+void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid);
+void safeCopy(const Grid &newGrid, Grid &grid);
 
 bool validGridArray(const Grid::gridArray_t &grid);
 bool validGrid(const Grid &grid);

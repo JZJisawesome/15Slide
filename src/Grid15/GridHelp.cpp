@@ -196,7 +196,7 @@ bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index)
  * \param grid The Grid to copy to
  * \throw std::invalid_argument If the new Grid is invalid
  */
-void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid)
+void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid)
 {
     if (validGridArray(newGrid))//fixme rely on validGridArray in index only
     {
@@ -214,7 +214,7 @@ void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid)
  * \param grid The Grid to copy to
  * \throw std::invalid_argument If the new Grid is invalid
  */
-void copyGrid(const Grid &newGrid, Grid &grid)
+void safeCopy(const Grid &newGrid, Grid &grid)
 {
     if (validGrid(newGrid))
     {
@@ -412,7 +412,7 @@ void load(const std::string& saveFile, Grid& grid)
 
     saveFileStream.close();
 
-    copyGridArray(newGridArray, grid);//this reindexes it along the way, and throws an exception if it is invalid
+    safeCopy(newGridArray, grid);//this reindexes it along the way, and throws an exception if it is invalid
 }
 
 /** \brief Reads the grid array of a Grid and updates its index

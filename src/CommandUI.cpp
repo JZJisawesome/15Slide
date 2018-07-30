@@ -160,7 +160,7 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                 std::cout << termcolor::reset;
             }
 
-            Grid15::GridHelp::copyGrid(Grid15::GridHelp::generateRandomGrid(), grid);
+            Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), grid);
 
             std::cout << std::endl;
             printGrid(grid);
