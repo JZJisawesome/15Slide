@@ -28,6 +28,7 @@
 #include <random>
 #include <chrono>
 #include <exception>
+#include <cassert>
 
 
 namespace Grid15
@@ -262,6 +263,8 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
                 multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
     } while (!solvableGrid(multiDimentional));
+
+    assert(solvableGrid(multiDimentional));
 
     return multiDimentional;
 }
