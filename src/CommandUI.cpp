@@ -354,11 +354,14 @@ void CommandUI::displayAbout()
     cout << "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms";
     cout << endl;
 
+
     cout << endl;
     cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
     cout << endl;
 
+
+    cout << endl;
     cout << termcolor::underline;
     cout << "Build Information" << "\n";
     cout << termcolor::reset;
@@ -382,6 +385,100 @@ void CommandUI::displayAbout()
         std::cout << "CHEATING BUILD" << "\n";
         std::cout << termcolor::reset;
     }
+    cout << endl;
+
+
+    cout << endl;
+    cout << termcolor::underline;
+    cout << "Licencing" << "\n";
+    cout << termcolor::reset;
+    cout << endl;
+
+
+    cout << endl;
+    cout << termcolor::reverse << termcolor::bold;
+    cout << "15Slide" << "\n";
+    cout << termcolor::reset;
+    cout << "Copyright 2018 John Jekel" << "\n";
+    cout << "15Slide is free software: you can redistribute it and/or modify" << "\n";
+    cout << "it under the terms of the GNU Lesser General Public License as published by" << "\n";
+    cout << "the Free Software Foundation, either version 3 of the License, or" << "\n";
+    cout << "(at your option) any later version." << "\n";
+    cout << endl;
+
+    cout << "15Slide is distributed in the hope that it will be useful," << "\n";
+    cout << "but WITHOUT ANY WARRANTY; without even the implied warranty of" << "\n";
+    cout << "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the" << "\n";
+    cout << "GNU Lesser General Public License for more details." << "\n";
+    cout << endl;
+
+    cout << "You should have received a copy of the GNU Lesser General Public License" << "\n";
+    cout << "along with 15Slide.  If not, see <https://www.gnu.org/licenses/>" << "\n";
+    cout << "15Slide is free software: you can redistribute it and/or modify" << "\n";
+    cout << endl;
+
+
+    cout << endl;
+    cout << "Termcolor" << endl;
+    cout << "A header-only C++ library for printing colored messages to the terminal." << "\n";
+    cout << "Copyright (c) 2013, Ihor Kalnytskyi." << "\n";
+    cout << "All rights reserved." << "\n";
+    cout << endl;
+
+    cout << "Redistribution and use in source and binary forms of the software as well" << "\n";
+    cout << "as documentation, with or without modification, are permitted provided" << "\n";
+    cout << "that the following conditions are met:" << "\n";
+    cout << endl;
+
+    cout << "* Redistributions of source code must retain the above copyright" << "\n";
+    cout << "  notice, this list of conditions and the following disclaimer." << "\n";
+    cout << endl;
+
+    cout << "* Redistributions in binary form must reproduce the above" << "\n";
+    cout << "  copyright notice, this list of conditions and the following" << "\n";
+    cout << "  disclaimer in the documentation and/or other materials provided" << "\n";
+    cout << "  with the distribution." << "\n";
+    cout << endl;
+
+    cout << "* The names of the contributors may not be used to endorse or" << "\n";
+    cout << "  promote products derived from this software without specific" << "\n";
+    cout << "  prior written permission." << "\n";
+    cout << endl;
+
+    cout << "THIS SOFTWARE AND DOCUMENTATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND" << "\n";
+    cout << "CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT" << "\n";
+    cout << "NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR" << "\n";
+    cout << "A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER" << "\n";
+    cout << "OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL," << "\n";
+    cout << "EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO," << "\n";
+    cout << "PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR" << "\n";
+    cout << "PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF" << "\n";
+    cout << "LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING" << "\n";
+    cout << "NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS" << "\n";
+    cout << "SOFTWARE AND DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH" << "\n";
+    cout << "DAMAGE." << "\n";
+    cout << endl;
+
+
+    cout << endl;
+    cout << "gtkmm - a C++ wrapper for the Gtk toolkit" << "\n";
+    cout << "Copyright 1999-2002 The gtkmm Development Team" << "\n";
+    cout << endl;
+
+    cout << "gtkmm is free software: you can redistribute it and/or modify" << "\n";
+    cout << "it under the terms of the GNU Lesser General Public License as published by" << "\n";
+    cout << "the Free Software Foundation, either version 2.1 of the License, or" << "\n";
+    cout << "(at your option) any later version." << "\n";
+    cout << endl;
+
+    cout << "gtkmm is distributed in the hope that it will be useful," << "\n";
+    cout << "but WITHOUT ANY WARRANTY; without even the implied warranty of" << "\n";
+    cout << "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the" << "\n";
+    cout << "GNU Lesser General Public License for more details." << "\n";
+    cout << endl;
+
+    cout << "You should have received a copy of the GNU Lesser General Public License" << "\n";
+    cout << "along with gtkmm.  If not, see <https://www.gnu.org/licenses/>" << "\n";
     cout << endl;
 }
 
