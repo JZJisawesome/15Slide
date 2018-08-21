@@ -15,8 +15,8 @@ File/Folder|Description
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file, with build instructions and much more
 [build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
 ## Dependencies
-* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
+* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)) ([https://opensource.org/licenses/BSD-3-Clause](3-Clause BSD License))
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch ([https://www.gnu.org/copyleft/lesser.html] (LGPL))
 ## Thanks to...
 * My parents and family for their support
 * Amazing snippets from websites (cites in code, may not be bound by LICENCE.txt)
