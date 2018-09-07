@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['release',['RELEASE',['../namespace_program_stuff_1_1_build.html#a359bd9d1138be3c1ad629ff7b84c6fba',1,'ProgramStuff::Build']]]
+  ['parentptr',['parentPtr',['../class_g_t_k_slide_1_1_tile_grid.html#a67b40c38a8d2a0388e4c2f04d6459d16',1,'GTKSlide::TileGrid']]]
 ];

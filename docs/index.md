@@ -21,4 +21,3 @@ Find the Doxygen documentation of 15Slide source at [https://jzjisawesome.github
 
 ## Licencing
 Copyright 2018 John Jekel. All 15Slide code and documentation is licenced under the [GNU Lesser General Public Licence (LGPL)](https://www.gnu.org/copyleft/lesser.html), and all images and glade files under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-

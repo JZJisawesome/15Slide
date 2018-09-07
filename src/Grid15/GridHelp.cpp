@@ -323,6 +323,15 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
+<<<<<<< HEAD
+ * Portions of this function are someone else's code, and may not be bound by 15Slide licences
+ * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
+ * Accessed and modified 29 June 2018.
+ * Unknown author and code version.
+ * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ *
+=======
+>>>>>>> master
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
