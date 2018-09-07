@@ -253,9 +253,11 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
 
     Grid::gridArray_t multiDimentional {};
 
+    auto rd = std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count());
+
     do
     {
-        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count()));//get a seed and shuffle grid randomly
+        std::shuffle(std::begin(tempGrid), std::end(tempGrid), rd);//get a seed and shuffle grid randomly
 
         //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
         for (std::uint_fast32_t i {0}; i < 4; ++i)
