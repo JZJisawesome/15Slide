@@ -17,9 +17,11 @@
 #ifndef SLIDEFILEDIALOG_H
 #define SLIDEFILEDIALOG_H
 
+
 #include <gtkmm.h>
 
 #include <string>
+
 
 namespace GTKSlide
 {

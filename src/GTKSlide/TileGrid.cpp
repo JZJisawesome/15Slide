@@ -14,18 +14,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 */
+
+
 #include "GTKSlide/TileGrid.h"
+
+#include "ProgramStuff.h"
+#include "Grid15/Grid.h"
+#include "Grid15/GridHelp.h"
+#include "GTKSlide/SaveManager.h"
 
 #include <gtkmm.h>
 
 #include <iostream>
 #include <utility>
 
-
-#include "ProgramStuff.h"
-#include "Grid15/Grid.h"
-#include "Grid15/GridHelp.h"
-#include "GTKSlide/SaveManager.h"
 
 namespace GTKSlide
 {

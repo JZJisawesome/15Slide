@@ -17,7 +17,9 @@
 #ifndef ABOUTSLIDE_H
 #define ABOUTSLIDE_H
 
+
 #include <gtkmm.h>
+
 
 namespace GTKSlide
 {

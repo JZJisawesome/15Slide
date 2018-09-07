@@ -17,12 +17,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
 #include "Grid15/Grid.h"
 
 #include "GTKSlide/TileGrid.h"
 #include "GTKSlide/SaveManager.h"
 
 #include <gtkmm.h>
+
 
 namespace GTKSlide
 {

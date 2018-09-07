@@ -22,6 +22,7 @@
 #include "GTKSlide/SaveManager.h"
 
 #include <gtkmm.h>
+
 #include <memory>
 #include <utility>
 #include <cstdint>

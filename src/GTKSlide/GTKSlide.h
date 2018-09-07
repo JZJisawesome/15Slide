@@ -17,11 +17,13 @@
 #ifndef GTKSLIDE_H
 #define GTKSLIDE_H
 
+
 #include "GTKSlide/MainWindow.h"
 #include "GTKSlide/TileGrid.h"
 #include "GTKSlide/AboutSlide.h"
 #include "GTKSlide/SlideFileDialog.h"
 #include "GTKSlide/SaveManager.h"
+
 
 /** \namespace GTKSlide
  *

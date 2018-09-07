@@ -14,11 +14,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 */
+
+
 #include "GTKSlide/AboutSlide.h"
 
 #include "ProgramStuff.h"
 
 #include <iostream>
+
 
 namespace GTKSlide
 {

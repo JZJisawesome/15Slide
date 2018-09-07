@@ -14,7 +14,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 */
+
+
 #include "GTKSlide/MainWindow.h"
+
+#include "ProgramStuff.h"
 
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
@@ -23,17 +27,16 @@
 #include "GTKSlide/SaveManager.h"
 #include "CommandUI.h"
 
-#include "ProgramStuff.h"
-
 #include <gtkmm.h>
-#include <iostream>
 
+#include <iostream>
 #include <memory>
 #include <exception>
 
 #if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
 #include <filesystem>
 #endif
+
 
 namespace GTKSlide
 {

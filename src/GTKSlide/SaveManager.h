@@ -17,9 +17,11 @@
 #ifndef SAVEMANAGER_H
 #define SAVEMANAGER_H
 
+
 #include "ProgramStuff.h"
 
 #include <string>
+
 
 namespace GTKSlide
 {
