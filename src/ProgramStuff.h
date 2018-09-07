@@ -35,6 +35,10 @@ namespace ProgramStuff
 namespace Build {}
 ///Operating System related constants
 namespace OS {}
+///GTKSlide related constants
+namespace GTKSlide {}
+///File names and locations for GTKSlide reasources
+namespace GTKSlide::Resources {}
 
 
 /* Macros to constants */
@@ -138,10 +142,43 @@ constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsi
 
 namespace Build
 {
-constexpr float SLIDE_VERSION   {0.7};      ///<15Slide Version
+constexpr float SLIDE_VERSION   {0.9};                  ///<15Slide Version
+constexpr char  SLIDE_VERSION_STRING[]   {"0.9-debug"}; ///<15Slide Version String
 
 constexpr bool DEBUG            {true};     ///<Debug build
 constexpr bool RELEASE          {!DEBUG};   ///<Release build
+}
+
+
+namespace GTKSlide
+{
+#ifndef __SLIDEWINDOWS
+#define ENABLE_GUI 1
+#endif
+
+#if defined(ENABLE_GUI)
+constexpr bool ENABLED {true};///<15Slide will use GTKSlide instead of CommandUI
+#else
+constexpr bool ENABLED {false};///<15Slide will use GTKSlide instead of CommandUI
+#endif
+
+constexpr bool RUNNING_UNINSTALLED {true};///<Not really important until a settings dialog is created
+
+constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
+
+#if __has_include(<filesystem>) && __cplusplus > 201402L
+//requires a very recent compiler
+//#define ENABLE_CHECKS_WITH_STD_FILESYSTEM 1
+#endif
+
+constexpr bool AUTOSAVE_ON_SLIDE_DEFAULT {true};///<To autosave after each slide by default or not
+
+namespace Resources
+{
+constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true, use this file to create the menu bar for GTKSlide::MainWindow
+constexpr char  ABOUTSLIDE_XML[]   {"data/aboutSlide.glade"};
+constexpr char  LOGO[] {"data/logo.png"};///<The location of the 15Slide logo
+}
 }
 }
 #endif //PROGRAMSTUFF_H

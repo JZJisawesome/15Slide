@@ -15,6 +15,7 @@
  * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 */
 
+
 /** \mainpage
  *
  * \section welcome_sec Welcome!!!
@@ -40,6 +41,15 @@
 #include <iostream>
 #include <memory>
 #include <exception>
+
+#if defined(ENABLE_GUI)
+#include "GTKSlide/MainWindow.h"
+#include <gtkmm/application.h>
+
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+#include <filesystem>
+#endif
+#endif
 
 
 /** \brief 15Slide main loop
@@ -80,6 +90,23 @@ int main(int argc, char *argv[])
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
+#if defined(ENABLE_GUI)
+#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+        if (!(std::filesystem::exists("data/")))
+            g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
+#endif
+        if constexpr (ProgramStuff::GTKSlide::RUNNING_UNINSTALLED)
+            Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
+
+        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
+
+        //application refrence is needed because get_application returns nullptr sometimes
+        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
+
+        //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
+
+        return application->run(window);
+#else
         std::cout << "Type \"help\" for a list of commands." << "\n";
         std::cout << termcolor::underline;
         std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
@@ -91,8 +118,15 @@ int main(int argc, char *argv[])
 
         CommandUI terminalUI {};
         terminalUI.start(*gameGrid);
+
+        std::cout << std::endl;
+        std::cout << "Thanks for playing 15Slide. Goodbye!";
+        if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
+            std::cout << "\xF0\x9F\x91\x8B";//waving hand
+        std::cout << "\n";
+#endif
     }
-    catch (std::exception &e)
+    catch (...)
     {
         std::cerr << termcolor::bold << termcolor::red;
         std::cerr << "A fatal error has occured and 15Slide has crashed." << "\n";
@@ -102,15 +136,8 @@ int main(int argc, char *argv[])
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)Rethrowing Exception" << "\n";
 
-        //throw e;
-        throw;//so we get the authentic exceptiony goodness
+        throw;
     }
-
-    std::cout << std::endl;
-    std::cout << "Thanks for playing 15Slide. Goodbye!";
-    if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
-        std::cout << "\xF0\x9F\x91\x8B";//waving hand
-    std::cout << "\n";
 
     return 0;
 }

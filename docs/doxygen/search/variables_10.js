@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['y_5fmax',['Y_MAX',['../class_grid15_1_1_grid.html#af6b52e486aec8efd50964b8dcb637ded',1,'Grid15::Grid::Y_MAX()'],['../class_grid15_1_1_grid_manager.html#a6ed929a5ce07d4922b2d972aa3ad1c4c',1,'Grid15::GridManager::Y_MAX()']]],
-  ['y_5fmin',['Y_MIN',['../class_grid15_1_1_grid.html#a52371d57bd56a6b50452a548b5ac6d3b',1,'Grid15::Grid::Y_MIN()'],['../class_grid15_1_1_grid_manager.html#acead88412a70a2d23555ecfee739cb51',1,'Grid15::GridManager::Y_MIN()']]]
+  ['x_5fmax',['X_MAX',['../class_grid15_1_1_grid_manager.html#a86fbf535d2a3ab8b2bf8e686c7ff7984',1,'Grid15::GridManager::X_MAX()'],['../class_grid15_1_1_grid.html#acdb7eb72baa2f0ecfc0c006780ea78b6',1,'Grid15::Grid::X_MAX()']]],
+  ['x_5fmin',['X_MIN',['../class_grid15_1_1_grid_manager.html#abdd6b488b44188b5453d26dd5e79f058',1,'Grid15::GridManager::X_MIN()'],['../class_grid15_1_1_grid.html#a7896d6a0d24949b5cbab69c8a8e73985',1,'Grid15::Grid::X_MIN()']]]
 ];

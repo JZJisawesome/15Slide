@@ -354,7 +354,6 @@ void CommandUI::displayAbout()
     cout << "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms";
     cout << endl;
 
-
     cout << endl;
     cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
@@ -370,12 +369,7 @@ void CommandUI::displayAbout()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide";
     cout << termcolor::reset;
-    cout << " Version " << ProgramStuff::Build::SLIDE_VERSION << "-";
-    if constexpr (ProgramStuff::Build::DEBUG)
-        cout << "debug";
-    else//release build
-        cout << "release";
-    cout << "\n";
+    cout << " Version " << ProgramStuff::Build::SLIDE_VERSION_STRING << "\n";
     cout << "Built on " << ProgramStuff::Build::DATE << " at " << ProgramStuff::Build::TIME << " for " << ProgramStuff::OS::STRING << "\n";
     cout << "Compiler: " << ProgramStuff::Build::COMPILER_STRING << ", Version: " << ProgramStuff::Build::COMPILER_VERSION << "\n";
     cout << "C++ Version: " << ProgramStuff::Build::CPP_VERSION << "\n";
@@ -677,7 +671,7 @@ void CommandUI::saveGame(const std::string &saveFile, const Grid15::Grid &grid)
     catch (std::ios_base::failure &e)
     {
         std::cerr << termcolor::bold << termcolor::red;
-        std::cerr << "Something went wrong while writing. ";
+        std::cerr << "Something went wrong while saving. ";
         std::cerr << termcolor::reset;
         std::cerr << "Try a diffrent file name/location, or change permissions to allow writing.";
         std::cerr << std::endl;
@@ -709,10 +703,10 @@ void CommandUI::loadGame(const std::string &saveFile, Grid15::Grid &grid)
     catch (std::ios_base::failure &e)
     {
         std::cerr << termcolor::bold << termcolor::red;
-        std::cerr << "Something went wrong while reading. ";
+        std::cerr << "Something went wrong while loading. ";
         std::cerr << termcolor::reset;
 
-        std::cerr << "Try a diffrent file name/location.";
+        std::cerr << "Try a diffrent file name/location, or change permissions to allow reading.";
         std::cerr << std::endl;
     }
     catch (std::invalid_argument &e)

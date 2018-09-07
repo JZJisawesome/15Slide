@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['reindex',['reIndex',['../class_grid15_1_1_grid_manager.html#a1dd044c413f44a7b39dc091da76722e3',1,'Grid15::GridManager::reIndex()'],['../namespace_grid15_1_1_grid_help.html#ac056d188b925721de89df91ddc5e5a02',1,'Grid15::GridHelp::reIndex()']]],
-  ['rundemo',['runDemo',['../class_command_u_i.html#a582cf4afc499a75056bbcd21e5428e3b',1,'CommandUI']]]
+  ['on_5fmenubar_5fabout',['on_menubar_about',['../class_g_t_k_slide_1_1_main_window.html#a2cd2eb3eaae27c8c68d4f6dac37c49db',1,'GTKSlide::MainWindow']]],
+  ['on_5fmenubar_5fload',['on_menuBar_load',['../class_g_t_k_slide_1_1_main_window.html#a364a316bc55494ac33622f1312a9fb67',1,'GTKSlide::MainWindow']]],
+  ['on_5fmenubar_5fnewgame',['on_menuBar_newGame',['../class_g_t_k_slide_1_1_main_window.html#af50746616c2039ef282fb4a3aed9612a',1,'GTKSlide::MainWindow']]],
+  ['on_5ftile_5fclicked',['on_tile_clicked',['../class_g_t_k_slide_1_1_tile_grid.html#a718c6fe14f040dae92d82aa62b90505d',1,'GTKSlide::TileGrid']]],
+  ['operator_3d',['operator=',['../class_grid15_1_1_grid.html#aca0e03b901fbdd5a17b4910769406493',1,'Grid15::Grid']]]
 ];
