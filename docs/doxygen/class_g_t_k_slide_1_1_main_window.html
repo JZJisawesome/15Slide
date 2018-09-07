@@ -104,15 +104,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af10d739ff0b42f46f803c9394102eb80"><td class="memItemLeft" align="right" valign="top">Gtk::MenuBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#af10d739ff0b42f46f803c9394102eb80">createMenuBar</a> ()</td></tr>
-<tr class="memdesc:af10d739ff0b42f46f803c9394102eb80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a menu bar for the window.  <a href="#af10d739ff0b42f46f803c9394102eb80">More...</a><br /></td></tr>
-<tr class="separator:af10d739ff0b42f46f803c9394102eb80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae509f937268776da5033ed6198e732e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#ae509f937268776da5033ed6198e732e4">createMenuBarAndAddToMainGrid</a> ()</td></tr>
+<tr class="memdesc:ae509f937268776da5033ed6198e732e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a menu bar for the window and adds it to GtkSlide::MainWindow::mainGrid (it is manage()ed)  <a href="#ae509f937268776da5033ed6198e732e4">More...</a><br /></td></tr>
+<tr class="separator:ae509f937268776da5033ed6198e732e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af50746616c2039ef282fb4a3aed9612a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#af50746616c2039ef282fb4a3aed9612a">on_menuBar_newGame</a> ()</td></tr>
 <tr class="memdesc:af50746616c2039ef282fb4a3aed9612a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the grid and handles the old one if it is not saved.  <a href="#af50746616c2039ef282fb4a3aed9612a">More...</a><br /></td></tr>
 <tr class="separator:af50746616c2039ef282fb4a3aed9612a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a364a316bc55494ac33622f1312a9fb67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a364a316bc55494ac33622f1312a9fb67">on_menuBar_load</a> ()</td></tr>
 <tr class="memdesc:a364a316bc55494ac33622f1312a9fb67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the grid from a file and updates <a class="el" href="class_g_t_k_slide_1_1_main_window.html#ac8ddc7705b90c14012b003dcab4a7263" title="A SaveManager to manage autosaving with Gtk::MenuBar. ">MainWindow::saveManager</a>.  <a href="#a364a316bc55494ac33622f1312a9fb67">More...</a><br /></td></tr>
 <tr class="separator:a364a316bc55494ac33622f1312a9fb67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd2eb3eaae27c8c68d4f6dac37c49db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a2cd2eb3eaae27c8c68d4f6dac37c49db">on_menubar_about</a> ()</td></tr>
+<tr class="separator:a2cd2eb3eaae27c8c68d4f6dac37c49db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab58f8e72c0bc5c95472999cdc2188448"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#ab58f8e72c0bc5c95472999cdc2188448">save</a> ()</td></tr>
 <tr class="memdesc:ab58f8e72c0bc5c95472999cdc2188448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the grid.  <a href="#ab58f8e72c0bc5c95472999cdc2188448">More...</a><br /></td></tr>
 <tr class="separator:ab58f8e72c0bc5c95472999cdc2188448"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,18 +127,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4b636b6869ae1ee90c7a0a8224026f6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a4b636b6869ae1ee90c7a0a8224026f6a">createNotSavedDialogAndRun</a> ()</td></tr>
 <tr class="memdesc:a4b636b6869ae1ee90c7a0a8224026f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper function which creates and runs a Gtk::MessageDialog asking the user what to do with the current unsaved grid.  <a href="#a4b636b6869ae1ee90c7a0a8224026f6a">More...</a><br /></td></tr>
 <tr class="separator:a4b636b6869ae1ee90c7a0a8224026f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a787b2a6110398a981a9ce0187c61a081"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a787b2a6110398a981a9ce0187c61a081">createErrorDialogAndRun</a> (std::string errorMessage, std::string details)</td></tr>
-<tr class="memdesc:a787b2a6110398a981a9ce0187c61a081"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper function which creates and runs a Gtk::MessageDialog informing the user of an error that has occured.  <a href="#a787b2a6110398a981a9ce0187c61a081">More...</a><br /></td></tr>
-<tr class="separator:a787b2a6110398a981a9ce0187c61a081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d907507d1161cc616c5a2cbca56a8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a74d907507d1161cc616c5a2cbca56a8d">createErrorDialogAndRun</a> (std::string errorMessage, std::string details=&quot;&quot;)</td></tr>
+<tr class="memdesc:a74d907507d1161cc616c5a2cbca56a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper function which creates and runs a Gtk::MessageDialog informing the user of an error that has occured.  <a href="#a74d907507d1161cc616c5a2cbca56a8d">More...</a><br /></td></tr>
+<tr class="separator:a74d907507d1161cc616c5a2cbca56a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a3eb3841059c111bc0edc068f1a0c4ead"><td class="memItemLeft" align="right" valign="top">Gtk::Grid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a3eb3841059c111bc0edc068f1a0c4ead">mainGrid</a></td></tr>
-<tr class="memdesc:a3eb3841059c111bc0edc068f1a0c4ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Gtk::Grid used for holding <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a456811df804b32131eccc2f5c5f55394" title="A graphical and interactive representation of a Grid15::Grid. ">MainWindow::tileGrid</a> and <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a39044b7fd001100312440d488fd058de" title="The File and Help Gtk::MenuBar at the top of MainWindow. ">MainWindow::mainMenu</a>.  <a href="#a3eb3841059c111bc0edc068f1a0c4ead">More...</a><br /></td></tr>
+<tr class="memdesc:a3eb3841059c111bc0edc068f1a0c4ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Gtk::Grid used for holding <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a456811df804b32131eccc2f5c5f55394" title="A graphical and interactive representation of a Grid15::Grid. ">MainWindow::tileGrid</a> and MainWindow::mainMenu.  <a href="#a3eb3841059c111bc0edc068f1a0c4ead">More...</a><br /></td></tr>
 <tr class="separator:a3eb3841059c111bc0edc068f1a0c4ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39044b7fd001100312440d488fd058de"><td class="memItemLeft" align="right" valign="top">Gtk::MenuBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#a39044b7fd001100312440d488fd058de">mainMenu</a></td></tr>
-<tr class="memdesc:a39044b7fd001100312440d488fd058de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The File and Help Gtk::MenuBar at the top of <a class="el" href="class_g_t_k_slide_1_1_main_window.html" title="The main window of GTKSlide. ">MainWindow</a>.  <a href="#a39044b7fd001100312440d488fd058de">More...</a><br /></td></tr>
-<tr class="separator:a39044b7fd001100312440d488fd058de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8ddc7705b90c14012b003dcab4a7263"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_g_t_k_slide_1_1_save_manager.html">SaveManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_main_window.html#ac8ddc7705b90c14012b003dcab4a7263">saveManager</a> {}</td></tr>
 <tr class="memdesc:ac8ddc7705b90c14012b003dcab4a7263"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_g_t_k_slide_1_1_save_manager.html" title="A simple class to manage save files, save options, and status of saves. ">SaveManager</a> to manage autosaving with Gtk::MenuBar.  <a href="#ac8ddc7705b90c14012b003dcab4a7263">More...</a><br /></td></tr>
 <tr class="separator:ac8ddc7705b90c14012b003dcab4a7263"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +192,7 @@ Protected Attributes</h2></td></tr>
   <table class="exception">
     <tr><td class="paramname">Gtk::BuilderError</td><td>If something goes wrong during parse </td></tr>
     <tr><td class="paramname">Glib::Markup</td><td>error If something goes wrong during parse </td></tr>
-    <tr><td class="paramname">Glib::FileError</td><td>If <a class="el" href="namespace_program_stuff_1_1_g_t_k_slide.html#a26f7afb916c2a33eb3c37d4e2e82b021" title="Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for ...">ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML</a> is true and a file error occurs </td></tr>
+    <tr><td class="paramname">Glib::FileError</td><td>If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs </td></tr>
     <tr><td class="paramname">std::runtime_error</td><td>If a menuBar cannot be created from the glade XML </td></tr>
   </table>
   </dd>
@@ -202,8 +201,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a787b2a6110398a981a9ce0187c61a081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a787b2a6110398a981a9ce0187c61a081">&#9670;&nbsp;</a></span>createErrorDialogAndRun()</h2>
+<a id="a74d907507d1161cc616c5a2cbca56a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d907507d1161cc616c5a2cbca56a8d">&#9670;&nbsp;</a></span>createErrorDialogAndRun()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +220,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>details</em>&#160;</td>
+          <td class="paramname"><em>details</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -245,12 +244,12 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The responce from the user (result of Gtk::MessageDialog::run) </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>Parameters are not string refrences (std::string &amp;) </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>Parameters are not string refrences (const std::string &amp;) </dd></dl>
 
 </div>
 </div>
-<a id="af10d739ff0b42f46f803c9394102eb80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af10d739ff0b42f46f803c9394102eb80">&#9670;&nbsp;</a></span>createMenuBar()</h2>
+<a id="ae509f937268776da5033ed6198e732e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae509f937268776da5033ed6198e732e4">&#9670;&nbsp;</a></span>createMenuBarAndAddToMainGrid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +258,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Gtk::MenuBar GTKSlide::MainWindow::createMenuBar </td>
+          <td class="memname">void GTKSlide::MainWindow::createMenuBarAndAddToMainGrid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -272,14 +271,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates a menu bar for the window. </p>
-<dl class="section return"><dt>Returns</dt><dd>A Gtk::MenuBar built from a string or a file, depending on <a class="el" href="namespace_program_stuff_1_1_g_t_k_slide.html#a26f7afb916c2a33eb3c37d4e2e82b021" title="Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for ...">ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML</a> </dd></dl>
+<p>Creates a menu bar for the window and adds it to GtkSlide::MainWindow::mainGrid (it is manage()ed) </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Gtk::BuilderError</td><td>If something goes wrong during parse </td></tr>
     <tr><td class="paramname">Glib::MarkupError</td><td>If something goes wrong during parse </td></tr>
-    <tr><td class="paramname">Glib::FileError</td><td>If <a class="el" href="namespace_program_stuff_1_1_g_t_k_slide.html#a26f7afb916c2a33eb3c37d4e2e82b021" title="Use an external file (see ProgramStuff::GTKSlide::Resources::MENUBAR_XML) to create the menu bar for ...">ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML</a> is true and a file error occurs </td></tr>
-    <tr><td class="paramname">std::runtime_error</td><td>If a menuBar cannot be created from the glade XML </td></tr>
+    <tr><td class="paramname">Glib::FileError</td><td>If a file error occurs </td></tr>
+    <tr><td class="paramname">std::runtime_error</td><td>If a something cannot be created from the glade XML </td></tr>
   </table>
   </dd>
 </dl>
@@ -346,6 +344,31 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unused; allows connecting to Gtk::Window::signal_delete_event() which requires it </dd></dl>
+
+</div>
+</div>
+<a id="a2cd2eb3eaae27c8c68d4f6dac37c49db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd2eb3eaae27c8c68d4f6dac37c49db">&#9670;&nbsp;</a></span>on_menubar_about()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GTKSlide::MainWindow::on_menubar_about </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -528,31 +551,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The Gtk::Grid used for holding <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a456811df804b32131eccc2f5c5f55394" title="A graphical and interactive representation of a Grid15::Grid. ">MainWindow::tileGrid</a> and <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a39044b7fd001100312440d488fd058de" title="The File and Help Gtk::MenuBar at the top of MainWindow. ">MainWindow::mainMenu</a>. </p>
-
-</div>
-</div>
-<a id="a39044b7fd001100312440d488fd058de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39044b7fd001100312440d488fd058de">&#9670;&nbsp;</a></span>mainMenu</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Gtk::MenuBar GTKSlide::MainWindow::mainMenu</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The File and Help Gtk::MenuBar at the top of <a class="el" href="class_g_t_k_slide_1_1_main_window.html" title="The main window of GTKSlide. ">MainWindow</a>. </p>
+<p>The Gtk::Grid used for holding <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a456811df804b32131eccc2f5c5f55394" title="A graphical and interactive representation of a Grid15::Grid. ">MainWindow::tileGrid</a> and MainWindow::mainMenu. </p>
 
 </div>
 </div>
@@ -614,7 +613,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_g_t_k_slide.html">GTKSlide</a></li><li class="navelem"><a class="el" href="class_g_t_k_slide_1_1_main_window.html">MainWindow</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 12:45:29 for 15Slide by
+    <li class="footer">Generated on Fri Sep 7 2018 17:25:03 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

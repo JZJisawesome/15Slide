@@ -4,7 +4,6 @@ var searchData=
   ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
   ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
   ['maingrid',['mainGrid',['../class_g_t_k_slide_1_1_main_window.html#a3eb3841059c111bc0edc068f1a0c4ead',1,'GTKSlide::MainWindow']]],
-  ['mainmenu',['mainMenu',['../class_g_t_k_slide_1_1_main_window.html#a39044b7fd001100312440d488fd058de',1,'GTKSlide::MainWindow']]],
   ['mainwindow',['MainWindow',['../class_g_t_k_slide_1_1_main_window.html',1,'GTKSlide::MainWindow'],['../class_g_t_k_slide_1_1_main_window.html#a02465fa4affb3562d19009ec11312d3d',1,'GTKSlide::MainWindow::MainWindow()']]],
   ['mainwindow_2ecpp',['MainWindow.cpp',['../_main_window_8cpp.html',1,'']]],
   ['mainwindow_2eh',['MainWindow.h',['../_main_window_8h.html',1,'']]],

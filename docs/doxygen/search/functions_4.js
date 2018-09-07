@@ -2,6 +2,7 @@ var searchData=
 [
   ['generaterandomgrid',['generateRandomGrid',['../class_grid15_1_1_grid_manager.html#abfe6a6daf1b847e87cf335532d684de6',1,'Grid15::GridManager::generateRandomGrid()'],['../namespace_grid15_1_1_grid_help.html#aba6d19702b34d4b5594bdad7b0129a93',1,'Grid15::GridHelp::generateRandomGrid()']]],
   ['generaterandomgridarray',['generateRandomGridArray',['../namespace_grid15_1_1_grid_help.html#a6a2eb11c4d1f900f81bc1d26f3ba1d08',1,'Grid15::GridHelp']]],
+  ['getfilenamewithextention',['getFilenameWithExtention',['../class_g_t_k_slide_1_1_slide_file_dialog.html#adc02c931024344479fab0e1fe03b5524',1,'GTKSlide::SlideFileDialog']]],
   ['getgrid',['getGrid',['../class_grid15_1_1_grid_manager.html#acb656242a817e83fa4dc4c1d0ddfa169',1,'Grid15::GridManager']]],
   ['gettile',['getTile',['../class_grid15_1_1_grid_manager.html#a16500233c5ee91348de346a1371b4f3c',1,'Grid15::GridManager::getTile()'],['../namespace_grid15_1_1_grid_help.html#a7e2b5a442260ad3faf8129df7d4a0450',1,'Grid15::GridHelp::getTile()']]],
   ['getx',['getX',['../class_grid15_1_1_grid_manager.html#a0a7a0f66871e3f8cc721dcfc49f26198',1,'Grid15::GridManager::getX()'],['../namespace_grid15_1_1_grid_help.html#a4be451e4c98c88237757f2ab9b8eb7c9',1,'Grid15::GridHelp::getX()']]],

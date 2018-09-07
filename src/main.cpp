@@ -1,16 +1,32 @@
-//Copyright 2018 John Jekel
-//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
+/* Copyright 2018 John Jekel
+ * This file is part of 15Slide.
+ *
+ * 15Slide is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * 15Slide is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
+*/
+
+
 /** \mainpage
  *
  * \section welcome_sec Welcome!!!
  *
- * Welcome to 15Slide, a fun, cross-platform, slidy-tile game written with C++17!
+ * Welcome to the 15Slide Documentation!
  *
- * To contribute, to learn about used libraries and for much more, go to <a href="https://github.com/JZJisawesome/15Slide">the 15Slide Github repo</a>.
+ * For all things 15Slide go to <a href="https://jzjisawesome.github.io/15Slide/">the website</a>, or the <a href="https://github.com/JZJisawesome/15Slide">the Github repo</a>.
  *
  * \author John Jekel
  * \date 2017-2018
- * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">Lesser GNU Public Licence (LGPL)</a>
+ * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">GNU Lesser General Public Licence Version 3 (LGPL v.3.0)</a>
  */
 
 
@@ -38,6 +54,7 @@
 
 /** \brief 15Slide main loop
  *
+ * \author John Jekel
  * \date 2017-2018
 **/
 int main(int argc, char *argv[])

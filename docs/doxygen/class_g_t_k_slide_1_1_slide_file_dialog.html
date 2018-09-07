@@ -99,8 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d0d8313e816214ff5032cad542a12d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_slide_file_dialog.html#a7d0d8313e816214ff5032cad542a12d7">SlideFileDialog</a> (Gtk::Window &amp;parent, const std::string &amp;title, Gtk::FileChooserAction action)</td></tr>
 <tr class="memdesc:a7d0d8313e816214ff5032cad542a12d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and populates a <a class="el" href="class_g_t_k_slide_1_1_slide_file_dialog.html" title="A customized and simpler to use Gtk::FileChooserDialog. ">SlideFileDialog</a>, ready to run()  <a href="#a7d0d8313e816214ff5032cad542a12d7">More...</a><br /></td></tr>
 <tr class="separator:a7d0d8313e816214ff5032cad542a12d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6466f76944963f55d3766ae53256a785"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_slide_file_dialog.html#a6466f76944963f55d3766ae53256a785">display</a> ()</td></tr>
-<tr class="separator:a6466f76944963f55d3766ae53256a785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc02c931024344479fab0e1fe03b5524"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_t_k_slide_1_1_slide_file_dialog.html#adc02c931024344479fab0e1fe03b5524">getFilenameWithExtention</a> ()</td></tr>
+<tr class="memdesc:adc02c931024344479fab0e1fe03b5524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like Gtk::FileChooser::get_filename() but automatically adds the ".15S" extention if needed.  <a href="#adc02c931024344479fab0e1fe03b5524">More...</a><br /></td></tr>
+<tr class="separator:adc02c931024344479fab0e1fe03b5524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A customized and simpler to use Gtk::FileChooserDialog. </p>
@@ -158,20 +159,24 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6466f76944963f55d3766ae53256a785"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6466f76944963f55d3766ae53256a785">&#9670;&nbsp;</a></span>display()</h2>
+<a id="adc02c931024344479fab0e1fe03b5524"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc02c931024344479fab0e1fe03b5524">&#9670;&nbsp;</a></span>getFilenameWithExtention()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GTKSlide::SlideFileDialog::display </td>
+          <td class="memname">std::string GTKSlide::SlideFileDialog::getFilenameWithExtention </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Like Gtk::FileChooser::get_filename() but automatically adds the ".15S" extention if needed. </p>
+<p>Should only be used with saving dialogs; the file extention is only added if the user saves as a "15Slide save files" type</p>
+<dl class="section return"><dt>Returns</dt><dd>The filename choose with the ".15S" extention if needed </dd></dl>
 
 </div>
 </div>
@@ -185,7 +190,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_g_t_k_slide.html">GTKSlide</a></li><li class="navelem"><a class="el" href="class_g_t_k_slide_1_1_slide_file_dialog.html">SlideFileDialog</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 12:45:29 for 15Slide by
+    <li class="footer">Generated on Fri Sep 7 2018 17:25:03 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

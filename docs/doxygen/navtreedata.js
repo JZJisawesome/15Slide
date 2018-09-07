@@ -38,7 +38,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_about_slide_8cpp.html",
-"namespace_grid15_1_1_grid_help.html"
+"namespace_grid15.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

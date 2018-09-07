@@ -1,5 +1,19 @@
-//Copyright 2018 John Jekel
-//See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
+/* Copyright 2018 John Jekel
+ * This file is part of 15Slide.
+ *
+ * 15Slide is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * 15Slide is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
+*/
 
 
 #include "Grid15/GridHelp.h"
@@ -280,27 +294,16 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
 
     Grid::gridArray_t multiDimentional {};
 
-    //so the first loop run through does not throw exceptions
-    const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
-    std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
-
-    //copy it to the actual game grid
-    for (std::uint_fast32_t i {0}; i < 4; ++i)
-        for (std::uint_fast32_t j {0}; j < 4; ++j)
-            multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
-
-
-    while (!solvableGrid(multiDimentional))//it's fixed, but it is inefficient. We have to try to make this better in the fix-unsolvable-grid-generation branch
+    do
     {
-        const std::int64_t seed {std::chrono::system_clock::now().time_since_epoch().count()};
-        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(seed));
-
+        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count()));//get a seed and shuffle grid randomly
 
         //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
         for (std::uint_fast32_t i {0}; i < 4; ++i)
             for (std::uint_fast32_t j {0}; j < 4; ++j)
                 multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
-    }
+
+    } while (!solvableGrid(multiDimentional));
 
     return multiDimentional;
 }
@@ -320,20 +323,23 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
+<<<<<<< HEAD
  * Portions of this function are someone else's code, and may not be bound by 15Slide licences
  * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
  * Accessed and modified 29 June 2018.
  * Unknown author and code version.
  * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
  *
+=======
+>>>>>>> master
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
  */
 bool solvableGrid(const Grid::gridArray_t &gridArray)
 {
+    //create a new grid with an index
     Grid tempGrid {gridArray};
-
     reIndex(tempGrid);
 
     return solvableGrid(tempGrid);
@@ -343,7 +349,7 @@ bool solvableGrid(const Grid::gridArray_t &gridArray)
  *
  * Portions of this function are someone else's code, and may not be bound by 15Slide licences
  * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and modified 29 June 2018.
+ * Accessed and first modified 29 June 2018.
  * Unknown author and code version.
  * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
  *
@@ -361,23 +367,23 @@ bool solvableGrid(const Grid &grid)
             for (std::uint_fast32_t j {0}; j < 4; ++j)
                 tempGrid[(i * 4) + j] = {grid.gridArray[i][j]};
 
-        auto inversionCount
+        auto inversionCount//https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
         {
             [](const std::array<std::uint8_t, 16> arr)
             {
-                int inv_count = 0;
-                for (int i = 0; i < 4 * 4 - 1; i++)
+                std::uint_fast32_t currentInversionCount = 0;
+                for (std::uint_fast32_t i = 0; i < 4 * 4 - 1; i++)
                 {
-                    for (int j = i + 1; j < 4 * 4; j++)
+                    for (std::uint_fast32_t j = i + 1; j < 4 * 4; j++)
                     {
-                        // count pairs(i, j) such that i appears
-                        // before j, but i > j.
+                        //count pairs(i, j) such that i appears
+                        //before j, but i > j.
                         if (arr[j] && arr[i] && arr[i] > arr[j])
-                            inv_count++;
+                            currentInversionCount++;
                     }
                 }
 
-                return inv_count;
+                return currentInversionCount;
             }
         };
 
@@ -389,7 +395,7 @@ bool solvableGrid(const Grid &grid)
             }
         };
 
-
+        //https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
         if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
             return !(inversionCount(tempGrid) & 1);
         else//if no tile row is even
