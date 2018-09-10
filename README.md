@@ -28,8 +28,8 @@ File/Folder|Description
 * Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
 
 ## Dependencies
-* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/))
-* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch
+* termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)) ([3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause))
+* gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch ([LGPL](https://www.gnu.org/copyleft/lesser.html))
 
 ## Licencing
-Copyright 2018 John Jekel. 15Slide is licenced under the Lesser GNU Public Licence (LGPL).
+Copyright 2018 John Jekel. All 15Slide code and documentation is licenced under the [GNU Lesser General Public Licence (LGPL)](https://www.gnu.org/copyleft/lesser.html), and all images and glade files under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).

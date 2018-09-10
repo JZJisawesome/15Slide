@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['tile_5fmax',['TILE_MAX',['../class_grid15_1_1_grid.html#ae381405d329149cfc91755e90be1c0d9',1,'Grid15::Grid::TILE_MAX()'],['../class_grid15_1_1_grid_manager.html#a78e09463a7f556ea87da6892cddac8f0',1,'Grid15::GridManager::TILE_MAX()']]],
-  ['tile_5fmin',['TILE_MIN',['../class_grid15_1_1_grid.html#a9bbc0e54bb72f17a38ac20e9bfb98578',1,'Grid15::Grid::TILE_MIN()'],['../class_grid15_1_1_grid_manager.html#a45a735ba019c2bea6f1aea56051bb8e0',1,'Grid15::GridManager::TILE_MIN()']]],
-  ['time',['TIME',['../namespace_program_stuff_1_1_build.html#a5983a41041ab2da013a2e84fefc12a62',1,'ProgramStuff::Build']]]
+  ['savefile',['saveFile',['../class_g_t_k_slide_1_1_save_manager.html#ab009eb5d27f23a1a2e33387066b96b8c',1,'GTKSlide::SaveManager']]],
+  ['savemanager',['saveManager',['../class_g_t_k_slide_1_1_main_window.html#ac8ddc7705b90c14012b003dcab4a7263',1,'GTKSlide::MainWindow::saveManager()'],['../class_g_t_k_slide_1_1_tile_grid.html#aa82d76e7f6ba1f2fe69a2f44c1418330',1,'GTKSlide::TileGrid::saveManager()']]],
+  ['sensitize_5fvalid_5fmoves_5fonly',['SENSITIZE_VALID_MOVES_ONLY',['../namespace_program_stuff_1_1_g_t_k_slide.html#a900dc3848b466b7d7bbb5fc845612bf1',1,'ProgramStuff::GTKSlide']]],
+  ['slide_5fversion',['SLIDE_VERSION',['../namespace_program_stuff_1_1_build.html#ae1ac8ee12abbd6ed8df36301bb21f00b',1,'ProgramStuff::Build']]],
+  ['slide_5fversion_5fstring',['SLIDE_VERSION_STRING',['../namespace_program_stuff_1_1_build.html#a5b1c7bc157bfa88e805af045d9095b57',1,'ProgramStuff::Build']]],
+  ['string',['STRING',['../namespace_program_stuff_1_1_o_s.html#a453480d5157120db7ae555bdf5081bec',1,'ProgramStuff::OS']]]
 ];

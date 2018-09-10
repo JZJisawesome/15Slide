@@ -3,6 +3,7 @@ var NAVTREE =
   [ "15Slide", "index.html", [
     [ "Welcome!!!", "index.html#welcome_sec", null ],
     [ "Deprecated List", "deprecated.html", null ],
+    [ "Bug List", "bug.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -14,6 +15,7 @@ var NAVTREE =
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
@@ -26,7 +28,8 @@ var NAVTREE =
       [ "File List", "files.html", "files" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+        [ "Functions", "globals_func.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -34,7 +37,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_command_u_i_8cpp.html"
+"_about_slide_8cpp.html",
+"namespace_grid15.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
