@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
         if constexpr (ProgramStuff::CHEAT_MODE)
         {
-            Grid15::GridHelp::copyGridArray(Grid15::Grid::GOAL_GRID, *gameGrid);//start initiliazed as the goal grid
+            Grid15::GridHelp::safeCopy(Grid15::Grid::GOAL_GRID, *gameGrid);//start initiliazed as the goal grid
             Grid15::GridHelp::swapTile(15, *gameGrid);//instead of setting an entire new grid
 
             std::cout << termcolor::on_red;
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
             std::cout << termcolor::reset;
         }
         else
-            Grid15::GridHelp::copyGrid(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
+            Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
 
 
         if constexpr (ProgramStuff::CLEAR_SCREEN_ON_START)
