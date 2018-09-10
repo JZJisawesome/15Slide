@@ -34,12 +34,12 @@ namespace Grid15
  */
 namespace GridHelp
 {
-bool validMove(const std::int64_t tileNum, const Grid &grid);
-bool validMove(const std::int64_t tileX, const std::int64_t tileY, const Grid &grid);
+bool validMove(const std::uint8_t tileNum, const Grid &grid);
+bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid);
 bool hasWon(const Grid &grid);
 
-void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid);
-void copyGrid(const Grid &newGrid, Grid &grid);
+void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid);
+void safeCopy(const Grid &newGrid, Grid &grid);
 
 bool validGridArray(const Grid::gridArray_t &grid);
 bool validGrid(const Grid &grid);
@@ -48,10 +48,6 @@ bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index);
 
 void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid);
 void swapTile(const std::uint8_t tileNum, Grid &grid);
-
-std::uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid);
-std::uint8_t getX(const std::uint8_t tileNum, const Grid &grid);
-std::uint8_t getY(const std::uint8_t tileNum, const Grid &grid);
 
 Grid::gridArray_t generateRandomGridArray();
 Grid generateRandomGrid();

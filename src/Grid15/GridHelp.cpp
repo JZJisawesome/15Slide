@@ -28,6 +28,8 @@
 #include <random>
 #include <chrono>
 #include <exception>
+#include <cassert>
+
 
 namespace Grid15
 {
@@ -81,49 +83,6 @@ void swapTile(const std::uint8_t tileNum, Grid &grid)
         throw std::invalid_argument {"tileNum or Grid invalid!"};//not a valid move
 }
 
-/** \brief Gets the tile at the given coordinates of a Grid
- *
- * \param tileX The x coordinate
- * \param tileY The y coordinate
- * \param grid The Grid to use
- * \return The tile
- * \throw std::out_of_range From std::array::at; if the coordinates are off the grid (see Grid::X_MAX, Grid::X_MIN, Grid::Y_MAX and Grid::Y_MIN)
- */
-uint8_t getTile(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid)
-{
-    return grid.gridArray.at(tileX).at(tileY);//no need to do manual out of bounds checks with at()
-}
-
-/** \brief Gets the x coordinate of the given tile of a Grid
- *
- * \param tileNum The tile
- * \param grid The Grid to use
- * \return The x coordinate
- * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
- */
-uint8_t getX(const std::uint8_t tileNum, const Grid &grid)
-{
-    if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
-        return grid.index[tileNum][0];
-    else
-        throw std::invalid_argument {"tileNum invalid!"};
-}
-
-/** \brief Gets the y coordinate of the given tile of a Grid
- *
- * \param tileNum The tile
- * \param grid The Grid to use
- * \return The y coordinate
- * \throw std::invalid_argument If tile if greater than Grid::TILE_MAX or less than Grid::TILE_MIN
- */
-uint8_t getY(const std::uint8_t tileNum, const Grid &grid)
-{
-    if (tileNum <= Grid::TILE_MAX)//uint8_t prevents ints < 0
-        return grid.index[tileNum][1];
-    else
-        throw std::invalid_argument {"tileNum invalid!"};
-}
-
 /** \brief Checks if the tile movement will be valid between a tile and the no tile of a Grid
  *
  * \param tileNum The tile to check
@@ -131,9 +90,9 @@ uint8_t getY(const std::uint8_t tileNum, const Grid &grid)
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid is not valid
  */
-bool validMove(const std::int64_t tileNum, const Grid& grid)
+bool validMove(const std::uint8_t tileNum, const Grid& grid)
 {
-    if (tileNum <= Grid::TILE_MAX && tileNum >= Grid::TILE_MIN)
+    if (tileNum <= Grid::TILE_MAX/* && tileNum >= Grid::TILE_MIN*/)//unsigned integer is always greater than 0
         return validMove(grid.index[tileNum][0], grid.index[tileNum][1], grid);
     else
         return false;
@@ -147,7 +106,7 @@ bool validMove(const std::int64_t tileNum, const Grid& grid)
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid array is not valid
  */
-bool validMove(const std::int64_t tileX, const std::int64_t tileY, const Grid& grid)
+bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid& grid)
 {
     if (validGridArray(grid.gridArray))
     {
@@ -238,7 +197,7 @@ bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index)
  * \param grid The Grid to copy to
  * \throw std::invalid_argument If the new Grid is invalid
  */
-void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid)
+void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid)
 {
     if (validGridArray(newGrid))//fixme rely on validGridArray in index only
     {
@@ -256,7 +215,7 @@ void copyGridArray(const Grid::gridArray_t &newGrid, Grid &grid)
  * \param grid The Grid to copy to
  * \throw std::invalid_argument If the new Grid is invalid
  */
-void copyGrid(const Grid &newGrid, Grid &grid)
+void safeCopy(const Grid &newGrid, Grid &grid)
 {
     if (validGrid(newGrid))
     {
@@ -294,9 +253,11 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
 
     Grid::gridArray_t multiDimentional {};
 
+    auto rd = std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count());
+
     do
     {
-        std::shuffle(std::begin(tempGrid), std::end(tempGrid), std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count()));//get a seed and shuffle grid randomly
+        std::shuffle(std::begin(tempGrid), std::end(tempGrid), rd);//get a seed and shuffle grid randomly
 
         //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
         for (std::uint_fast32_t i {0}; i < 4; ++i)
@@ -304,6 +265,8 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
                 multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
     } while (!solvableGrid(multiDimentional));
+
+    assert(solvableGrid(multiDimentional));
 
     return multiDimentional;
 }
@@ -463,7 +426,7 @@ void load(const std::string& saveFile, Grid& grid)
 
     saveFileStream.close();
 
-    copyGridArray(newGridArray, grid);//this reindexes it along the way, and throws an exception if it is invalid
+    safeCopy(newGridArray, grid);//this reindexes it along the way, and throws an exception if it is invalid
 }
 
 /** \brief Reads the grid array of a Grid and updates its index

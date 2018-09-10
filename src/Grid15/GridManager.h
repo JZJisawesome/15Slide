@@ -34,7 +34,7 @@ namespace Grid15
  *
  * \deprecated Use Grid and GridHelp instead
  */
-class GridManager
+class [[deprecated]] GridManager
 {
 public:
     /* Constructors */
