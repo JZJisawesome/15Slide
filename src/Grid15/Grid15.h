@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 //Copyright 2018 John Jekel
 //See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms
-=======
 /* Copyright 2018 John Jekel
  * This file is part of 15Slide.
  *
@@ -18,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 */
->>>>>>> master
 #ifndef GRID15_H
 #define GRID15_H
 

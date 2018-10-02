@@ -286,15 +286,9 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
-<<<<<<< HEAD
- * Portions of this function are someone else's code, and may not be bound by 15Slide licences
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * This function has been re-writen, because the previous code had no licence and was removed.
+ * (It did not have any licenceless code in the first place actually, just a comment that was here)
  *
-=======
->>>>>>> master
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
@@ -310,11 +304,7 @@ bool solvableGrid(const Grid::gridArray_t &gridArray)
 
 /** \brief Checks if a grid is solvable or not.
  *
- * Portions of this function are someone else's code, and may not be bound by 15Slide licences
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and first modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * This function needs to be re-writen, because the previous code had no licence and was removed.
  *
  * \param grid The Grid to check
  * \return If the Grid is  (index and/or grid array) or not
@@ -324,45 +314,7 @@ bool solvableGrid(const Grid &grid)
 {
     if (validGrid(grid))
     {
-        std::array<std::uint8_t, 16> tempGrid;
-
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                tempGrid[(i * 4) + j] = {grid.gridArray[i][j]};
-
-        auto inversionCount//https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
-        {
-            [](const std::array<std::uint8_t, 16> arr)
-            {
-                std::uint_fast32_t currentInversionCount = 0;
-                for (std::uint_fast32_t i = 0; i < 4 * 4 - 1; i++)
-                {
-                    for (std::uint_fast32_t j = i + 1; j < 4 * 4; j++)
-                    {
-                        //count pairs(i, j) such that i appears
-                        //before j, but i > j.
-                        if (arr[j] && arr[i] && arr[i] > arr[j])
-                            currentInversionCount++;
-                    }
-                }
-
-                return currentInversionCount;
-            }
-        };
-
-        auto noTilePositionFromBottom//uses Grid::index instead of the borowed source code; already avaliable and a bit faster
-        {
-            [](const Grid15::Grid &aGrid)
-            {
-                return 4 - aGrid.index[Grid15::Grid::NO_TILE][0];
-            }
-        };
-
-        //https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
-        if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
-            return !(inversionCount(tempGrid) & 1);
-        else//if no tile row is even
-            return inversionCount(tempGrid) & 1;
+        return true;//rewrite
     }
     else
         throw std::invalid_argument {"Grid invalid!"};
