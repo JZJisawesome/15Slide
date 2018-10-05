@@ -55,6 +55,7 @@ public:
     /* Storage */
     gridArray_t gridArray {};///<The grid
 
+    //eg. index[5][1] is the y coordinate of the tile 5 on the game grid
     index_t index {};///<The index to keep track of tile locations
 
     static constexpr std::size_t NO_TILE   {0};    ///<The number representing the lack of a tile

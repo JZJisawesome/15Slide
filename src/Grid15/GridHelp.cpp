@@ -286,8 +286,8 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
- * This function has been re-writen, because the previous code had no licence and was removed.
- * (It did not have any licenceless code in the first place actually, just a comment that was here)
+ * This function technically never contained any of the licenceless code: it was always 15Slide source.
+ * There was just a (false) comment
  *
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
@@ -304,17 +304,64 @@ bool solvableGrid(const Grid::gridArray_t &gridArray)
 
 /** \brief Checks if a grid is solvable or not.
  *
- * This function needs to be re-writen, because the previous code had no licence and was removed.
+ * This function is a rewrite of the previous, unlicenced code, which I wanted to remove because I am worried about legal problems.
+ * I wrote it with information from https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html, from scratch to be clear.
  *
  * \param grid The Grid to check
- * \return If the Grid is  (index and/or grid array) or not
+ * \return If the Grid is solvable (index and/or grid array) or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
  */
 bool solvableGrid(const Grid &grid)
 {
     if (validGrid(grid))
     {
-        return true;//rewrite
+        auto evenInversions
+        {
+            [](Grid grid)
+            {
+                //calculate number of inversions
+                std::uint_fast32_t numberOfInversions {0};
+                std::array<std::uint8_t, 16> linearGrid {};
+                std::array<bool, 16> numberCheckedForInversions {};
+
+                //copy to 1 dimentional array
+                for (std::uint_fast32_t i {0}; i < 4; ++i)
+                    for (std::uint_fast32_t j {0}; j < 4; ++j)
+                        linearGrid[(i * 4) + j] = {grid.gridArray[i][j]};
+
+                //look for inversions
+                for (std::uint_fast32_t i {0}; i < 15; ++i)//last number cannot have any inversions
+                {
+                    for (std::uint_fast32_t j {1}; j < (16 - i); ++j)
+                    {
+                        //std::cout << "i:" << i << " j:" << j << " tile:" << (int)(linearGrid[i]) << " tile+j:" << (int)(linearGrid[i + j]) << std::endl;
+                        if ((linearGrid[i] != Grid::NO_TILE) && (linearGrid[i + j] != Grid::NO_TILE))//if none of the two compared tiles are the no tile
+                            if ((linearGrid[i] > linearGrid[i + j]))//if first tile is greater than next tile
+                            {
+                                ++numberOfInversions;
+                                //std::cout << "inversions:" << numberOfInversions << std::endl;
+                            }
+                    }
+                }
+
+
+                //find if it is even
+                return (numberOfInversions % 2) == 0;
+            }
+        };
+
+        auto noTileOnEvenRow
+        {
+            [](Grid grid)
+            {
+                //find if no tile y coordinate is on an even row from the bottom
+                return ((4 - grid.index[0][0]) % 2) == 0;
+            }
+        };
+
+        //std::cout << std::boolalpha << evenInversions(grid) << noTileOnEvenRow(grid) << std::endl;
+
+        return evenInversions(grid) != noTileOnEvenRow(grid);
     }
     else
         throw std::invalid_argument {"Grid invalid!"};
