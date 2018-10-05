@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['safecopy',['safeCopy',['../namespace_grid15_1_1_grid_help.html#afdc0c944891d94d982ccf44e0b26d4b3',1,'Grid15::GridHelp::safeCopy(const Grid::gridArray_t &amp;newGrid, Grid &amp;grid)'],['../namespace_grid15_1_1_grid_help.html#ad93f6128140ecc05487cf0e57ed6e4ae',1,'Grid15::GridHelp::safeCopy(const Grid &amp;newGrid, Grid &amp;grid)']]],
   ['save',['save',['../class_grid15_1_1_grid_manager.html#a5f5568c2bd198c0ed4636e14b0c737c1',1,'Grid15::GridManager::save()'],['../class_g_t_k_slide_1_1_main_window.html#ab58f8e72c0bc5c95472999cdc2188448',1,'GTKSlide::MainWindow::save()'],['../namespace_grid15_1_1_grid_help.html#a59ce85d0780bdfc1fbd03cfa088efef3',1,'Grid15::GridHelp::save()']]],
   ['saveas',['saveAs',['../class_g_t_k_slide_1_1_main_window.html#a1bb5b5536ce93966e44421a6d9990d6f',1,'GTKSlide::MainWindow']]],
   ['savegame',['saveGame',['../class_command_u_i.html#ad4642b8f33a00c290b8cb8e97cfbe251',1,'CommandUI']]],

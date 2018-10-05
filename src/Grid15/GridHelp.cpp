@@ -286,8 +286,7 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
- * This function technically never contained any of the licenceless code: it was always 15Slide source.
- * There was just a (false) comment
+ * This function technically never contained any licenceless code: it was always 15Slide source, so the false comment that was here has been removed
  *
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
@@ -322,7 +321,6 @@ bool solvableGrid(const Grid &grid)
                 //calculate number of inversions
                 std::uint_fast32_t numberOfInversions {0};
                 std::array<std::uint8_t, 16> linearGrid {};
-                std::array<bool, 16> numberCheckedForInversions {};
 
                 //copy to 1 dimentional array
                 for (std::uint_fast32_t i {0}; i < 4; ++i)
