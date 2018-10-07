@@ -17,7 +17,9 @@
 AC_INIT([15Slide], 0.9)
 AM_INIT_AUTOMAKE
 AC_PROG_CXX
-CXXFLAGS+=" --std=c++17"
+CXXFLAGS+=" --std=c++1z -Iinclude -Isrc -Isrc/Grid15 -Isrc/GTKSlide"
+#CXXFLAGS+="--O3 -s"
+#CXXFLAGS+="--g --Og"
 PKG_CHECK_MODULES([GTKMM], [gtkmm-3.0])
 AC_CONFIG_FILES(Makefile)
 AC_OUTPUT
