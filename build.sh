@@ -17,9 +17,7 @@
 
 
 #15Slide Linux and cross-platform Windows build script
-#See https://github.com/JZJisawesome/15Slide/wiki/Installing-15Slide for usage
-
-#(this script might be broken)
+#This script is deprecated; use the autotools instructions at https://jzjisawesome.github.io/15Slide/Installing-15Slide
 
 
 #Linux compilers

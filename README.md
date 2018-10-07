@@ -20,8 +20,10 @@ File/Folder|Description
 [CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
 [CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
 [LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide
+[Makefile.am](https://github.com/JZJisawesome/15Slide/blob/fix-building/Makefile.am)|`Makefile.in` template for autotools
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file
-[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
+[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The deprecated build script
+[configure.ac](https://github.com/JZJisawesome/15Slide/blob/fix-building/configure.ac)|`configure` script template for autotools
 
 ## Thanks to...
 * My parents and family for their support
