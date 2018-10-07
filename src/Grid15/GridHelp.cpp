@@ -286,7 +286,7 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
- * This function technically never contained any licenceless code: it was always 15Slide source, so the false comment that was here has been removed
+ * This function never contained any licenceless code: it was always 15Slide source, so the false comment that was here has been removed
  *
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
@@ -319,6 +319,7 @@ bool solvableGrid(const Grid &grid)
             [](Grid grid)
             {
                 //calculate number of inversions
+
                 std::uint_fast32_t numberOfInversions {0};
                 std::array<std::uint8_t, 16> linearGrid {};
 
@@ -328,13 +329,13 @@ bool solvableGrid(const Grid &grid)
                         linearGrid[(i * 4) + j] = {grid.gridArray[i][j]};
 
                 //look for inversions
-                for (std::uint_fast32_t i {0}; i < 15; ++i)//last number cannot have any inversions
+                for (std::uint_fast32_t i {0}; i < 15; ++i)//last number cannot have any inversions so we might as well skip it
                 {
-                    for (std::uint_fast32_t j {1}; j < (16 - i); ++j)
+                    for (std::uint_fast32_t j {1}; j < (16 - i); ++j)//start at the tile after i until the end of the grid
                     {
                         //std::cout << "i:" << i << " j:" << j << " tile:" << (int)(linearGrid[i]) << " tile+j:" << (int)(linearGrid[i + j]) << std::endl;
                         if ((linearGrid[i] != Grid::NO_TILE) && (linearGrid[i + j] != Grid::NO_TILE))//if none of the two compared tiles are the no tile
-                            if ((linearGrid[i] > linearGrid[i + j]))//if first tile is greater than next tile
+                            if ((linearGrid[i] > linearGrid[i + j]))//if first tile is greater than other tile
                             {
                                 ++numberOfInversions;
                                 //std::cout << "inversions:" << numberOfInversions << std::endl;
@@ -344,6 +345,7 @@ bool solvableGrid(const Grid &grid)
 
 
                 //find if it is even
+
                 return (numberOfInversions % 2) == 0;
             }
         };
