@@ -338,11 +338,11 @@ bool solvableGrid(const Grid &grid)
         };
 
         //find if no tile y coordinate is on an even row from the bottom
-        //this is confusing whether second index is y or x coordinate
+        //this uses [0][1] as x coordinate, onece flipped coordinate issue is fixed this should be changed to [0][0]
+        //works for now
         bool noTileOnEvenRow {((4 - grid.index[0][1]) % 2) == 0};
 
-        //std::cout << "tile[7][0]:" << (int)(grid.index[7][0]) << std::endl;
-
+        //std::cout << "tile[0][0]:" << (int)(grid.index[0][0]) << std::endl;
         //std::cout << std::boolalpha << evenInversions(grid) << noTileOnEvenRow << std::endl;
 
         return evenInversions(grid) != noTileOnEvenRow;
