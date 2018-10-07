@@ -14,12 +14,22 @@
 #You should have received a copy of the GNU Lesser General Public License
 #along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 
+
 AC_INIT([15Slide], 0.9)
 AM_INIT_AUTOMAKE
+
+
+: ${CXXFLAGS=""}
 AC_PROG_CXX
-CXXFLAGS+=" --std=c++1z -Iinclude -Isrc -Isrc/Grid15 -Isrc/GTKSlide"
-#CXXFLAGS+="--O3 -s"
-#CXXFLAGS+="--g --Og"
+CXXFLAGS+=" --std=c++1z -Wall -Iinclude -Isrc -Isrc/Grid15 -Isrc/GTKSlide"
+
+#Optomization Options
+CXXFLAGS+=" -s -O3"
+#CXXFLAGS+=" -s -Os"
+#CXXFLAGS+=" -g -Og"
+
 PKG_CHECK_MODULES([GTKMM], [gtkmm-3.0])
+
+
 AC_CONFIG_FILES(Makefile)
 AC_OUTPUT
