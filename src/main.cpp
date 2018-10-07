@@ -29,7 +29,7 @@
  * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">GNU Lesser General Public Licence Version 3 (LGPL v.3.0)</a>
  */
 
-
+#include <cassert>//temp
 #include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
@@ -65,22 +65,26 @@ int main(int argc, char *argv[])
         std::clog << "(debug)Entering main() try block" << "\n";
     }
 
+
+
     try
     {
         std::shared_ptr<Grid15::Grid> gameGrid {new Grid15::Grid {}};
 
-        if constexpr (ProgramStuff::CHEAT_MODE)
-        {
+        //if constexpr (ProgramStuff::CHEAT_MODE)
+        //{
             Grid15::GridHelp::safeCopy(Grid15::Grid::GOAL_GRID, *gameGrid);//start initiliazed as the goal grid
             Grid15::GridHelp::swapTile(15, *gameGrid);//instead of setting an entire new grid
 
             std::cout << termcolor::on_red;
             std::cout << "CHEATING BUILD" << "\n";
             std::cout << termcolor::reset;
-        }
-        else
-            Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
+        //}
+        //else
+        //    Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
 
+
+        assert(Grid15::GridHelp::solvableGrid(*gameGrid));
 
         if constexpr (ProgramStuff::CLEAR_SCREEN_ON_START)
             std::cout << "\x1b[2J";//dosent work well, maybe not at all on windows

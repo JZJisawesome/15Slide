@@ -53,9 +53,14 @@ public:
     void setIndex(const index_t &newIndex);
 
     /* Storage */
+    //the grid, with x and y indexes from top left to bottom right
+    //0 is no tile, 1 to 15 are the other tiles
     gridArray_t gridArray {};///<The grid
 
-    //eg. index[5][1] is the y coordinate of the tile 5 on the game grid
+    //coordinates of tiles on the grid
+    //0 is no tile, 1 to 15 are the other tiles
+    //eg. index[5][1] is the y coordinate of the tile 5 on the game grid from top left to bottom right
+    //FIXME [tile][0] is actually y, [tile][1] is x???
     index_t index {};///<The index to keep track of tile locations
 
     static constexpr std::size_t NO_TILE   {0};    ///<The number representing the lack of a tile
