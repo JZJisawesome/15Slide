@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
         std::clog << "(debug)Entering main() try block" << "\n";
     }
 
+
+
     try
     {
         std::shared_ptr<Grid15::Grid> gameGrid {new Grid15::Grid {}};

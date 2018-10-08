@@ -107,6 +107,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains the game engine for 15Slide: the <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a> and management tools. </p>
+<p>Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are typically switched with X. This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide stuff. See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this.</p>
 <dl class="section author"><dt>Author</dt><dd>John Jekel </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-2018 </dd></dl>
 </div></div><!-- contents -->
@@ -115,7 +116,7 @@ Classes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_grid15.html">Grid15</a></li>
-    <li class="footer">Generated on Fri Sep 7 2018 17:25:03 for 15Slide by
+    <li class="footer">Generated on Mon Oct 8 2018 11:10:19 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
