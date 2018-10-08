@@ -71,41 +71,18 @@ int main(int argc, char *argv[])
     {
         std::shared_ptr<Grid15::Grid> gameGrid {new Grid15::Grid {}};
 
-        //if constexpr (ProgramStuff::CHEAT_MODE)
-        //{
+        if constexpr (ProgramStuff::CHEAT_MODE)
+        {
             Grid15::GridHelp::safeCopy(Grid15::Grid::GOAL_GRID, *gameGrid);//start initiliazed as the goal grid
             Grid15::GridHelp::swapTile(15, *gameGrid);//instead of setting an entire new grid
 
             std::cout << termcolor::on_red;
             std::cout << "CHEATING BUILD" << "\n";
             std::cout << termcolor::reset;
-        //}
-        //else
-        //    Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
-
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                std::cout << (int)((*gameGrid).gridArray[i][j]) << ", ";
-            }
-            std::cout << std::endl;
         }
+        else
+            Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
 
-        std::cout << std::endl;
-
-        for (int i = 0; i < 16; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                std::cout << (int)((*gameGrid).index[i][j]) << ", ";
-            }
-            std::cout << std::endl;
-        }
-
-
-
-        assert(Grid15::GridHelp::solvableGrid(*gameGrid));
 
         if constexpr (ProgramStuff::CLEAR_SCREEN_ON_START)
             std::cout << "\x1b[2J";//dosent work well, maybe not at all on windows

@@ -36,15 +36,15 @@ namespace GridHelp
 {
 /** \brief Swaps the tile at the given coordinates with the no tile of a Grid
  *
- * \param tileX The x coordinate
  * \param tileY The y coordinate
+ * \param tileX The x coordinate
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid or not next to the no tile
  */
-void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
+void swapTile(const std::uint8_t tileY, const std::uint8_t tileX, Grid &grid)
 {
-    if (validMove(tileX, tileY, grid))
-        swapTile(grid.gridArray[tileX][tileY], grid);//find tile to swap and pass grid to change
+    if (validMove(tileY, tileX, grid))
+        swapTile(grid.gridArray[tileY][tileX], grid);//find tile to swap and pass grid to change
     else
         throw std::invalid_argument {"tileX or tileY invalid!"};
 }
@@ -58,25 +58,25 @@ void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
 void swapTile(const std::uint8_t tileNum, Grid &grid)
 {
     //original location of tile
-    const std::uint8_t tileX {grid.index[tileNum][0]};
-    const std::uint8_t tileY {grid.index[tileNum][1]};
+    const std::uint8_t tileY {grid.index[tileNum][0]};
+    const std::uint8_t tileX {grid.index[tileNum][1]};
 
-    if (validMove(tileX, tileY, grid))
+    if (validMove(tileY, tileX, grid))
     {
-        std::uint8_t oldNoTileX = {grid.index[Grid::NO_TILE][0]};
-        std::uint8_t oldNoTileY = {grid.index[Grid::NO_TILE][1]};
+        std::uint8_t oldNoTileY = {grid.index[Grid::NO_TILE][0]};
+        std::uint8_t oldNoTileX = {grid.index[Grid::NO_TILE][1]};
 
         grid.gridArray[grid.index[Grid::NO_TILE][0]][grid.index[Grid::NO_TILE][1]] = {tileNum};//moves tile
 
         //updates location of moved tile in index
-        grid.index[tileNum][0] = {oldNoTileX};
-        grid.index[tileNum][1] = {oldNoTileY};
+        grid.index[tileNum][0] = {oldNoTileY};
+        grid.index[tileNum][1] = {oldNoTileX};
 
-        grid.gridArray[tileX][tileY] = {Grid::NO_TILE};//moves noTile
+        grid.gridArray[tileY][tileX] = {Grid::NO_TILE};//moves noTile
 
         //updates location of noTile in index
-        grid.index[Grid::NO_TILE][0] = {tileX};
-        grid.index[Grid::NO_TILE][1] = {tileY};
+        grid.index[Grid::NO_TILE][0] = {tileY};
+        grid.index[Grid::NO_TILE][1] = {tileX};
     }
     else
         throw std::invalid_argument {"tileNum or Grid invalid!"};//not a valid move
@@ -99,23 +99,23 @@ bool validMove(const std::uint8_t tileNum, const Grid& grid)
 
 /** \brief Checks if the tile movement will be valid between a tile and the no tile of a Grid
  *
- * \param tileX The tile's x coordinate
  * \param tileY The tile's y coordinate
+ * \param tileX The tile's x coordinate
  * \param grid The Grid to use
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid array is not valid
  */
-bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid& grid)
+bool validMove(const std::uint8_t tileY, const std::uint8_t tileX, const Grid& grid)
 {
     if (validGridArray(grid.gridArray))
     {
-        if (tileX > Grid::X_MAX || tileY > Grid::Y_MAX)//not out off array boundries
+        if (tileY > Grid::Y_MAX || tileX > Grid::X_MAX)//not out off array boundries
             return false;//TODO should throw an exception for this
-        else if (tileX == grid.index[Grid::NO_TILE][0] && tileY == grid.index[Grid::NO_TILE][1])//not no tile itself
+        else if (tileY == grid.index[Grid::NO_TILE][0] && tileX == grid.index[Grid::NO_TILE][1])//not no tile itself
             return false;
-        else if (((tileY == grid.index[Grid::NO_TILE][1] - 1) || (tileY == grid.index[Grid::NO_TILE][1] + 1)) && tileX == grid.index[Grid::NO_TILE][0])//same row, a colum beside
+        else if (((tileX == grid.index[Grid::NO_TILE][1] - 1) || (tileX == grid.index[Grid::NO_TILE][1] + 1)) && tileY == grid.index[Grid::NO_TILE][0])//same row, a colum beside
             return true;
-        else if (((tileX == grid.index[Grid::NO_TILE][0] - 1) || (tileX == grid.index[Grid::NO_TILE][0] + 1)) && tileY == grid.index[Grid::NO_TILE][1])//same colum, a row beside
+        else if (((tileY == grid.index[Grid::NO_TILE][0] - 1) || (tileY == grid.index[Grid::NO_TILE][0] + 1)) && tileX == grid.index[Grid::NO_TILE][1])//same colum, a row beside
             return true;
         else
             return false;

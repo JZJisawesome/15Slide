@@ -10,11 +10,11 @@ var _grid_help_8h =
     [ "save", "_grid_help_8h.html#a59ce85d0780bdfc1fbd03cfa088efef3", null ],
     [ "solvableGrid", "_grid_help_8h.html#a49ca05a34653057f388b32b6a73df65b", null ],
     [ "solvableGrid", "_grid_help_8h.html#afd18cca17b55f8159da4f4a074d54d13", null ],
-    [ "swapTile", "_grid_help_8h.html#a645b64fc6196f8bfc152b39c44792b2c", null ],
+    [ "swapTile", "_grid_help_8h.html#a448edccbf592f2630de6b98e1b625583", null ],
     [ "swapTile", "_grid_help_8h.html#a728f103481ee18efb5cac121a72c0ab3", null ],
     [ "validGrid", "_grid_help_8h.html#a07f6980997cd50a5f36a47b595e76a3d", null ],
     [ "validGridArray", "_grid_help_8h.html#a866735c743d059d0b3734cfe31071041", null ],
     [ "validIndex", "_grid_help_8h.html#afac34c77b280db07489c3cc4cfeec564", null ],
     [ "validMove", "_grid_help_8h.html#ac5271eabf9aa9b49f3c4e9b843de9574", null ],
-    [ "validMove", "_grid_help_8h.html#af634f9eb7e82eb787a8c04483a25f54b", null ]
+    [ "validMove", "_grid_help_8h.html#acecd00a3937cb58dbada8c428508ab1e", null ]
 ];

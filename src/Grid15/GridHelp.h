@@ -35,7 +35,7 @@ namespace Grid15
 namespace GridHelp
 {
 bool validMove(const std::uint8_t tileNum, const Grid &grid);
-bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid &grid);
+bool validMove(const std::uint8_t tileY, const std::uint8_t tileX, const Grid &grid);
 bool hasWon(const Grid &grid);
 
 void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid);
@@ -46,7 +46,7 @@ bool validGrid(const Grid &grid);
 
 bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index);
 
-void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid);
+void swapTile(const std::uint8_t tileY, const std::uint8_t tileX, Grid &grid);
 void swapTile(const std::uint8_t tileNum, Grid &grid);
 
 Grid::gridArray_t generateRandomGridArray();

@@ -67,10 +67,10 @@ public:
     static constexpr std::size_t NO_TILE   {0};    ///<The number representing the lack of a tile
     static constexpr std::size_t TILE_MAX  {15};   ///<The maximum tile number
     static constexpr std::size_t TILE_MIN  {0};    ///<The mininum tile number
-    static constexpr std::size_t X_MAX     {3};    ///<The maximum x coordinate
-    static constexpr std::size_t X_MIN     {0};    ///<The mininum x coordinate
     static constexpr std::size_t Y_MAX     {3};    ///<The maximum y coordinate
     static constexpr std::size_t Y_MIN     {0};    ///<The mininum x coordinate
+    static constexpr std::size_t X_MAX     {3};    ///<The maximum x coordinate
+    static constexpr std::size_t X_MIN     {0};    ///<The mininum x coordinate
 
     static constexpr gridArray_t GOAL_GRID
     {
