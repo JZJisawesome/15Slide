@@ -83,6 +83,27 @@ int main(int argc, char *argv[])
         //else
         //    Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), *gameGrid);
 
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                std::cout << (int)((*gameGrid).gridArray[i][j]) << ", ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << std::endl;
+
+        for (int i = 0; i < 16; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                std::cout << (int)((*gameGrid).index[i][j]) << ", ";
+            }
+            std::cout << std::endl;
+        }
+
+
 
         assert(Grid15::GridHelp::solvableGrid(*gameGrid));
 
