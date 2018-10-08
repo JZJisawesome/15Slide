@@ -29,7 +29,7 @@
  * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">GNU Lesser General Public Licence Version 3 (LGPL v.3.0)</a>
  */
 
-#include <cassert>//temp
+
 #include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
