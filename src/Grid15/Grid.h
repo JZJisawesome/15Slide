@@ -53,7 +53,7 @@ public:
     void setIndex(const index_t &newIndex);
 
     /* Storage */
-    //the grid, with x and y indexes from top left to bottom right
+    //the grid, with [x] and [y] indexes from top left to bottom right
     //0 is no tile, 1 to 15 are the other tiles
     //FIXME [y][x] should be [x][y]
     gridArray_t gridArray {};///<The grid

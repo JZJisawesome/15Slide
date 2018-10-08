@@ -29,6 +29,9 @@
  *
  * \brief Contains the game engine for 15Slide: the Grid and management tools
  *
+ * Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are typically switched with X in the parameters of functions, and in arrays.
+ * See https://github.com/JZJisawesome/15Slide/issues/22 for details and possible changes to this.
+ *
  * \author John Jekel
  * \date 2018-2018
  */
