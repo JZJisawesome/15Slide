@@ -21,6 +21,7 @@ AM_INIT_AUTOMAKE
 
 : ${CXXFLAGS=""}
 AC_PROG_CXX
+#Using -I flags is the only way I could get #include in source files to work
 CXXFLAGS+=" --std=c++1z -Wall -Iinclude -Isrc -Isrc/Grid15 -Isrc/GTKSlide"
 
 #Optomization Options
