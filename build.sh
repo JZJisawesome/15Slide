@@ -17,9 +17,7 @@
 
 
 #15Slide Linux and cross-platform Windows build script
-#See https://github.com/JZJisawesome/15Slide/wiki/Installing-15Slide for usage
-
-#(this script might be broken)
+#This script is deprecated; use the autotools instructions at https://jzjisawesome.github.io/15Slide/Installing-15Slide
 
 
 #Linux compilers
@@ -37,13 +35,19 @@ linker_options="-Lsrc -Linclude"
 
 mkdir ./obj
 mkdir ./obj/Grid15
-$compiler $compiler_options -c ./src/CommandUI.cpp -o ./obj/CommandUI.o
-$compiler $compiler_options -c ./src/Grid15/Grid.cpp -o ./obj/Grid15/Grid.o
-$compiler $compiler_options -c ./src/Grid15/GridHelp.cpp -o ./obj/Grid15/GridHelp.o
-$compiler $compiler_options -c ./src/main.cpp -o ./obj/main.o
+mkdir ./obj/GTKSlide
+$compiler $compiler_options -c ./src/CommandUI.cpp -o ./obj/CommandUI.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/Grid15/Grid.cpp -o ./obj/Grid15/Grid.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/Grid15/GridHelp.cpp -o ./obj/Grid15/GridHelp.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/main.cpp -o ./obj/main.o `pkg-config gtkmm-3.0 --cflags --libs`
+
+$compiler $compiler_options -c ./src/GTKSlide/AboutSlide.cpp -o ./obj/GTKSlide/AboutSlide.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/GTKSlide/MainWindow.cpp -o ./obj/GTKSlide/MainWindow.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/GTKSlide/SlideFileDialog.cpp -o ./obj/GTKSlide/SlideFileDialog.o `pkg-config gtkmm-3.0 --cflags --libs`
+$compiler $compiler_options -c ./src/GTKSlide/TileGrid.cpp -o ./obj/GTKSlide/TileGrid.o `pkg-config gtkmm-3.0 --cflags --libs`
 
 mkdir ./bin
-$compiler $linker_options -o ./bin/15Slide ./obj/CommandUI.o ./obj/Grid15/Grid.o ./obj/Grid15/GridHelp.o ./obj/main.o
+$compiler $linker_options -o ./bin/15Slide ./obj/CommandUI.o ./obj/Grid15/Grid.o ./obj/Grid15/GridHelp.o ./obj/main.o ./src/GTKSlide/AboutSlide.cpp ./src/GTKSlide/MainWindow.cpp ./src/GTKSlide/SlideFileDialog.cpp ./src/GTKSlide/TileGrid.cpp
 
 echo "Done compiling 15Slide"
 

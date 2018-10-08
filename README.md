@@ -21,8 +21,10 @@ File/Folder|Description
 [CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
 [LICENCE.creativecommons](https://github.com/JZJisawesome/15Slide/blob/master/LICENCE.creativecommons)|The licence for 15Slide images/glade files
 [LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide code/documentation
+[Makefile.am](https://github.com/JZJisawesome/15Slide/blob/fix-building/Makefile.am)|`Makefile.in` template for autotools
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file
-[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The build script for Linux
+[build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The deprecated build script
+[configure.ac](https://github.com/JZJisawesome/15Slide/blob/fix-building/configure.ac)|`configure` script template for autotools
 
 ## Thanks to...
 * My parents and family for their support

@@ -8,13 +8,12 @@ Note: these steps may be changed when GTKSlide is merged (gtkmm libraries will h
 ### Linux
 1. [Download](https://github.com/JZJisawesome/15Slide/archive/master.zip) or clone (https://github.com/JZJisawesome/15Slide.git) the 15Slide source files
 2. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
-3. Go to where you downloaded the master branch, and copy the _include_ folder from termcolor into it
-4. Open a terminal in the 15Slide master branch and run `sh ./build.sh`
-5. The compiled 15Slide is in the new bin folder
+3. Go to where you downloaded the master branch, and copy the _include_ folder from the termcolor master into it
+4. Open a terminal in the 15Slide master branch and run `autoreconf --install` to create the proper build enviornment
+5. Run the infamous `./configure; make`
+6. [Run the 15Slide executable](https://jzjisawesome.github.io/15Slide/Running-15Slide) which is now in the current directory
 
-Note: If you prefer clang, edit the build.sh script by commenting out `compiler=g++` and uncommenting `#compiler=clang++`. You can also specify a different compiler if you wish, but it must support c++17.
-
-#### For Windows (minGW cross-platform)
+#### For Windows (minGW cross-platform, non GTKSlide)
 1. Follow steps _one_ to _three_ in the Linux build instructions
 2. Comment out `compiler=g++` in build.sh and uncomment `#compiler=i686-w64-mingw32-g++`. You may need to specify a different compiler or install one depending on your setup
 3. Open a terminal in the 15Slide master branch and run `sh ./build.sh`
