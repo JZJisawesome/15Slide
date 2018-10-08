@@ -10,8 +10,6 @@ var searchData=
   ['commandui_2eh',['CommandUI.h',['../_command_u_i_8h.html',1,'']]],
   ['compiler_5fstring',['COMPILER_STRING',['../namespace_program_stuff_1_1_build.html#a6bdae62d70d61a0eeaafa41ec38b5639',1,'ProgramStuff::Build']]],
   ['compiler_5fversion',['COMPILER_VERSION',['../namespace_program_stuff_1_1_build.html#afbd276438e426139dfe07b71ad2b113c',1,'ProgramStuff::Build']]],
-  ['copygrid',['copyGrid',['../namespace_grid15_1_1_grid_help.html#a555f326f8af803520e502886709bb39b',1,'Grid15::GridHelp']]],
-  ['copygridarray',['copyGridArray',['../namespace_grid15_1_1_grid_help.html#aea827e5e1437fc2ce4c901f8d888d8d6',1,'Grid15::GridHelp']]],
   ['cpp_5fversion',['CPP_VERSION',['../namespace_program_stuff_1_1_build.html#afeaf9ea502e3f6b03aaae0f9f944635f',1,'ProgramStuff::Build']]],
   ['createerrordialogandrun',['createErrorDialogAndRun',['../class_g_t_k_slide_1_1_main_window.html#a74d907507d1161cc616c5a2cbca56a8d',1,'GTKSlide::MainWindow']]],
   ['createmenubarandaddtomaingrid',['createMenuBarAndAddToMainGrid',['../class_g_t_k_slide_1_1_main_window.html#ae509f937268776da5033ed6198e732e4',1,'GTKSlide::MainWindow']]],

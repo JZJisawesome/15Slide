@@ -19,7 +19,8 @@ File/Folder|Description
 [src](https://github.com/JZJisawesome/15Slide/tree/master/src)|15Slide source code
 [CODE_OF_CONDUCT.md](https://github.com/JZJisawesome/15Slide/blob/master/CODE_OF_CONDUCT.md)|The code of conduct for this project
 [CONTRIBUTING.md](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md)|Guidelines for contributing to 15Slide
-[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide
+[LICENCE.creativecommons](https://github.com/JZJisawesome/15Slide/blob/master/LICENCE.creativecommons)|The licence for 15Slide images/glade files
+[LICENCE](https://github.com/JZJisawesome/15Slide/blob/master/LICENSE)|The licence for 15Slide code/documentation
 [Makefile.am](https://github.com/JZJisawesome/15Slide/blob/fix-building/Makefile.am)|`Makefile.in` template for autotools
 [README.md](https://github.com/JZJisawesome/15Slide/blob/master/README.md)|This file
 [build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The deprecated build script
@@ -34,4 +35,4 @@ File/Folder|Description
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch ([LGPL](https://www.gnu.org/copyleft/lesser.html))
 
 ## Licencing
-Copyright 2018 John Jekel. All 15Slide code and documentation is licenced under the [GNU Lesser General Public Licence (LGPL)](https://www.gnu.org/copyleft/lesser.html), and all images and glade files under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Copyright 2018 John Jekel. All 15Slide code and documentation is licenced under the [GNU Lesser General Public Licence (LGPL)](https://www.gnu.org/copyleft/lesser.html), and all images and glade files under the [Creative Commons Attribution-ShareAlike 4.0 International Licence (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).

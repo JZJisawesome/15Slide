@@ -28,7 +28,6 @@
 #include <random>
 #include <chrono>
 #include <exception>
-#include <cassert>
 
 
 namespace Grid15
@@ -37,15 +36,15 @@ namespace GridHelp
 {
 /** \brief Swaps the tile at the given coordinates with the no tile of a Grid
  *
- * \param tileX The x coordinate
  * \param tileY The y coordinate
+ * \param tileX The x coordinate
  * \param grid The Grid to change
  * \throw std::invalid_argument The tile being moved is invalid or not next to the no tile
  */
-void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
+void swapTile(const std::uint8_t tileY, const std::uint8_t tileX, Grid &grid)
 {
-    if (validMove(tileX, tileY, grid))
-        swapTile(grid.gridArray[tileX][tileY], grid);//find tile to swap and pass grid to change
+    if (validMove(tileY, tileX, grid))
+        swapTile(grid.gridArray[tileY][tileX], grid);//find tile to swap and pass grid to change
     else
         throw std::invalid_argument {"tileX or tileY invalid!"};
 }
@@ -59,25 +58,25 @@ void swapTile(const std::uint8_t tileX, const std::uint8_t tileY, Grid &grid)
 void swapTile(const std::uint8_t tileNum, Grid &grid)
 {
     //original location of tile
-    const std::uint8_t tileX {grid.index[tileNum][0]};
-    const std::uint8_t tileY {grid.index[tileNum][1]};
+    const std::uint8_t tileY {grid.index[tileNum][0]};
+    const std::uint8_t tileX {grid.index[tileNum][1]};
 
-    if (validMove(tileX, tileY, grid))
+    if (validMove(tileY, tileX, grid))
     {
-        std::uint8_t oldNoTileX = {grid.index[Grid::NO_TILE][0]};
-        std::uint8_t oldNoTileY = {grid.index[Grid::NO_TILE][1]};
+        std::uint8_t oldNoTileY = {grid.index[Grid::NO_TILE][0]};
+        std::uint8_t oldNoTileX = {grid.index[Grid::NO_TILE][1]};
 
         grid.gridArray[grid.index[Grid::NO_TILE][0]][grid.index[Grid::NO_TILE][1]] = {tileNum};//moves tile
 
         //updates location of moved tile in index
-        grid.index[tileNum][0] = {oldNoTileX};
-        grid.index[tileNum][1] = {oldNoTileY};
+        grid.index[tileNum][0] = {oldNoTileY};
+        grid.index[tileNum][1] = {oldNoTileX};
 
-        grid.gridArray[tileX][tileY] = {Grid::NO_TILE};//moves noTile
+        grid.gridArray[tileY][tileX] = {Grid::NO_TILE};//moves noTile
 
         //updates location of noTile in index
-        grid.index[Grid::NO_TILE][0] = {tileX};
-        grid.index[Grid::NO_TILE][1] = {tileY};
+        grid.index[Grid::NO_TILE][0] = {tileY};
+        grid.index[Grid::NO_TILE][1] = {tileX};
     }
     else
         throw std::invalid_argument {"tileNum or Grid invalid!"};//not a valid move
@@ -100,23 +99,23 @@ bool validMove(const std::uint8_t tileNum, const Grid& grid)
 
 /** \brief Checks if the tile movement will be valid between a tile and the no tile of a Grid
  *
- * \param tileX The tile's x coordinate
  * \param tileY The tile's y coordinate
+ * \param tileX The tile's x coordinate
  * \param grid The Grid to use
  * \return If swapping the tile would work (true) or not (false)
  * \throw std::invalid_argument If the Grid array is not valid
  */
-bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid& grid)
+bool validMove(const std::uint8_t tileY, const std::uint8_t tileX, const Grid& grid)
 {
     if (validGridArray(grid.gridArray))
     {
-        if (tileX > Grid::X_MAX || tileY > Grid::Y_MAX)//not out off array boundries
+        if (tileY > Grid::Y_MAX || tileX > Grid::X_MAX)//not out off array boundries
+            return false;//TODO should throw an exception for this
+        else if (tileY == grid.index[Grid::NO_TILE][0] && tileX == grid.index[Grid::NO_TILE][1])//not no tile itself
             return false;
-        else if (tileX == grid.index[Grid::NO_TILE][0] && tileY == grid.index[Grid::NO_TILE][1])//not no tile itself
-            return false;
-        else if (((tileY == grid.index[Grid::NO_TILE][1] - 1) || (tileY == grid.index[Grid::NO_TILE][1] + 1)) && tileX == grid.index[Grid::NO_TILE][0])//same row, a colum beside
+        else if (((tileX == grid.index[Grid::NO_TILE][1] - 1) || (tileX == grid.index[Grid::NO_TILE][1] + 1)) && tileY == grid.index[Grid::NO_TILE][0])//same row, a colum beside
             return true;
-        else if (((tileX == grid.index[Grid::NO_TILE][0] - 1) || (tileX == grid.index[Grid::NO_TILE][0] + 1)) && tileY == grid.index[Grid::NO_TILE][1])//same colum, a row beside
+        else if (((tileY == grid.index[Grid::NO_TILE][0] - 1) || (tileY == grid.index[Grid::NO_TILE][0] + 1)) && tileX == grid.index[Grid::NO_TILE][1])//same colum, a row beside
             return true;
         else
             return false;
@@ -134,14 +133,7 @@ bool validMove(const std::uint8_t tileX, const std::uint8_t tileY, const Grid& g
 bool hasWon(const Grid& grid)
 {
     if (validGridArray(grid.gridArray))
-    {
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                if (!(grid.gridArray[i][j] == Grid::GOAL_GRID[i][j]))
-                    return false;//false if anything is wrong
-
-        return true;//if everything is right return true
-    }
+        return std::equal(std::begin(Grid::GOAL_GRID), std::end(Grid::GOAL_GRID), std::begin(grid.gridArray));//check if grid  is equal to Grid::GOAL_GRID
     else
         throw std::invalid_argument {"Grid invalid!"};
 }
@@ -153,7 +145,7 @@ bool hasWon(const Grid& grid)
  */
 bool validGridArray(const Grid::gridArray_t &grid)
 {
-    std::array<std::uint8_t, 16> numCount {0};//start at 0//FIX TO SET ALL TO 0 (MAYBE NEEDED)
+    std::array<std::uint8_t, 16> numCount {0};//start at 0//FIXME SET ALL TO 0 (MAYBE NEEDED)
 
     for (std::uint_fast32_t i {0}; i < 4; ++i)
         for (std::uint_fast32_t j {0}; j < 4; ++j)
@@ -181,7 +173,7 @@ bool validGridArray(const Grid::gridArray_t &grid)
  * \param grid The grid array to compare the index to
  * \param index The index
  * \return If the index is valid (true) or not (false)
- * \throw std::invalid_argument If the grid (not the index) is invalid
+ * \throw std::invalid_argument If the gridArray (not the index) is invalid
  */
 bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index)
 {
@@ -218,9 +210,7 @@ void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid)
 void safeCopy(const Grid &newGrid, Grid &grid)
 {
     if (validGrid(newGrid))
-    {
         grid.setGrid(newGrid);
-    }
     else
         throw std::invalid_argument {"Grid invalid!"};
 }
@@ -232,7 +222,7 @@ void safeCopy(const Grid &newGrid, Grid &grid)
  */
 bool validGrid(const Grid& grid)
 {
-    return validGridArray(grid.gridArray) && validIndex(grid.gridArray, grid.index);//fixme validGridArray is used in valid index (unnnessary, but again unavoidable)
+    return validGridArray(grid.gridArray) && validIndex(grid.gridArray, grid.index);//fixme validGridArray is used in valid index already (unnnessary, but again unavoidable)
 }
 
 /** \brief Creates a new, random grid array
@@ -264,9 +254,8 @@ Grid15::Grid::gridArray_t generateRandomGridArray()
             for (std::uint_fast32_t j {0}; j < 4; ++j)
                 multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
-    } while (!solvableGrid(multiDimentional));
-
-    assert(solvableGrid(multiDimentional));
+    }
+    while (!solvableGrid(multiDimentional));
 
     return multiDimentional;
 }
@@ -286,15 +275,8 @@ Grid generateRandomGrid()
 
 /** \brief Checks if a grid is solvable or not.
  *
-<<<<<<< HEAD
- * Portions of this function are someone else's code, and may not be bound by 15Slide licences
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * This function never contained any licenceless code: it was always 15Slide source, so the false comment that was here has been removed
  *
-=======
->>>>>>> master
  * \param gridArray The grid array to check
  * \return If the grid is solvable or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
@@ -310,59 +292,60 @@ bool solvableGrid(const Grid::gridArray_t &gridArray)
 
 /** \brief Checks if a grid is solvable or not.
  *
- * Portions of this function are someone else's code, and may not be bound by 15Slide licences
- * Original title: C++ program to check if a given instance of N * N - 1 puzzle is solvable or not.
- * Accessed and first modified 29 June 2018.
- * Unknown author and code version.
- * Original source can be found at: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * This function is a rewrite of the previous, unlicenced code, which I wanted to remove because I am worried about legal problems.
+ * I wrote it with information from https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html, from scratch to be clear.
  *
  * \param grid The Grid to check
- * \return If the Grid is  (index and/or grid array) or not
+ * \return If the Grid is solvable (index and/or grid array) or not
  * \throw std::invalid_argument If the new Grid is invalid (index and/or grid array)
  */
 bool solvableGrid(const Grid &grid)
 {
     if (validGrid(grid))
     {
-        std::array<std::uint8_t, 16> tempGrid;
-
-        for (std::uint_fast32_t i {0}; i < 4; ++i)
-            for (std::uint_fast32_t j {0}; j < 4; ++j)
-                tempGrid[(i * 4) + j] = {grid.gridArray[i][j]};
-
-        auto inversionCount//https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+        auto evenInversions
         {
-            [](const std::array<std::uint8_t, 16> arr)
+            [](Grid grid)
             {
-                std::uint_fast32_t currentInversionCount = 0;
-                for (std::uint_fast32_t i = 0; i < 4 * 4 - 1; i++)
+                //calculate number of inversions
+                std::array<std::uint8_t, 16> linearGrid {};
+
+                //copy to 1 dimentional array
+                for (std::uint_fast32_t i {0}; i < 4; ++i)
+                    for (std::uint_fast32_t j {0}; j < 4; ++j)
+                        linearGrid[(i * 4) + j] = {grid.gridArray[i][j]};
+
+                //look for inversions by comparing pairs of tiles
+                //Starts with 1st and 2nd then 1st and 3rd up to 1st and 16th, then repeats with 2nd and 3rd and so on
+                std::uint_fast32_t numberOfInversions {0};
+                for (std::uint_fast32_t i {0}; i < 15; ++i)//last number cannot have any inversions so we might as well skip it
                 {
-                    for (std::uint_fast32_t j = i + 1; j < 4 * 4; j++)
+                    for (std::uint_fast32_t j {1}; j < (16 - i); ++j)//start at the tile after i until the end of the grid
                     {
-                        //count pairs(i, j) such that i appears
-                        //before j, but i > j.
-                        if (arr[j] && arr[i] && arr[i] > arr[j])
-                            currentInversionCount++;
+                        //std::cout << "i:" << i << " j:" << j << " tile:" << (int)(linearGrid[i]) << " tile+j:" << (int)(linearGrid[i + j]) << std::endl;
+                        if ((linearGrid[i] != Grid::NO_TILE) && (linearGrid[i + j] != Grid::NO_TILE))//if none of the two compared tiles are the no tile
+                            if ((linearGrid[i] > linearGrid[i + j]))//if first tile is greater than other tile
+                            {
+                                ++numberOfInversions;
+                                //std::cout << "inversions:" << numberOfInversions << std::endl;
+                            }
                     }
                 }
 
-                return currentInversionCount;
+                //find if it is even
+                return (numberOfInversions % 2) == 0;
             }
         };
 
-        auto noTilePositionFromBottom//uses Grid::index instead of the borowed source code; already avaliable and a bit faster
-        {
-            [](const Grid15::Grid &aGrid)
-            {
-                return 4 - aGrid.index[Grid15::Grid::NO_TILE][0];
-            }
-        };
+        //find if no tile y coordinate is on an even row from the bottom
+        //this uses [0][0] as y coordinate, onece flipped coordinate issue is fixed this should be changed to [0][1]
+        //works for now
+        bool noTileOnEvenRow {((4 - grid.index[0][0]) % 2) == 0};
 
-        //https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
-        if (noTilePositionFromBottom(grid) & 1)//if no tile row is odd
-            return !(inversionCount(tempGrid) & 1);
-        else//if no tile row is even
-            return inversionCount(tempGrid) & 1;
+        //std::cout << "tile[0][0]:" << (int)(grid.index[0][0]) << std::endl;
+        //std::cout << std::boolalpha << evenInversions(grid) << noTileOnEvenRow << std::endl;
+
+        return evenInversions(grid) != noTileOnEvenRow;
     }
     else
         throw std::invalid_argument {"Grid invalid!"};

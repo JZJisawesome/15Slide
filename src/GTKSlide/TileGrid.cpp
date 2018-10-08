@@ -83,22 +83,23 @@ TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPt
 */
 void TileGrid::on_tile_clicked(std::uint8_t coordinates)
 {
-    auto [x, y] = singleToTwoD(coordinates);
+    auto [y, x] = singleToTwoD(coordinates);
 
     if constexpr (ProgramStuff::Build::DEBUG)
     {
         std::clog << std::boolalpha;
         std::clog << "(debug)Coordinates (" << static_cast<int> (x) << ", " << static_cast<int>(y);
-        std::clog << ") was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[x][y]);
-        std::clog << ". Valid move: " << Grid15::GridHelp::validMove(x, y, *gridPtr) << "\n";
+        std::clog << ") aka gridArray" << "[" << static_cast<int>(y) << "][" << static_cast<int> (x) << "]";
+        std::clog << " was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[y][x]);
+        std::clog << ". Valid move: " << Grid15::GridHelp::validMove(y, x, *gridPtr) << "\n";
     }
 
-    if (Grid15::GridHelp::validMove(x, y, *gridPtr))
+    if (Grid15::GridHelp::validMove(y, x, *gridPtr))
     {
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)Swapping tile... ";
 
-        Grid15::GridHelp::swapTile(x, y, *gridPtr);
+        Grid15::GridHelp::swapTile(y, x, *gridPtr);
         saveManager->isSaved = {false};
 
         updateTiles();//fixme: just relable the 2 tiles instead
@@ -209,7 +210,7 @@ void TileGrid::displayWonDialog()
  * Used along with TileGrid::twoDToSingle to convert the other way
  *
  * \param coordinates The merged coordinates
- * \return A std::pair with first = x coordinate and second = y coordinate
+ * \return A std::pair with first = y coordinate and second = x coordinate
  */
 std::pair<std::uint8_t, std::uint8_t> TileGrid::singleToTwoD(std::uint8_t coordinates)
 {
@@ -220,12 +221,12 @@ std::pair<std::uint8_t, std::uint8_t> TileGrid::singleToTwoD(std::uint8_t coordi
  *
  * Used to access the single dimentional array of Gtk::Buttons like a 2D one
  *
- * \param x The x coordinate (rows)
- * \param y The y coordinate (colums)
+ * \param y The y coordinate (rows)
+ * \param x The x coordinate (colums)
  * \return The merged coordinates
  */
-std::uint8_t TileGrid::twoDToSingle(std::uint8_t x, std::uint8_t y)
+std::uint8_t TileGrid::twoDToSingle(std::uint8_t y, std::uint8_t x)
 {
-    return (x * 4) + y;
+    return (y * 4) + x;
 }
 }

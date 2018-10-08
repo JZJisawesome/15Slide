@@ -58,7 +58,7 @@ protected:
     std::shared_ptr<SaveManager> saveManager {};///<A pointer to a SaveManager for managing autosaving
 
     std::pair<std::uint8_t, std::uint8_t> singleToTwoD(std::uint8_t coordinates);
-    std::uint8_t twoDToSingle(std::uint8_t x, std::uint8_t y);
+    std::uint8_t twoDToSingle(std::uint8_t y, std::uint8_t x);
 };
 }
 
