@@ -1,5 +1,7 @@
-<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/Logo_full.png" alt="15Slide Logo"/>
+## <img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/Logo_full.png" alt="15Slide Logo"/>
 15Slide is a fun, cross-platform, slidy-tile game written with C++17!
+
+The goal is to put the tiles back in order, with the empty space last. Simple.
 
 Visit the [wiki](https://github.com/JZJisawesome/15Slide/wiki/) and the [15Slide website](https://jzjisawesome.github.io/15Slide/).
 
