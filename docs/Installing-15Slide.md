@@ -10,8 +10,10 @@ Note: these steps may be changed when GTKSlide is merged (gtkmm libraries will h
 2. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
 3. Go to where you downloaded the master branch, and copy the _include_ folder from the termcolor master into it
 4. Open a terminal in the 15Slide master branch and run `autoreconf --install` to create the proper build enviornment
-5. Run the infamous `./configure; make`
+5. Run the infamous `./configure; make` to build the 15Slide binary
 6. [Run the 15Slide executable](https://jzjisawesome.github.io/15Slide/Running-15Slide) which is now in the current directory
+
+Make sure the data folder is in the same directory 15Slide is being run from, or GTKSlide may not work.
 
 #### For Windows (minGW cross-platform, non GTKSlide)
 1. Follow steps _one_ to _three_ in the Linux build instructions

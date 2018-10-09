@@ -7,3 +7,6 @@ If you have GTKSlide enabled in ProgramStuff, simply [install 15Slide](https://j
 2. Open a terminal where the executable is
 3. Make sure it can be executed (`chmod +x ./15Slide`)
 4. Run it (`./15Slide`)
+
+### Windows (to-do)
+### macOS (to-do)

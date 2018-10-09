@@ -1,9 +1,11 @@
 ## What is 15Slide?
 15Slide is a fun, cross-platform, slidy-tile game written with C++17!
 
+The goal is to put the tiles back in order, with the empty space last. Simple.
+
 Visit the [wiki](https://github.com/JZJisawesome/15Slide/wiki/) and the Github [repo](https://github.com/JZJisawesome/15Slide).
 
-<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/15Slide_terminal.png" alt="CommandUI 15Slide"/>
+<img src="https://raw.githubusercontent.com/JZJisawesome/15Slide/master/images/GTKSlide.png" alt="GTKSlide"/>
 
 ## Where do I start?
 You should start by [installing or building 15Slide](https://jzjisawesome.github.io/15Slide/Installing-15Slide). Once you have 15Slide, [start it](https://jzjisawesome.github.io/15Slide/Running-15Slide), [learn how to play](https://jzjisawesome.github.io/15Slide/How-to-play), and [contribute](https://github.com/JZJisawesome/15Slide/blob/master/CONTRIBUTING.md).
