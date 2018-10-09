@@ -13,10 +13,6 @@ You should start by [installing or building 15Slide](https://jzjisawesome.github
 ## Source Documentation
 Find the Doxygen documentation of 15Slide source at [https://jzjisawesome.github.io/15Slide/doxygen/index.html](https://jzjisawesome.github.io/15Slide/doxygen/index.html).
 
-## Thanks to...
-* My parents and family for their support
-* Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
-
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)) ([3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch ([LGPL](https://www.gnu.org/copyleft/lesser.html))

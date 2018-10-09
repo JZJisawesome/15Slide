@@ -28,10 +28,6 @@ File/Folder|Description
 [build.sh](https://github.com/JZJisawesome/15Slide/blob/master/build.sh)|The deprecated build script
 [configure.ac](https://github.com/JZJisawesome/15Slide/blob/fix-building/configure.ac)|`configure` script template for autotools
 
-## Thanks to...
-* My parents and family for their support
-* Amazing snippets from websites (cites in code, may not be bound by 15Slide licences)
-
 ## Dependencies
 * termcolor ([http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)) ([3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause))
 * gtkmm ([https://gtkmm.org/](https://gtkmm.org/)) for the GTKSlide branch ([LGPL](https://www.gnu.org/copyleft/lesser.html))
