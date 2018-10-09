@@ -23,22 +23,22 @@
 
 namespace GTKSlide
 {
-/** \class AboutSlide
- *
- * \brief The about dialog for 15Slide
- *
- * \author John Jekel
- * \date 2018-2018
- *
- * \deprecated About dialog is loaded from a glade file in MainWindow::on_menuBar_about instead.
- */
-class [[deprecated]] AboutSlide : public Gtk::AboutDialog
-{
-public:
-    AboutSlide(Gtk::Window &parent);
-    //virtual ~AboutSlide();
+    /** \class AboutSlide
+     *
+     * \brief The about dialog for 15Slide
+     *
+     * \author John Jekel
+     * \date 2018-2018
+     *
+     * \deprecated About dialog is loaded from a glade file in MainWindow::on_menuBar_about instead.
+     */
+    class [[deprecated]] AboutSlide : public Gtk::AboutDialog
+    {
+        public:
+            AboutSlide(Gtk::Window &parent);
+            //virtual ~AboutSlide();
 
-    void display();
-};
+            void display();
+    };
 }
 #endif //ABOUTSLIDE_H

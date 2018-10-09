@@ -141,129 +141,143 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
         //switch for command
         switch (parsedCommand)
         {
-        case CommandUI::command::help:
-
-            CommandUI::displayHelp();
-            break;
-
-        case CommandUI::command::demo:
-
-            CommandUI::runDemo();
-            break;
-
-        case CommandUI::command::newgame:
-
-            if constexpr (ProgramStuff::CHEAT_MODE)
+            case CommandUI::command::help:
             {
-                std::cout << termcolor::on_red;
-                std::cout << "BUT WHY? YOU WERE SO CLOSE!" << "\n";
-                std::cout << termcolor::reset;
+                CommandUI::displayHelp();
+                break;
             }
 
-            Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), grid);
-
-            std::cout << std::endl;
-            printGrid(grid);
-            std::cout << std::endl;
-
-            if constexpr (ProgramStuff::Build::DEBUG)
-                std::clog << "(debug)Reseting defaultSaveFile" << "\n";
-
-            defaultSaveFile = {""};
-            break;
-
-        case CommandUI::command::slide:
-
-            if (argsStream >> tile)
-                Grid15::GridHelp::swapTile(tile, grid);
-            else
-                invalidSyntaxError();
-            break;
-
-        case CommandUI::command::print:
-
-            if (argsStream >> input)
+            case CommandUI::command::demo:
             {
-                std::cout << std::endl;
+                CommandUI::runDemo();
+                break;
+            }
 
-                if (input == "grid")
-                    printGrid(grid);
-                else if (input == "goal")
-                    printGrid(Grid15::Grid::GOAL_GRID);
-                else
+            case CommandUI::command::newgame:
+            {
+                if constexpr (ProgramStuff::CHEAT_MODE)
                 {
-                    std::cerr << termcolor::bold << termcolor::red;
-                    std::cerr << "Sorry, but \"" << input << "\" is not a valid grid. ";
-                    std::cerr << termcolor::reset;
-                    std::cerr << "Try \"grid\" or \"goal.\"";
+                    std::cout << termcolor::on_red;
+                    std::cout << "BUT WHY? YOU WERE SO CLOSE!" << "\n";
+                    std::cout << termcolor::reset;
                 }
 
+                Grid15::GridHelp::safeCopy(Grid15::GridHelp::generateRandomGrid(), grid);
+
                 std::cout << std::endl;
+                printGrid(grid);
+                std::cout << std::endl;
+
+                if constexpr (ProgramStuff::Build::DEBUG)
+                    std::clog << "(debug)Reseting defaultSaveFile" << "\n";
+
+                defaultSaveFile = {""};
+                break;
             }
-            else
-                invalidSyntaxError();
-            break;
 
-        case CommandUI::command::save:
+            case CommandUI::command::slide:
+            {
+                if (argsStream >> tile)
+                    Grid15::GridHelp::swapTile(tile, grid);
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-            if (argsStream >> input)
-                saveGame(input, grid);
-            else
-                invalidSyntaxError();
-            break;
+            case CommandUI::command::print:
+            {
+                if (argsStream >> input)
+                {
+                    std::cout << std::endl;
 
-        case CommandUI::command::load:
+                    if (input == "grid")
+                        printGrid(grid);
+                    else if (input == "goal")
+                        printGrid(Grid15::Grid::GOAL_GRID);
+                    else
+                    {
+                        std::cerr << termcolor::bold << termcolor::red;
+                        std::cerr << "Sorry, but \"" << input << "\" is not a valid grid. ";
+                        std::cerr << termcolor::reset;
+                        std::cerr << "Try \"grid\" or \"goal.\"";
+                    }
 
-            if (argsStream >> input)
-                loadGame(input, grid);
-            else
-                invalidSyntaxError();
-            break;
+                    std::cout << std::endl;
+                }
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-        case CommandUI::command::options:
+            case CommandUI::command::save:
+            {
+                if (argsStream >> input)
+                    saveGame(input, grid);
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-            CommandUI::displayOptions();
-            break;
+            case CommandUI::command::load:
+            {
+                if (argsStream >> input)
+                    loadGame(input, grid);
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-        case CommandUI::command::enable:
+            case CommandUI::command::options:
+            {
+                CommandUI::displayOptions();
+                break;
+            }
 
-            if (argsStream >> input)
-                handleOptions(input, true);
-            else
-                invalidSyntaxError();
-            break;
+            case CommandUI::command::enable:
+            {
+                if (argsStream >> input)
+                    handleOptions(input, true);
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-        case CommandUI::command::disable:
+            case CommandUI::command::disable:
+            {
+                if (argsStream >> input)
+                    handleOptions(input, false);
+                else
+                    invalidSyntaxError();
+                break;
+            }
 
-            if (argsStream >> input)
-                handleOptions(input, false);
-            else
-                invalidSyntaxError();
-            break;
+            case CommandUI::command::about:
+            {
+                CommandUI::displayAbout();
+                break;
+            }
 
-        case CommandUI::command::about:
+            case CommandUI::command::exit:
+            {
+                wantsToExit = true;//if user wants to exit
+                break;
+            }
 
-            CommandUI::displayAbout();
-            break;
+            case CommandUI::command::debug:
+            {
+                std::getline(argsStream, input);
+                handleDebug(input);
+                break;
+            }
 
-        case CommandUI::command::exit:
-
-            wantsToExit = true;//if user wants to exit
-            break;
-
-        case CommandUI::command::debug:
-
-            std::getline(argsStream, input);
-            handleDebug(input);
-            break;
-
-        case CommandUI::command::invalid://this might be triggered
-        default://this not really used, but to make certain compiler warnings stop
-
-            std::cerr << termcolor::bold << termcolor::red;
-            std::cerr << "Sorry, but \"" << input << "\" is not a valid command. ";
-            std::cerr << termcolor::reset;
-            std::cerr << "Try typing \"help\" for a list." << "\n";
+            case CommandUI::command::invalid://this might be triggered
+            default://this not really used, but to make certain compiler warnings stop
+            {
+                std::cerr << termcolor::bold << termcolor::red;
+                std::cerr << "Sorry, but \"" << input << "\" is not a valid command. ";
+                std::cerr << termcolor::reset;
+                std::cerr << "Try typing \"help\" for a list." << "\n";
+            }
         }
     }
 }

@@ -59,16 +59,14 @@
 **/
 int main(int argc, char *argv[])
 {
-    if constexpr (ProgramStuff::Build::DEBUG)
-    {
-        std::clog << "(debug)Debug mode enabled because ProgramStuff::Build::DEBUG == true" << "\n";
-        std::clog << "(debug)Entering main() try block" << "\n";
-    }
-
-
-
     try
     {
+        if constexpr (ProgramStuff::Build::DEBUG)
+        {
+            std::clog << "(debug)Debug mode enabled because ProgramStuff::Build::DEBUG == true" << "\n";
+            std::clog << "(debug)Entering main() try block" << "\n";
+        }
+
         std::shared_ptr<Grid15::Grid> gameGrid {new Grid15::Grid {}};
 
         if constexpr (ProgramStuff::CHEAT_MODE)
@@ -92,11 +90,11 @@ int main(int argc, char *argv[])
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
-#if defined(ENABLE_GUI)
-#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+        #if defined(ENABLE_GUI)
+        #if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
         if (!(std::filesystem::exists("data/")))
             g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
-#endif
+        #endif
         if constexpr (ProgramStuff::GTKSlide::RUNNING_UNINSTALLED)
             Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
 
@@ -108,7 +106,7 @@ int main(int argc, char *argv[])
         //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
 
         return application->run(window);
-#else
+        #else
         std::cout << "Type \"help\" for a list of commands." << "\n";
         std::cout << termcolor::underline;
         std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
@@ -126,7 +124,7 @@ int main(int argc, char *argv[])
         if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
             std::cout << "\xF0\x9F\x91\x8B";//waving hand
         std::cout << "\n";
-#endif
+        #endif
     }
     catch (...)
     {

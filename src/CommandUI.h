@@ -91,47 +91,47 @@
  */
 class CommandUI
 {
-public:
-    /* Command Handling */
-    void start(Grid15::Grid &grid);//start the ui
+    public:
+        /* Command Handling */
+        void start(Grid15::Grid &grid);//start the ui
 
-    void handleCommand(const std::string &inputtedLine, Grid15::Grid &grid);
-
-
-    /* Grid Management */
-    static void printGrid(Grid15::Grid::gridArray_t grid);
-    static void printGrid(const Grid15::Grid &grid);
-
-private:
-    /* Tutorials, Settings and Information */
-    static void runDemo();
-    static void displayHelp();
-    static void displayAbout();
-
-    // Options (with defaults)
-    static void displayOptions();
-    void handleOptions(const std::string &option, bool optionSetting);
-    bool autoSave   {true}; ///<Autosave to last savefile
-    bool autoGrid   {true}; ///<Autoprint the grid
-    bool autoExit   {false};///<Exit the game on win automatically
-    bool easySlide  {true}; ///<Slide a tile without having to type "slide" first
-
-    void handleDebug (const std::string &inputtedLine);
+        void handleCommand(const std::string &inputtedLine, Grid15::Grid &grid);
 
 
-    /* Grid Management */
-    std::string defaultSaveFile {""};///<The savefile to use for autoSaving, found during CommandUI::saveGame or CommandUI::loadGame
-    void saveGame(const std::string &saveFile, const Grid15::Grid &grid);
-    void loadGame(const std::string &saveFile, Grid15::Grid &grid);
+        /* Grid Management */
+        static void printGrid(Grid15::Grid::gridArray_t grid);
+        static void printGrid(const Grid15::Grid &grid);
 
-    void swapTile(const std::int64_t tile, Grid15::Grid &grid);
+    private:
+        /* Tutorials, Settings and Information */
+        static void runDemo();
+        static void displayHelp();
+        static void displayAbout();
+
+        // Options (with defaults)
+        static void displayOptions();
+        void handleOptions(const std::string &option, bool optionSetting);
+        bool autoSave   {true}; ///<Autosave to last savefile
+        bool autoGrid   {true}; ///<Autoprint the grid
+        bool autoExit   {false};///<Exit the game on win automatically
+        bool easySlide  {true}; ///<Slide a tile without having to type "slide" first
+
+        void handleDebug (const std::string &inputtedLine);
 
 
-    /* Command Handling */
-    bool wantsToExit {false};///<Whether the user wants to exit or not; used internally to exit CommandUI::start
-    enum class command;
+        /* Grid Management */
+        std::string defaultSaveFile {""};///<The savefile to use for autoSaving, found during CommandUI::saveGame or CommandUI::loadGame
+        void saveGame(const std::string &saveFile, const Grid15::Grid &grid);
+        void loadGame(const std::string &saveFile, Grid15::Grid &grid);
 
-    static const std::unordered_map<std::string, CommandUI::command> commandMap;
+        void swapTile(const std::int64_t tile, Grid15::Grid &grid);
+
+
+        /* Command Handling */
+        bool wantsToExit {false};///<Whether the user wants to exit or not; used internally to exit CommandUI::start
+        enum class command;
+
+        static const std::unordered_map<std::string, CommandUI::command> commandMap;
 };
 
 #endif //COMMANDHANDLER_H

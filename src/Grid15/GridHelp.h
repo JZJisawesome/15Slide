@@ -27,37 +27,37 @@
 
 namespace Grid15
 {
-/** \brief Helps with movement of tiles, saving/loading, and other management features for a Grid
- *
- * \author John Jekel
- * \date 2018-2018
- */
-namespace GridHelp
-{
-bool validMove(const std::uint8_t tileNum, const Grid &grid);
-bool validMove(const std::uint8_t tileY, const std::uint8_t tileX, const Grid &grid);
-bool hasWon(const Grid &grid);
+    /** \brief Helps with movement of tiles, saving/loading, and other management features for a Grid
+     *
+     * \author John Jekel
+     * \date 2018-2018
+     */
+    namespace GridHelp
+    {
+        bool validMove(const std::uint8_t tileNum, const Grid &grid);
+        bool validMove(const std::uint8_t tileY, const std::uint8_t tileX, const Grid &grid);
+        bool hasWon(const Grid &grid);
 
-void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid);
-void safeCopy(const Grid &newGrid, Grid &grid);
+        void safeCopy(const Grid::gridArray_t &newGrid, Grid &grid);
+        void safeCopy(const Grid &newGrid, Grid &grid);
 
-bool validGridArray(const Grid::gridArray_t &grid);
-bool validGrid(const Grid &grid);
+        bool validGridArray(const Grid::gridArray_t &grid);
+        bool validGrid(const Grid &grid);
 
-bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index);
+        bool validIndex(const Grid::gridArray_t &grid, const Grid::index_t &index);
 
-void swapTile(const std::uint8_t tileY, const std::uint8_t tileX, Grid &grid);
-void swapTile(const std::uint8_t tileNum, Grid &grid);
+        void swapTile(const std::uint8_t tileY, const std::uint8_t tileX, Grid &grid);
+        void swapTile(const std::uint8_t tileNum, Grid &grid);
 
-Grid::gridArray_t generateRandomGridArray();
-Grid generateRandomGrid();
-bool solvableGrid(const Grid &grid);
-bool solvableGrid(const Grid::gridArray_t &gridArray);
+        Grid::gridArray_t generateRandomGridArray();
+        Grid generateRandomGrid();
+        bool solvableGrid(const Grid &grid);
+        bool solvableGrid(const Grid::gridArray_t &gridArray);
 
-void save(const std::string &saveFile, const Grid15::Grid &grid);
-void load(const std::string &saveFile, Grid &grid);
+        void save(const std::string &saveFile, const Grid15::Grid &grid);
+        void load(const std::string &saveFile, Grid &grid);
 
-void reIndex(Grid &grid);
-}
+        void reIndex(Grid &grid);
+    }
 }
 #endif //GRIDHELP_H

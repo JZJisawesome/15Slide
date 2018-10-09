@@ -25,21 +25,21 @@
 
 namespace GTKSlide
 {
-/** \class SlideFileDialog
- *
- * \brief A customized and simpler to use Gtk::FileChooserDialog
- *
- * \author John Jekel
- * \date 2018-2018
- */
-class SlideFileDialog : public Gtk::FileChooserDialog
-{
-public:
-    SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action);
-    //virtual ~SlideFileDialog();
+    /** \class SlideFileDialog
+     *
+     * \brief A customized and simpler to use Gtk::FileChooserDialog
+     *
+     * \author John Jekel
+     * \date 2018-2018
+     */
+    class SlideFileDialog : public Gtk::FileChooserDialog
+    {
+        public:
+            SlideFileDialog(Gtk::Window &parent, const std::string &title, Gtk::FileChooserAction action);
+            //virtual ~SlideFileDialog();
 
-    std::string getFilenameWithExtention();
-};
+            std::string getFilenameWithExtention();
+    };
 }
 
 #endif // SLIDEFILEDIALOG_H
