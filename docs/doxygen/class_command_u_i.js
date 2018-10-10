@@ -13,11 +13,13 @@ var class_command_u_i =
       [ "enable", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a208f156d4a803025c284bb595a7576b4", null ],
       [ "disable", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a0aaa87422396fdd678498793b6d5250e", null ],
       [ "about", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a46b3931b9959c927df4fc65fdee94b07", null ],
+      [ "licence", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a05b782695ba466e53e91ee5a9cfb3456", null ],
       [ "exit", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6af24f62eeb789199b9b2e467df3b1876b", null ],
       [ "debug", "class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6aad42f6697b035b7580e4fef93be20b4d", null ]
     ] ],
     [ "displayAbout", "class_command_u_i.html#a0401ddbf9ed0a46c13e17ac48bb872a5", null ],
     [ "displayHelp", "class_command_u_i.html#a111b3e637b22cd57c3a3d063960bad81", null ],
+    [ "displayLicence", "class_command_u_i.html#a325226f1603251d72ea1e6dac830d063", null ],
     [ "displayOptions", "class_command_u_i.html#ace4d47584e4fb7ef8b3d0114ba0bfb93", null ],
     [ "handleCommand", "class_command_u_i.html#a173e8c568a3c07a617f945cbf9567d5d", null ],
     [ "handleDebug", "class_command_u_i.html#a1aae884b3ab8fd866c0f2061c6898411", null ],

@@ -153,7 +153,7 @@ namespace ProgramStuff
     namespace GTKSlide
     {
         #ifndef __SLIDEWINDOWS
-// #define ENABLE_GUI 1
+        #define ENABLE_GUI 1
         #endif
 
         #if defined(ENABLE_GUI)
@@ -167,8 +167,8 @@ namespace ProgramStuff
         constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
         #if __has_include(<filesystem>) && __cplusplus > 201402L
-//requires a very recent compiler
-//#define ENABLE_CHECKS_WITH_STD_FILESYSTEM 1
+        //requires a very recent compiler
+        //#define ENABLE_CHECKS_WITH_STD_FILESYSTEM 1
         #endif
 
         constexpr bool AUTOSAVE_ON_SLIDE_DEFAULT {true};///<To autosave after each slide by default or not
