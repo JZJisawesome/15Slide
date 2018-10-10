@@ -84,6 +84,10 @@
  *          <td>Cool stuff about 15Slide</td>
  *      </tr>
  *      <tr>
+ *          <td>licence</td>
+ *          <td>Licence information for 15Slide and other libraries</td>
+ *      </tr>
+ *      <tr>
  *          <td>exit</td>
  *          <td>Exit 15Slide</td>
  *      </tr>
@@ -107,6 +111,7 @@ class CommandUI
         static void runDemo();
         static void displayHelp();
         static void displayAbout();
+        static void displayLicence();
 
         // Options (with defaults)
         static void displayOptions();

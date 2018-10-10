@@ -49,6 +49,7 @@ enum class CommandUI::command
     enable,
     disable,
     about,
+    licence,
     exit,
     debug
 };
@@ -67,6 +68,7 @@ const std::unordered_map<std::string, CommandUI::command> CommandUI::commandMap
     {"enable",  CommandUI::command::enable},
     {"disable", CommandUI::command::disable},
     {"about",   CommandUI::command::about},
+    {"licence",   CommandUI::command::licence},
     {"exit",    CommandUI::command::exit},
     {"debug",   CommandUI::command::debug}
 };
@@ -257,6 +259,12 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                 break;
             }
 
+            case CommandUI::command::licence:
+            {
+                CommandUI::displayLicence();
+                break;
+            }
+
             case CommandUI::command::exit:
             {
                 wantsToExit = true;//if user wants to exit
@@ -351,6 +359,7 @@ void CommandUI::displayHelp()
     cout << endl;
 
     cout << "about\t\tCool stuff about 15Slide" << "\n";
+    cout << "licence\t\tLicence information for 15Slide and other libraries" << "\n";
     cout << "exit\t\tExit 15Slide" << "\n";
     cout << endl;
 }
@@ -371,6 +380,7 @@ void CommandUI::displayAbout()
     cout << endl;
     cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
     cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
+    cout << "Type \"licence\" for 15Slide and other library licencing." << "\n";
     cout << endl;
 
 
@@ -394,7 +404,12 @@ void CommandUI::displayAbout()
         std::cout << termcolor::reset;
     }
     cout << endl;
+}
 
+/// \brief Licence information for 15Slide and other libraries
+void CommandUI::displayLicence()
+{
+    using namespace std;
 
     cout << endl;
     cout << termcolor::underline;
