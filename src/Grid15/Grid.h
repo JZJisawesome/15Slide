@@ -53,15 +53,15 @@ namespace Grid15
             void setIndex(const index_t &newIndex);
 
             /* Storage */
-            //the grid, with [x] and [y] indexes from top left to bottom right
+            //the grid, with [y] and [x] indexes from top left to bottom right
             //0 is no tile, 1 to 15 are the other tiles
             //FIXME [y][x] should be [x][y]
             gridArray_t gridArray {};///<The grid
 
             //coordinates of tiles on the grid
             //0 is no tile, 1 to 15 are the other tiles
-            //eg. index[5][1] is the y coordinate of the tile 5 on the game grid from top left to bottom right
-            //FIXME [tile][0] is actually y, [tile][1] is x
+            //eg. index[5][1] is the x coordinate of the tile 5 on the game grid from top left to bottom right
+            //FIXME [tile][0] is y, [tile][1] is x, again these should be flipped
             index_t index {};///<The index to keep track of tile locations
 
             static constexpr std::size_t NO_TILE   {0};    ///<The number representing the lack of a tile
