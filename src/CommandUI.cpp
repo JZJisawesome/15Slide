@@ -34,7 +34,7 @@
 
 
 /* Command Handling */
-///Commands
+///Possible commands
 enum class CommandUI::command
 {
     invalid,
@@ -54,7 +54,7 @@ enum class CommandUI::command
     debug
 };
 
-///A map from std::string to CommandUI::command
+///A map from std::string to CommandUI::command for input parsing
 const std::unordered_map<std::string, CommandUI::command> CommandUI::commandMap
 {
     {"help",    CommandUI::command::help},
@@ -87,14 +87,12 @@ void CommandUI::start(Grid15::Grid &grid)
         if constexpr (ProgramStuff::OS::WINDOWS)
             std::cout << "slide>";
         else
-            std::cout << "slide»";
+            std::cout << "slide»";//unicode
         std::cout << termcolor::reset;
 
         std::getline(std::cin, inputtedLine);//this seems unnecessary and slow
         handleCommand(inputtedLine, grid);
     }
-
-    wantsToExit = {false};//reset the variable
 }
 
 /** \brief Handles a command from the user and does something acordingly
@@ -126,19 +124,19 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
     }
     else
     {
-        std::string input {};
+        std::string input {};//place for raw user input
 
         argsStream.clear();//reset bad and fail bits
         argsStream >> input;//get the first command
 
-        CommandUI::command parsedCommand {CommandUI::command::invalid};
+        CommandUI::command parsedCommand {CommandUI::command::invalid};//default of invalid comman
 
         //make sure command is valid
         try
         {
-            parsedCommand = {CommandUI::commandMap.at(input)};
+            parsedCommand = {CommandUI::commandMap.at(input)};//throws exception if invalid
         }
-        catch (std::out_of_range &e) {} //parsedCommand is set to invalid at initilization
+        catch (std::out_of_range &e) {} //parsedCommand will remain invalid if a bad command is given
 
         //switch for command
         switch (parsedCommand)
@@ -148,13 +146,11 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                 CommandUI::displayHelp();
                 break;
             }
-
             case CommandUI::command::demo:
             {
                 CommandUI::runDemo();
                 break;
             }
-
             case CommandUI::command::newgame:
             {
                 if constexpr (ProgramStuff::CHEAT_MODE)
@@ -176,7 +172,6 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                 defaultSaveFile = {""};
                 break;
             }
-
             case CommandUI::command::slide:
             {
                 if (argsStream >> tile)
@@ -185,7 +180,6 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::print:
             {
                 if (argsStream >> input)
@@ -210,7 +204,6 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::save:
             {
                 if (argsStream >> input)
@@ -219,7 +212,6 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::load:
             {
                 if (argsStream >> input)
@@ -228,13 +220,11 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::options:
             {
                 CommandUI::displayOptions();
                 break;
             }
-
             case CommandUI::command::enable:
             {
                 if (argsStream >> input)
@@ -243,7 +233,6 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::disable:
             {
                 if (argsStream >> input)
@@ -252,32 +241,27 @@ void CommandUI::handleCommand(const std::string &inputtedLine, Grid15::Grid &gri
                     invalidSyntaxError();
                 break;
             }
-
             case CommandUI::command::about:
             {
                 CommandUI::displayAbout();
                 break;
             }
-
             case CommandUI::command::licence:
             {
                 CommandUI::displayLicence();
                 break;
             }
-
             case CommandUI::command::exit:
             {
                 wantsToExit = true;//if user wants to exit
                 break;
             }
-
             case CommandUI::command::debug:
             {
                 std::getline(argsStream, input);
                 handleDebug(input);
                 break;
             }
-
             case CommandUI::command::invalid://this might be triggered
             default://this not really used, but to make certain compiler warnings stop
             {
@@ -531,13 +515,13 @@ void CommandUI::displayOptions()
 void CommandUI::handleOptions(const std::string &option, bool optionSetting)
 {
     if      (option == "autoSave")
-        autoSave = optionSetting;
+        autoSave = {optionSetting};
     else if (option == "autoGrid")
-        autoGrid = optionSetting;
+        autoGrid = {optionSetting};
     else if (option == "autoExit")
-        autoExit = optionSetting;
+        autoExit = {optionSetting};
     else if (option == "easySlide")
-        easySlide  = optionSetting;
+        easySlide = {optionSetting};
     else
     {
         std::cerr << termcolor::bold << termcolor::red;
@@ -556,10 +540,10 @@ void CommandUI::handleDebug(const std::string& inputtedLine)
 {
     if constexpr (ProgramStuff::Build::DEBUG)
     {
-        std::string input {};
+        std::string input {};//place for raw user input
 
         std::stringstream debugStream{inputtedLine};
-        debugStream >> input;
+        debugStream >> input;//parse first word
 
         if (input == "help")
         {
@@ -584,12 +568,10 @@ void CommandUI::handleDebug(const std::string& inputtedLine)
         }
         else
         {
-            using namespace std;
-
-            cerr << termcolor::bold << termcolor::red;
-            cerr << "(debug)Sorry, but \"" << input << "\" is not a valid debug command. ";
-            cerr << termcolor::reset;
-            cerr << "Try typing \"debug help\" for a list." << "\n";
+            std::cerr << termcolor::bold << termcolor::red;
+            std::cerr << "(debug)Sorry, but \"" << input << "\" is not a valid debug command. ";
+            std::cerr << termcolor::reset;
+            std::cerr << "Try typing \"debug help\" for a list." << std::endl;
         }
     }
     else//release build
@@ -604,14 +586,15 @@ void CommandUI::handleDebug(const std::string& inputtedLine)
 void CommandUI::printGrid(const Grid15::Grid::gridArray_t gridArray)
 {
     //we use printf here for speed, except for termcolor which has to use ostream
+    //probably unnessary, and just makes things confusing
 
     if constexpr (ProgramStuff::USE_UTF8_TERMINAL)
     {
-        std::printf("┏━━━┳━━━┳━━━┳━━━┓\n");
+        std::printf("┏━━━┳━━━┳━━━┳━━━┓\n");//start
 
         for (std::uint_fast32_t i {0}; i < 4; ++i)
         {
-            std::printf("┃");
+            std::printf("┃");//coloums
             for (std::uint_fast32_t j {0}; j < 4; ++j)
             {
                 if (gridArray[i][j] == Grid15::Grid::NO_TILE)
@@ -623,24 +606,24 @@ void CommandUI::printGrid(const Grid15::Grid::gridArray_t gridArray)
                 }
                 else
                 {
-                    if (gridArray[i][j] <= 9)//extra space for small numbers
+                    if (gridArray[i][j] <= 9)//add extra space for single digit numbers
                         std::printf(" ");
 
                     std::printf(" %d", static_cast<int> (gridArray[i][j]));
                 }
 
-                std::printf("┃");
+                std::printf("┃");//coloums
             }
 
             std::printf("\n");
 
             if ((i <= 2))//all except last line
-                std::printf("┣━━━╋━━━╋━━━╋━━━┫\n");//grid and its new line
+                std::printf("┣━━━╋━━━╋━━━╋━━━┫\n");//rows
         }
 
-        std::printf("┗━━━┻━━━┻━━━┻━━━┛\n");
+        std::printf("┗━━━┻━━━┻━━━┻━━━┛\n");//end
     }
-    else
+    else//there is no border for this non UTF-8 method
     {
         for (std::uint_fast32_t i {0}; i < 4; ++i)
         {
@@ -656,7 +639,7 @@ void CommandUI::printGrid(const Grid15::Grid::gridArray_t gridArray)
                 else
                     std::printf("%d", static_cast<int> (gridArray[i][j]));
 
-                if (gridArray[i][j] <= 9)
+                if (gridArray[i][j] <= 9)//add extra space for single digit numbers
                     std::printf("   ");
                 else
                     std::printf("  ");
@@ -695,6 +678,7 @@ void CommandUI::saveGame(const std::string &saveFile, const Grid15::Grid &grid)
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)Set defaultSaveFile to " << saveFile << "\n";
 
+        //we only get here if above works
         defaultSaveFile = {saveFile};
     }
     catch (std::ios_base::failure &e)
@@ -727,6 +711,7 @@ void CommandUI::loadGame(const std::string &saveFile, Grid15::Grid &grid)
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)Set defaultSaveFile to " << saveFile << "\n";
 
+        //we only get here if above works
         defaultSaveFile = {saveFile};
     }
     catch (std::ios_base::failure &e)
@@ -760,10 +745,9 @@ void CommandUI::swapTile(const std::int64_t tile, Grid15::Grid &grid)
     {
         Grid15::GridHelp::swapTile(tile, grid);
 
-        if (Grid15::GridHelp::hasWon(grid) && autoExit)
-            wantsToExit = true;
+        wantsToExit = {Grid15::GridHelp::hasWon(grid) && autoExit};//if the game is over and autoExit is on then exit
 
-        if (autoSave && (defaultSaveFile != ""))
+        if (autoSave && (defaultSaveFile != ""))//if auto save is on and there is a default save file
         {
             try
             {
@@ -774,7 +758,7 @@ void CommandUI::swapTile(const std::int64_t tile, Grid15::Grid &grid)
             }
             catch (std::ios_base::failure &e)
             {
-                std::cerr << "Warning: The autosave failed. Try saving to a new location using \"save,\" or change permissions." << "\n";
+                std::cerr << "Warning: The autosave failed. Try saving to a new location using \"save,\" or change file permissions." << std::endl;
             }
         }
     }

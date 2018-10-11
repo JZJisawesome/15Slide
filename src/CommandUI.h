@@ -29,9 +29,6 @@
  *
  * \brief A UI for commands from the terminal for 15Slide
  *
- * \author John Jekel
- * \date 2017-2018
- *
  * Valid Commands
  *
  * <table>
@@ -92,6 +89,9 @@
  *          <td>Exit 15Slide</td>
  *      </tr>
  * </table>
+ *
+ * \author John Jekel
+ * \date 2017-2018
  */
 class CommandUI
 {

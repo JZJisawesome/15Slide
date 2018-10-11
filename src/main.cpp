@@ -62,10 +62,7 @@ int main(int argc, char *argv[])
     try
     {
         if constexpr (ProgramStuff::Build::DEBUG)
-        {
             std::clog << "(debug)Debug mode enabled because ProgramStuff::Build::DEBUG == true" << "\n";
-            std::clog << "(debug)Entering main() try block" << "\n";
-        }
 
         std::shared_ptr<Grid15::Grid> gameGrid {new Grid15::Grid {}};
 
@@ -90,32 +87,38 @@ int main(int argc, char *argv[])
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
+
         #if defined(ENABLE_GUI)
+
         #if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
         if (!(std::filesystem::exists("data/")))
             g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
         #endif
+
         if constexpr (ProgramStuff::GTKSlide::RUNNING_UNINSTALLED)
             Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
 
-        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");
+        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");//give GTK the command line arguments
 
         //application refrence is needed because get_application returns nullptr sometimes
-        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid to the GUI (may want to move to heap)
+        GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid and application to the GUI (may want to move to heap, see below)
 
-        //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid to the GUI
+        //std::unique_ptr<GTKSlide::MainWindow> window {new GTKSlide::MainWindow {application, gameGrid}};//give the gameGrid and application to the GUI
 
-        return application->run(window);
+        return application->run(window);//run GTKSlide and then end the main function returning the code from GTK
         #else
+
+
         std::cout << "Type \"help\" for a list of commands." << "\n";
         std::cout << termcolor::underline;
         std::cout << "If it's your first time playing, type \"demo.\"" << "\n";
         std::cout << termcolor::reset;
         std::cout << std::endl;
 
-        CommandUI::printGrid(*gameGrid);
+        CommandUI::printGrid(*gameGrid);//print initial grid
         std::cout << std::endl;
 
+        //create a new CommandUI and give the grid to it
         CommandUI terminalUI {};
         terminalUI.start(*gameGrid);
 

@@ -107,7 +107,10 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains the game engine for 15Slide: the <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a> and management tools. </p>
-<p>Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are typically switched with X. This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide stuff. See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this.</p>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd><p class="startdd">Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are switched with X in <a class="el" href="namespace_grid15_1_1_grid_help.html" title="Helps with movement of tiles, saving/loading, and other management features for a Grid...">GridHelp</a>. </p>
+<p>This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide code that uses it. </p>
+<p class="enddd">See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this.</p>
+</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>John Jekel </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-2018 </dd></dl>
 </div></div><!-- contents -->
@@ -116,7 +119,7 @@ Classes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_grid15.html">Grid15</a></li>
-    <li class="footer">Generated on Tue Oct 9 2018 21:06:46 for 15Slide by
+    <li class="footer">Generated on Wed Oct 10 2018 23:24:02 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

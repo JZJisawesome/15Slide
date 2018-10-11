@@ -35,6 +35,7 @@ namespace Grid15
     {
         public:
             /* Typedefs */
+            //TODO change to std::uint_fast32_t for speed
             typedef std::array<std::array<std::uint8_t, 4>, 4>  gridArray_t;///<The type used for Grid::gridArray
             typedef std::array<std::array<std::uint8_t, 2>, 16> index_t;///<The type used for Grid::index
 
@@ -64,6 +65,7 @@ namespace Grid15
             //FIXME [tile][0] is y, [tile][1] is x, again these should be flipped
             index_t index {};///<The index to keep track of tile locations
 
+            //TODO change "no tile" to "blank tile" or just "blank"
             static constexpr std::size_t NO_TILE   {0};    ///<The number representing the lack of a tile
             static constexpr std::size_t TILE_MAX  {15};   ///<The maximum tile number
             static constexpr std::size_t TILE_MIN  {0};    ///<The mininum tile number
@@ -72,6 +74,7 @@ namespace Grid15
             static constexpr std::size_t X_MAX     {3};    ///<The maximum x coordinate
             static constexpr std::size_t X_MIN     {0};    ///<The mininum x coordinate
 
+            ///How the gridArray should be when the game is won
             static constexpr gridArray_t GOAL_GRID
             {
                 {

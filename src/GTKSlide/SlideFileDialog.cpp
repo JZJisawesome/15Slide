@@ -36,12 +36,14 @@ namespace GTKSlide
 
         add_button("_Cancel", Gtk::RESPONSE_CANCEL);
 
-        if (action == Gtk::FILE_CHOOSER_ACTION_OPEN)
+        if (action == Gtk::FILE_CHOOSER_ACTION_OPEN)//If it is being used for loading a grid
             add_button("_Open", Gtk::RESPONSE_OK);
-        else if (action == Gtk::FILE_CHOOSER_ACTION_SAVE)
+        else if (action == Gtk::FILE_CHOOSER_ACTION_SAVE)//If it is being used for saving a grid
             add_button("_Save", Gtk::RESPONSE_OK);
         else
             throw std::invalid_argument {"Invalid Gtk::FileChooserAction!"};
+
+        //create file filters
 
         Glib::RefPtr<Gtk::FileFilter> filter_slideSave = Gtk::FileFilter::create();
         filter_slideSave->set_name("15Slide save files (.15S)");

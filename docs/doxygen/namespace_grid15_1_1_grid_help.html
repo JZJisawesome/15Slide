@@ -122,10 +122,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a07f6980997cd50a5f36a47b595e76a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a> is valid, including grid array and index.  <a href="#a07f6980997cd50a5f36a47b595e76a3d">More...</a><br /></td></tr>
 <tr class="separator:a07f6980997cd50a5f36a47b595e76a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d584a7aaae840c42584dc173780e97b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_grid15_1_1_grid.html#a08fbc54d10a627ba663420e2653f0ae3">Grid15::Grid::gridArray_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_grid15_1_1_grid_help.html#a2d584a7aaae840c42584dc173780e97b">generateRandomGridArray</a> ()</td></tr>
-<tr class="memdesc:a2d584a7aaae840c42584dc173780e97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new, random grid array.  <a href="#a2d584a7aaae840c42584dc173780e97b">More...</a><br /></td></tr>
+<tr class="memdesc:a2d584a7aaae840c42584dc173780e97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new, random, and solvable grid array.  <a href="#a2d584a7aaae840c42584dc173780e97b">More...</a><br /></td></tr>
 <tr class="separator:a2d584a7aaae840c42584dc173780e97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba6d19702b34d4b5594bdad7b0129a93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_grid15_1_1_grid.html">Grid</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_grid15_1_1_grid_help.html#aba6d19702b34d4b5594bdad7b0129a93">generateRandomGrid</a> ()</td></tr>
-<tr class="memdesc:aba6d19702b34d4b5594bdad7b0129a93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new, random <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a>.  <a href="#aba6d19702b34d4b5594bdad7b0129a93">More...</a><br /></td></tr>
+<tr class="memdesc:aba6d19702b34d4b5594bdad7b0129a93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new, random, and solvable <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a>.  <a href="#aba6d19702b34d4b5594bdad7b0129a93">More...</a><br /></td></tr>
 <tr class="separator:aba6d19702b34d4b5594bdad7b0129a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd18cca17b55f8159da4f4a074d54d13"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_grid15_1_1_grid_help.html#afd18cca17b55f8159da4f4a074d54d13">solvableGrid</a> (const <a class="el" href="class_grid15_1_1_grid.html#a08fbc54d10a627ba663420e2653f0ae3">Grid::gridArray_t</a> &amp;gridArray)</td></tr>
 <tr class="memdesc:afd18cca17b55f8159da4f4a074d54d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a grid is solvable or not.  <a href="#afd18cca17b55f8159da4f4a074d54d13">More...</a><br /></td></tr>
@@ -145,6 +145,10 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helps with movement of tiles, saving/loading, and other management features for a <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a>. </p>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000002">Bug:</a></b></dt><dd><p class="startdd">Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are switched with X in <a class="el" href="namespace_grid15_1_1_grid_help.html" title="Helps with movement of tiles, saving/loading, and other management features for a Grid...">GridHelp</a>. </p>
+<p>This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide code that uses it. </p>
+<p class="enddd">See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this.</p>
+</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>John Jekel </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -163,7 +167,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new, random <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a>. </p>
+<p>Creates a new, random, and solvable <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="class_grid15_1_1_grid.html" title="A data type consisting of a 4 by 4 grid array, and a 16 by 2 index, for use with 15Slide. ">Grid</a> </dd></dl>
 
 </div>
@@ -183,7 +187,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new, random grid array. </p>
+<p>Creates a new, random, and solvable grid array. </p>
 <dl class="section return"><dt>Returns</dt><dd>A new grid array </dd></dl>
 
 </div>
@@ -211,7 +215,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>If Grid::grid is equal to <a class="el" href="class_grid15_1_1_grid.html#a50366f79ba51a37955b21c747434157c">Grid::GOAL_GRID</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>If Grid::grid is equal to <a class="el" href="class_grid15_1_1_grid.html#a50366f79ba51a37955b21c747434157c" title="How the gridArray should be when the game is won. ">Grid::GOAL_GRID</a> </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">std::invalid_argument</td><td>If the grid array is not valid </td></tr>
@@ -787,7 +791,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_grid15.html">Grid15</a></li><li class="navelem"><a class="el" href="namespace_grid15_1_1_grid_help.html">GridHelp</a></li>
-    <li class="footer">Generated on Tue Oct 9 2018 21:06:46 for 15Slide by
+    <li class="footer">Generated on Wed Oct 10 2018 23:24:03 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

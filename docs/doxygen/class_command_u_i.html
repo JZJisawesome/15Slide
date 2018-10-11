@@ -120,7 +120,7 @@ Public Types</h2></td></tr>
 <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6af24f62eeb789199b9b2e467df3b1876b">command::exit</a>, 
 <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6aad42f6697b035b7580e4fef93be20b4d">command::debug</a>
 <br />
- }<tr class="memdesc:a92e7ae131d93eaad24ace916bdd153a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commands.  <a href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6">More...</a><br /></td></tr>
+ }<tr class="memdesc:a92e7ae131d93eaad24ace916bdd153a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible commands.  <a href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a92e7ae131d93eaad24ace916bdd153a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -202,13 +202,11 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a6ad1dfe37fa58da1ab53ea47b349e26c"><td class="memItemLeft" align="right" valign="top">static const std::unordered_map&lt; std::string, <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6">CommandUI::command</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#a6ad1dfe37fa58da1ab53ea47b349e26c">commandMap</a></td></tr>
-<tr class="memdesc:a6ad1dfe37fa58da1ab53ea47b349e26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map from std::string to <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6" title="Commands. ">CommandUI::command</a>.  <a href="#a6ad1dfe37fa58da1ab53ea47b349e26c">More...</a><br /></td></tr>
+<tr class="memdesc:a6ad1dfe37fa58da1ab53ea47b349e26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map from std::string to <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6" title="Possible commands. ">CommandUI::command</a> for input parsing.  <a href="#a6ad1dfe37fa58da1ab53ea47b349e26c">More...</a><br /></td></tr>
 <tr class="separator:a6ad1dfe37fa58da1ab53ea47b349e26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A UI for commands from the terminal for 15Slide. </p>
-<dl class="section author"><dt>Author</dt><dd>John Jekel </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2017-2018</dd></dl>
 <p>Valid Commands</p>
 <table class="doxtable">
 <tr>
@@ -240,6 +238,8 @@ Static Private Attributes</h2></td></tr>
 <tr>
 <td>exit </td><td>Exit 15Slide  </td></tr>
 </table>
+<dl class="section author"><dt>Author</dt><dd>John Jekel </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2017-2018 </dd></dl>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a92e7ae131d93eaad24ace916bdd153a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92e7ae131d93eaad24ace916bdd153a6">&#9670;&nbsp;</a></span>command</h2>
@@ -261,7 +261,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Commands. </p>
+<p>Possible commands. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a92e7ae131d93eaad24ace916bdd153a6afedb2d84cafe20862cb4399751a8a7e3"></a>invalid&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a92e7ae131d93eaad24ace916bdd153a6a657f8b8da628ef83cf69101b6817150a"></a>help&#160;</td><td class="fielddoc"></td></tr>
@@ -862,7 +862,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">{</div><div class="line">    {<span class="stringliteral">&quot;help&quot;</span>,    <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a657f8b8da628ef83cf69101b6817150a">CommandUI::command::help</a>},</div><div class="line">    {<span class="stringliteral">&quot;demo&quot;</span>,    <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6afe01ce2a7fbac8fafaed7c982a04e229">CommandUI::command::demo</a>},</div><div class="line">    {<span class="stringliteral">&quot;newgame&quot;</span>, <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6ad955ea80b62e29a04d7e0c3e146e9c39">CommandUI::command::newgame</a>},</div><div class="line">    {<span class="stringliteral">&quot;slide&quot;</span>,   <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6ae02bd40f5c8fe41d28e4b72550a8bdd5">CommandUI::command::slide</a>},</div><div class="line">    {<span class="stringliteral">&quot;print&quot;</span>,   <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6af7531e2d0ea27233ce00b5f01c5bf335">CommandUI::command::print</a>},</div><div class="line">    {<span class="stringliteral">&quot;save&quot;</span>,    <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a43781db5c40ecc39fd718685594f0956">CommandUI::command::save</a>},</div><div class="line">    {<span class="stringliteral">&quot;load&quot;</span>,    <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6aec4d1eb36b22d19728e9d1d23ca84d1c">CommandUI::command::load</a>},</div><div class="line">    {<span class="stringliteral">&quot;options&quot;</span>, <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a93da65a9fd0004d9477aeac024e08e15">CommandUI::command::options</a>},</div><div class="line">    {<span class="stringliteral">&quot;enable&quot;</span>,  <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a208f156d4a803025c284bb595a7576b4">CommandUI::command::enable</a>},</div><div class="line">    {<span class="stringliteral">&quot;disable&quot;</span>, <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a0aaa87422396fdd678498793b6d5250e">CommandUI::command::disable</a>},</div><div class="line">    {<span class="stringliteral">&quot;about&quot;</span>,   <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a46b3931b9959c927df4fc65fdee94b07">CommandUI::command::about</a>},</div><div class="line">    {<span class="stringliteral">&quot;licence&quot;</span>,   <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6a05b782695ba466e53e91ee5a9cfb3456">CommandUI::command::licence</a>},</div><div class="line">    {<span class="stringliteral">&quot;exit&quot;</span>,    <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6af24f62eeb789199b9b2e467df3b1876b">CommandUI::command::exit</a>},</div><div class="line">    {<span class="stringliteral">&quot;debug&quot;</span>,   <a class="code" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6aad42f6697b035b7580e4fef93be20b4d">CommandUI::command::debug</a>}</div><div class="line">}</div></div><!-- fragment -->
-<p>A map from std::string to <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6" title="Commands. ">CommandUI::command</a>. </p>
+<p>A map from std::string to <a class="el" href="class_command_u_i.html#a92e7ae131d93eaad24ace916bdd153a6" title="Possible commands. ">CommandUI::command</a> for input parsing. </p>
 
 </div>
 </div>
@@ -948,7 +948,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_command_u_i.html">CommandUI</a></li>
-    <li class="footer">Generated on Tue Oct 9 2018 21:06:46 for 15Slide by
+    <li class="footer">Generated on Wed Oct 10 2018 23:24:02 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

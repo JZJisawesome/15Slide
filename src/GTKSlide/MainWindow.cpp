@@ -162,8 +162,8 @@ namespace GTKSlide
                 {
                     if (!save())
                         break;//do not genereate new grid if user cancles saving/saving fails
-                    [[fallthrough]]
                 }
+                [[fallthrough]]
                 case Gtk::RESPONSE_REJECT:
                 {
                     //reset previous save file

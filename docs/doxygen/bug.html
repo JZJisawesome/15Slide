@@ -84,15 +84,25 @@ $(document).ready(function(){initNavTree('bug.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_bug000001"></a>Member <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a74d907507d1161cc616c5a2cbca56a8d">GTKSlide::MainWindow::createErrorDialogAndRun</a>  (std::string errorMessage, std::string details="")</dt>
-<dd>Parameters are not string refrences (const std::string &amp;) </dd>
+<dt><a class="anchor" id="_bug000001"></a>Namespace <a class="el" href="namespace_grid15.html">Grid15</a>  </dt>
+<dd><p class="startdd">Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are switched with X in <a class="el" href="namespace_grid15_1_1_grid_help.html" title="Helps with movement of tiles, saving/loading, and other management features for a Grid...">GridHelp</a>. </p>
+<p>This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide code that uses it. </p>
+<p class="enddd">See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this. </p>
+</dd>
+<dt><a class="anchor" id="_bug000002"></a>Namespace <a class="el" href="namespace_grid15_1_1_grid_help.html">Grid15::GridHelp</a>  </dt>
+<dd><p class="startdd">Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are switched with X in <a class="el" href="namespace_grid15_1_1_grid_help.html" title="Helps with movement of tiles, saving/loading, and other management features for a Grid...">GridHelp</a>. </p>
+<p>This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide code that uses it. </p>
+<p class="enddd">See <a href="https://github.com/JZJisawesome/15Slide/issues/22">https://github.com/JZJisawesome/15Slide/issues/22</a> for details and possible changes to this. </p>
+</dd>
+<dt><a class="anchor" id="_bug000003"></a>Member <a class="el" href="class_g_t_k_slide_1_1_main_window.html#a74d907507d1161cc616c5a2cbca56a8d">GTKSlide::MainWindow::createErrorDialogAndRun</a>  (std::string errorMessage, std::string details="")</dt>
+<dd>Parameters are not string refrences or string views (const std::string &amp; OR std::string_view) </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Oct 9 2018 21:06:46 for 15Slide by
+    <li class="footer">Generated on Wed Oct 10 2018 23:24:02 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

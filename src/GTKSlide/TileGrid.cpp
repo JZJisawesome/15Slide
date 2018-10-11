@@ -40,34 +40,37 @@ namespace GTKSlide
      */
     TileGrid::TileGrid(Gtk::Window &parent, std::shared_ptr<Grid15::Grid> &newGridPtr, std::shared_ptr<SaveManager> &saveManagerPtr)
     {
-        parentPtr = {&parent};
-        saveManager = {saveManagerPtr};
+        parentPtr = {&parent};//save a pointer of the parent window
+        saveManager = {saveManagerPtr};//save a pointer to the save manager
 
         if (Grid15::GridHelp::validGrid(*newGridPtr))
             gridPtr = newGridPtr;
         else
-            std::invalid_argument {"Grid invalid!"};
+            throw std::invalid_argument {"Grid invalid!"};
 
-        //create the first row of tiles
+        //create the first row of tile buttons
         for (std::uint_fast32_t i {0}; i < 4; ++i)
         {
+            //add signal handler
             gridButtons[twoDToSingle(0, i)].signal_clicked().connect
             (
                 sigc::bind<std::uint8_t> (sigc::mem_fun(*this, &TileGrid::on_tile_clicked), twoDToSingle(0, i))//bind the tile coordinates
             );
 
-            add(gridButtons[twoDToSingle(0, i)]);
+            add(gridButtons[twoDToSingle(0, i)]);//add button to grid
         }
 
         //attach remaning tiles underneath first row
         for (std::uint_fast32_t i {1}; i < 4; ++i)
             for (std::uint_fast32_t j {0}; j < 4; ++j)
             {
+                //add signal handler
                 gridButtons[twoDToSingle(i, j)].signal_clicked().connect
                 (
                     sigc::bind<std::uint8_t> (sigc::mem_fun(*this, &TileGrid::on_tile_clicked), twoDToSingle(i, j))//bind the tile coordinates
                 );
 
+                //add button to grid under last row
                 attach_next_to(gridButtons[twoDToSingle(i, j)], gridButtons[twoDToSingle(i - 1, j)], Gtk::POS_BOTTOM, 1, 1);
             }
 
@@ -87,7 +90,7 @@ namespace GTKSlide
 
         if constexpr (ProgramStuff::Build::DEBUG)
         {
-            std::clog << std::boolalpha;
+            std::clog << std::boolalpha;//makes true or false statements appear as "true" or "false"
             std::clog << "(debug)Coordinates (" << static_cast<int> (x) << ", " << static_cast<int>(y);
             std::clog << ") aka gridArray" << "[" << static_cast<int>(y) << "][" << static_cast<int> (x) << "]";
             std::clog << " was pressed, with tile number " << static_cast<int> ((*gridPtr).gridArray[y][x]);
@@ -100,23 +103,22 @@ namespace GTKSlide
                 std::clog << "(debug)Swapping tile... ";
 
             Grid15::GridHelp::swapTile(y, x, *gridPtr);
-            saveManager->isSaved = {false};
+            saveManager->isSaved = {false};//just changed grid, must be unsaved
 
-            updateTiles();//fixme: just relable the 2 tiles instead
+            updateTiles();//FIXME just relable the 2 tiles instead
 
+            //check if user has won
             if constexpr (ProgramStuff::Build::DEBUG)
                 std::clog << "Won: " << Grid15::GridHelp::hasWon(*gridPtr) << "\n";
-
 
             if (Grid15::GridHelp::hasWon(*gridPtr))
                 displayWonDialog();
 
-            if (saveManager->autoSave && (saveManager->saveFile != ""))
+            if (saveManager->autoSave && (saveManager->saveFile != ""))//if auto save is enabled and there is a save file
             {
                 try
                 {
-                    Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handling
-
+                    Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);
 
                     //we only get here if above works
                     saveManager->isSaved = {true};
@@ -126,6 +128,7 @@ namespace GTKSlide
                 }
                 catch (std::ios_base::failure &e)
                 {
+                    //reset broken save file so user can fix in save as
                     saveManager->saveFile = {""};
                     saveManager->isSaved = {false};
 
@@ -134,6 +137,7 @@ namespace GTKSlide
 
                     errorDialog.set_secondary_text("Go to File -> Save As to choose a new save location");
 
+                    //display dialog
                     errorDialog.set_transient_for(*parentPtr);
                     errorDialog.show_all();
                     errorDialog.present();
@@ -191,7 +195,7 @@ namespace GTKSlide
         else
             wonDialog.set_secondary_text("Great Work!!!");
 
-        //super jankey looking and discouraged way to remove ok button
+        //super jankey looking and discouraged way to remove ok button from dialog
         wonDialog.get_action_area()->remove
         (
             *(wonDialog.get_action_area()->get_children()[0])//1st and only element is ok button (gone now)
@@ -199,6 +203,7 @@ namespace GTKSlide
 
         wonDialog.add_button("YAY!", Gtk::RESPONSE_OK);
 
+        //display dialog
         wonDialog.set_transient_for(*parentPtr);
         wonDialog.show_all();
         wonDialog.present();

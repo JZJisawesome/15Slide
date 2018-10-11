@@ -36,7 +36,7 @@ namespace GTKSlide
     {
         public:
             std::string saveFile    {""};                                               ///<The save file
-            bool isSaved            {false};                                            ///<Whether the file is saved or not
+            bool isSaved            {false};                                            ///<Whether the file is saved or not currently
             bool autoSave           {ProgramStuff::GTKSlide::AUTOSAVE_ON_SLIDE_DEFAULT};///<Whether to autosave or not
     };
 }

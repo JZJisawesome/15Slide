@@ -62,6 +62,7 @@ namespace Grid15
 
             if (validMove(tileY, tileX, grid))
             {
+                //original location of blank tile
                 std::uint8_t oldNoTileY = {grid.index[Grid::NO_TILE][0]};
                 std::uint8_t oldNoTileX = {grid.index[Grid::NO_TILE][1]};
 
@@ -150,18 +151,18 @@ namespace Grid15
                 for (std::uint_fast32_t j {0}; j < 4; ++j)
                 {
                     if (grid[i][j] > Grid::TILE_MAX)
-                        return false;//too high a number (out of bounds)
+                        return false;//if too high a number (out of bounds)
                 }
 
 
             for (std::uint_fast32_t i {0}; i < 4; ++i)
                 for (std::uint_fast32_t j {0}; j < 4; ++j)
-                    numCount[grid[i][j]] += 1;//increment each number
+                    numCount[grid[i][j]] += 1;//increment each number to see how many of each
 
             for (std::uint_fast32_t i {0}; i < 16; ++i)
             {
                 if (!(numCount[i] == 1))
-                    return false;//exactly 1 of each number
+                    return false;//if exactly 1 of each number
             }
 
             return true;//everything is good
@@ -224,7 +225,7 @@ namespace Grid15
             return validGridArray(grid.gridArray) && validIndex(grid.gridArray, grid.index);//fixme validGridArray is used in valid index already (unnnessary, but again unavoidable)
         }
 
-        /** \brief Creates a new, random grid array
+        /** \brief Creates a new, random, and solvable grid array
          *
          * \return A new grid array
          */
@@ -240,26 +241,27 @@ namespace Grid15
                 13, 14, 15, Grid::NO_TILE
             };
 
-            Grid::gridArray_t multiDimentional {};
+            Grid::gridArray_t multiDimentional {};//a normal gridArray
 
+            //random number generator with seed
             auto rd = std::default_random_engine(std::chrono::system_clock::now().time_since_epoch().count());
 
             do
             {
-                std::shuffle(std::begin(tempGrid), std::end(tempGrid), rd);//get a seed and shuffle grid randomly
+                std::shuffle(std::begin(tempGrid), std::end(tempGrid), rd);//shuffle grid randomly with rd
 
-                //copy it to the actual game grid (ineficient, but direct shuffle would just move rows, not in between)
+                //copy 2d to 3d array
                 for (std::uint_fast32_t i {0}; i < 4; ++i)
                     for (std::uint_fast32_t j {0}; j < 4; ++j)
                         multiDimentional[i][j] = {tempGrid[(i * 4) + j]};
 
             }
-            while (!solvableGrid(multiDimentional));
+            while (!solvableGrid(multiDimentional));//check if grid is solvable
 
             return multiDimentional;
         }
 
-        /** \brief Creates a new, random Grid
+        /** \brief Creates a new, random, and solvable Grid
          *
          * \return A new Grid
          */
@@ -267,7 +269,7 @@ namespace Grid15
         {
             Grid newGrid {generateRandomGridArray()};//set the new grid array here
 
-            reIndex(newGrid);
+            reIndex(newGrid);//creates a new index
 
             return newGrid;
         }
@@ -349,18 +351,17 @@ namespace Grid15
             if (validGridArray(grid.gridArray))
             {
                 std::ofstream saveFileStream {};
-
                 saveFileStream.exceptions(saveFileStream.failbit | saveFileStream.badbit);//to throw exceptions if something goes wrong
                 saveFileStream.open(saveFile);
 
-                std::string saveFileBuffer {};//to avoid to many write calls and speed up the process
+                std::string saveFileBuffer {};//to avoid to many write calls and therefor speed up the process
 
+                //write grid to buffer
                 for (std::uint_fast32_t i {0}; i < 4; ++i)
                     for (std::uint_fast32_t j {0}; j < 4; ++j)
                         saveFileBuffer += {std::to_string(static_cast<int> (grid.gridArray[i][j])) + " "};
 
-                saveFileStream << saveFileBuffer;
-
+                saveFileStream << saveFileBuffer;//store grid to file with one write
                 saveFileStream.close();
             }
             else
@@ -376,26 +377,25 @@ namespace Grid15
          */
         void load(const std::string& saveFile, Grid& grid)
         {
-            Grid::gridArray_t newGridArray {};
+            Grid::gridArray_t newGridArray {};//new grid array to store grid
 
             std::ifstream saveFileStream {};
             saveFileStream.exceptions(saveFileStream.failbit | saveFileStream.badbit);//to throw exceptions if something goes wrong
+            saveFileStream.open(saveFile);
 
             short temp {};
-
-            saveFileStream.open(saveFile);
 
             for (std::uint_fast32_t i {0}; i < 4; ++i)
                 for (std::uint_fast32_t j {0}; j < 4; ++j)
                 {
-                    //FIXME extraction right into newGrid even though unsigned char (extract number not character)
+                    //FIXME extraction right into newGrid even though uint8_t = unsigned char (extract number not character)
                     saveFileStream >> temp;
                     newGridArray[i][j] = {static_cast<std::uint8_t> (temp)};
                 }
 
             saveFileStream.close();
 
-            safeCopy(newGridArray, grid);//this reindexes it along the way, and throws an exception if it is invalid
+            safeCopy(newGridArray, grid);//this creates a new index along the way, and throws an exception if the grid is invalid
         }
 
         /** \brief Reads the grid array of a Grid and updates its index
@@ -410,8 +410,8 @@ namespace Grid15
                 for (std::uint_fast32_t i {0}; i < 4; ++i)
                     for (std::uint_fast32_t j {0}; j < 4; ++j)
                     {
-                        grid.index[grid.gridArray[i][j]][0] = {static_cast<std::uint8_t> (i)};
-                        grid.index[grid.gridArray[i][j]][1] = {static_cast<std::uint8_t> (j)};
+                        grid.index[grid.gridArray[i][j]][0] = {static_cast<std::uint8_t> (i)};//find tile's y coordinate and copy to index
+                        grid.index[grid.gridArray[i][j]][1] = {static_cast<std::uint8_t> (j)};//find tile's x coordinate and copy to index
                     }
             }
             else
