@@ -46,18 +46,18 @@ namespace GTKSlide
 
             void createMenuBarAndAddToMainGrid();
 
-            void on_menuBar_newGame();
-            void on_menuBar_load();
+            void onMenuBarNewGame();
+            void onMenuBarLoad();
 
-            void on_menubar_about();
+            void onMenuBarAbout();
 
-            //void on_menuBar_autoSave();//move to settings dialog
+            //void onMenuBarAutoSave();//move to settings dialog
 
-            //replaced with lambdas
-            //void on_menubar_save();
-            //void on_menubar_saveAs();
-            //void on_menuBar_exit();
-            //void on_menubar_demo();
+            //replaced with lambdas/shared with other functions
+            //void onMenuBarSave();
+            //void onMenuBarSaveAs();
+            //void onMenuBarExit();
+            //void onMenuBarDemo();
 
             bool save();
             bool saveAs();

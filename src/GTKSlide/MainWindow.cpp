@@ -79,8 +79,8 @@ namespace GTKSlide
         show_all_children();//display the window
     }
 
-//not used
-//MainWindow::~MainWindow() {}
+    //not used
+    //MainWindow::~MainWindow() {}
 
     /** \brief Creates a menu bar for the window and adds it to GtkSlide::MainWindow::mainGrid (it is manage()ed)
      *
@@ -97,7 +97,7 @@ namespace GTKSlide
 
         //start filling the group with signal handelers
 
-        actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::on_menuBar_newGame));
+        actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::onMenuBarNewGame));
         applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
 
         actionGroup->add_action("save", [this]
@@ -114,7 +114,7 @@ namespace GTKSlide
         });
         applicationPtr->set_accel_for_action("actionGroup.saveAs", "<Primary><Shift>s");
 
-        actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::on_menuBar_load));
+        actionGroup->add_action("load", sigc::mem_fun(*this, &MainWindow::onMenuBarLoad));
         applicationPtr->set_accel_for_action("actionGroup.load", "<Primary>l");
 
         actionGroup->add_action("exit", [this]
@@ -133,7 +133,7 @@ namespace GTKSlide
             gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
         });
         applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
-        actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::on_menubar_about));
+        actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::onMenuBarAbout));
         //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
@@ -151,8 +151,8 @@ namespace GTKSlide
         mainGrid.add(*newMenuBar);
     }
 
-///Resets the grid and handles the old one if it is not saved
-    void MainWindow::on_menuBar_newGame()
+    ///Resets the grid and handles the old one if it is not saved
+    void MainWindow::onMenuBarNewGame()
     {
         if (!saveManager->isSaved)
         {
@@ -301,8 +301,8 @@ namespace GTKSlide
             return false;
     }
 
-/// \brief Loads the grid from a file and updates MainWindow::saveManager
-    void MainWindow::on_menuBar_load()
+    /// \brief Loads the grid from a file and updates MainWindow::saveManager
+    void MainWindow::onMenuBarLoad()
     {
         if (!saveManager->isSaved)
         {
@@ -354,7 +354,7 @@ namespace GTKSlide
     }
 
     /*
-    void MainWindow::on_menuBar_autoSave()
+    void MainWindow::onMenuBarAutoSave()
     {
         if constexpr (ProgramStuff::Build::DEBUG)
             std::clog << "(debug)to do" << std::endl;
@@ -395,7 +395,7 @@ namespace GTKSlide
         return true;//not important really
     }
 
-    void MainWindow::on_menubar_about()
+    void MainWindow::onMenuBarAbout()
     {
         //read about dialog from glade file
         Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
