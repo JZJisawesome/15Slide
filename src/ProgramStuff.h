@@ -31,13 +31,13 @@
 namespace ProgramStuff
 {
     /* Namespace Definitions */
-///Compiliation related constants
+    ///Compiliation related constants
     namespace Build {}
-///Operating System related constants
+    ///Operating System related constants
     namespace OS {}
-///GTKSlide related constants
+    ///GTKSlide related constants
     namespace GTKSlide {}
-///File names and locations for GTKSlide reasources
+    ///File names and locations for GTKSlide reasources
     namespace GTKSlide::Resources {}
 
 
@@ -45,7 +45,7 @@ namespace ProgramStuff
     namespace OS
     {
         #if     defined(__unix__) || defined(__unix) || defined(__linux__)
-#define __SLIDELINUX 1
+        #define __SLIDELINUX 1
         constexpr char STRING[] {"Linux"};      ///<The string for the OS
 
         constexpr bool LINUX    {true}; ///<Running on Linux
@@ -54,7 +54,7 @@ namespace ProgramStuff
         constexpr bool MAC      {false};///<Running on macOS
         constexpr bool UNKNOWN  {false};///<Running on an unknown operating system
         #elif   defined(_FreeBSD_)
-#define __SLIDEBSD 1
+        #define __SLIDEBSD 1
         constexpr char STRING[] {"FreeBSD"};    ///<The string for the OS
 
         constexpr bool LINUX    {false};///<Running on Linux
