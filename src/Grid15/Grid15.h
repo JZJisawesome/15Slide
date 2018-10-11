@@ -27,9 +27,9 @@
  *
  * \brief Contains the game engine for 15Slide: the Grid and management tools
  *
- * Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are typically switched with X.
- * This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide stuff.
- * See https://github.com/JZJisawesome/15Slide/issues/22 for details and possible changes to this.
+ * \bug Because of the way initilizer lists are in C++, and because this issue as noticed long into development, Y coordinates are switched with X in GridHelp.
+ * \bug This effects the order of function parameters, loops (i == y, j == x ) and arrays in both this library and other 15Slide code that uses it.
+ * \bug See https://github.com/JZJisawesome/15Slide/issues/22 for details and possible changes to this.
  *
  * \author John Jekel
  * \date 2018-2018

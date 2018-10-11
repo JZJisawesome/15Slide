@@ -50,7 +50,7 @@ namespace GTKSlide
      * \throw std::runtime_error If a menuBar cannot be created from the glade XML
      */
     MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
-        : mainGrid{}, saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}
+        : mainGrid{}, saveManager{new SaveManager {}}, tileGrid{*this, newGridPtr, saveManager}, gridPtr{newGridPtr}, applicationPtr{application}//construct many member objects
     {
         try
         {
@@ -66,16 +66,17 @@ namespace GTKSlide
 
         set_resizable(false);
         set_position(Gtk::WIN_POS_CENTER);
-        signal_delete_event().connect(sigc::mem_fun(*this, &MainWindow::exit));
 
-        add(mainGrid);
+        signal_delete_event().connect(sigc::mem_fun(*this, &MainWindow::exit));//add exit signal handler
+
+        add(mainGrid);//add grid which holds menu and tile grid
 
 
-        createMenuBarAndAddToMainGrid();
+        createMenuBarAndAddToMainGrid();//self explanatory
 
-        mainGrid.attach_next_to(tileGrid, Gtk::POS_BOTTOM, 1, 1);
+        mainGrid.attach_next_to(tileGrid, Gtk::POS_BOTTOM, 1, 1);//add tile grid
 
-        show_all_children();
+        show_all_children();//display the window
     }
 
 //not used
@@ -90,8 +91,11 @@ namespace GTKSlide
      */
     void MainWindow::createMenuBarAndAddToMainGrid()
     {
+        //create and add an action group to window
         Glib::RefPtr<Gio::SimpleActionGroup> actionGroup {Gio::SimpleActionGroup::create()};
         insert_action_group("actionGroup", actionGroup);
+
+        //start filling the group with signal handelers
 
         actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::on_menuBar_newGame));
         applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
@@ -133,8 +137,8 @@ namespace GTKSlide
         //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
 
+        //build the menu from the glade file
         Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML)};
-
         Gtk::MenuBar * newMenuBar = nullptr;
 
 
@@ -142,6 +146,7 @@ namespace GTKSlide
         if (!newMenuBar)
             throw std::runtime_error {"Could not create a menu bar"};
 
+        //add menubar to window
         Gtk::manage(newMenuBar);
         mainGrid.add(*newMenuBar);
     }
@@ -149,17 +154,16 @@ namespace GTKSlide
 ///Resets the grid and handles the old one if it is not saved
     void MainWindow::on_menuBar_newGame()
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)final touches" << std::endl;
-
-
         if (!saveManager->isSaved)
         {
             switch (createNotSavedDialogAndRun())
             {
                 case Gtk::RESPONSE_OK:
-                    save();
+                {
+                    if (!save())
+                        break;//do not genereate new grid if user cancles saving/saving fails
                     [[fallthrough]]
+                }
                 case Gtk::RESPONSE_REJECT:
                 {
                     //reset previous save file
@@ -179,6 +183,7 @@ namespace GTKSlide
         }
         else
         {
+            //reset previous save file
             saveManager->saveFile = {""};
             saveManager->isSaved = {false};
 
@@ -194,14 +199,11 @@ namespace GTKSlide
      */
     bool MainWindow::save()
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)not done" << std::endl;
-
         if (saveManager->saveFile != "")
         {
             try
             {
-                Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//fixme error handeling needed
+                Grid15::GridHelp::save(saveManager->saveFile, *gridPtr);//FIXME error handeling needed
                 return true;
             }
             catch (std::ios_base::failure &e)
@@ -229,9 +231,6 @@ namespace GTKSlide
      */
     bool MainWindow::saveAs()
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)final touches" << std::endl;
-
         SlideFileDialog saveDialog(*this, "Choose a file to save to", Gtk::FILE_CHOOSER_ACTION_SAVE);
 
         const int result {saveDialog.run()};
@@ -305,9 +304,6 @@ namespace GTKSlide
 /// \brief Loads the grid from a file and updates MainWindow::saveManager
     void MainWindow::on_menuBar_load()
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)final touches" << std::endl;
-
         if (!saveManager->isSaved)
         {
             switch (createNotSavedDialogAndRun())
@@ -335,8 +331,7 @@ namespace GTKSlide
             }
         }
 
-        //now that the old grid is saved, we load a new one
-
+        //now that the old grid is saved or not, we load a new one
         SlideFileDialog loadDialog(*this, "Choose a file to load from", Gtk::FILE_CHOOSER_ACTION_OPEN);
 
         if (loadDialog.run() == Gtk::RESPONSE_OK)
@@ -381,9 +376,6 @@ namespace GTKSlide
      */
     bool MainWindow::exit(GdkEventAny* /*event*/)
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)final touches" << std::endl;
-
         if (!saveManager->isSaved)
         {
             switch (createNotSavedDialogAndRun())
@@ -413,6 +405,7 @@ namespace GTKSlide
 
     void MainWindow::on_menubar_about()
     {
+        //read about dialog from glade file
         Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
         Gtk::AboutDialog *newAboutSlide {};
         menuBuilder->get_widget("aboutSlide", newAboutSlide);
@@ -436,7 +429,7 @@ namespace GTKSlide
         newAboutSlide->run();
         newAboutSlide->hide();//this is odly needed to close dialog if user presses close with glade (not like this with GTKSlide::AboutSlide)
 
-        delete newAboutSlide;//it is a window so manage does not work
+        delete newAboutSlide;//it is a window so manage() does not work
     }
 
     /** \brief A helper function which creates and runs a Gtk::MessageDialog asking the user what to do with the current unsaved grid
@@ -474,7 +467,7 @@ namespace GTKSlide
      * \param errorMessage The error message to display
      * \param details Extra details to put (Gtk::MessageDialog::set_secondary_text)
      * \return The responce from the user (result of Gtk::MessageDialog::run)
-     * \bug Parameters are not string refrences (const std::string &)
+     * \bug Parameters are not string refrences or string views (const std::string & OR std::string_view)
      */
     int MainWindow::createErrorDialogAndRun(std::string errorMessage, std::string details)
     {
