@@ -43,6 +43,7 @@
 #include <exception>
 
 #if defined(ENABLE_GUI)
+#include "GTKSlide/GTKSlide.h"
 #include "GTKSlide/MainWindow.h"
 #include <gtkmm/application.h>
 
@@ -95,7 +96,7 @@ int main(int argc, char *argv[])
             g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
         #endif
 
-        if constexpr (ProgramStuff::GTKSlide::RUNNING_UNINSTALLED)
+        if constexpr (GTKSlide::RUNNING_UNINSTALLED)
             Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
 
         Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "15Slide");//give GTK the command line arguments

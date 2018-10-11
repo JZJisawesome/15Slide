@@ -18,7 +18,7 @@
 #define SAVEMANAGER_H
 
 
-#include "ProgramStuff.h"
+#include "ProgramStuff.h"//just used for autosave
 
 #include <string>
 
@@ -35,9 +35,9 @@ namespace GTKSlide
     class SaveManager
     {
         public:
-            std::string saveFile    {""};                                               ///<The save file
-            bool isSaved            {false};                                            ///<Whether the file is saved or not currently
-            bool autoSave           {ProgramStuff::GTKSlide::AUTOSAVE_ON_SLIDE_DEFAULT};///<Whether to autosave or not
+            std::string saveFile    {""};                                       ///<The save file
+            bool isSaved            {false};                                    ///<Whether the file is saved or not currently
+            bool autoSave           {ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT};  ///<Whether to autosave or not
     };
 }
 

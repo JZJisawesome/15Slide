@@ -18,7 +18,8 @@
 
 #include "GTKSlide/TileGrid.h"
 
-#include "ProgramStuff.h"
+#include "ProgramStuff.h"//still used for debug messages and won dialog
+#include "GTKSlide/GTKSlide.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
 #include "GTKSlide/SaveManager.h"
@@ -154,12 +155,12 @@ namespace GTKSlide
         }
     }
 
-///Both lables and sensitizes (depending on ProgramStuff::GTKSlide::SENSITIZE_VALID_MOVES_ONLY) the tiles at one
+///Both lables and sensitizes (depending on GTKSlide::SENSITIZE_VALID_MOVES_ONLY) the tiles at one
     void TileGrid::updateTiles()
     {
         lableTiles();
 
-        if constexpr (ProgramStuff::GTKSlide::SENSITIZE_VALID_MOVES_ONLY)
+        if constexpr (GTKSlide::SENSITIZE_VALID_MOVES_ONLY)
             sensitizeTiles();
     }
 

@@ -148,7 +148,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a6a87e3e5e5a4824bdff5a26cb26b397d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles an option string and sets the appropriate option.  <a href="#a6a87e3e5e5a4824bdff5a26cb26b397d">More...</a><br /></td></tr>
 <tr class="separator:a6a87e3e5e5a4824bdff5a26cb26b397d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aae884b3ab8fd866c0f2061c6898411"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#a1aae884b3ab8fd866c0f2061c6898411">handleDebug</a> (const std::string &amp;inputtedLine)</td></tr>
-<tr class="memdesc:a1aae884b3ab8fd866c0f2061c6898411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the debug commands. Only avaliable if <a class="el" href="namespace_program_stuff_1_1_build.html#ac15be1d690b1d3159bc03251cd62d572" title="Debug build. ">ProgramStuff::Build::DEBUG</a> equals true.  <a href="#a1aae884b3ab8fd866c0f2061c6898411">More...</a><br /></td></tr>
+<tr class="memdesc:a1aae884b3ab8fd866c0f2061c6898411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the debug commands. Only avaliable if <a class="el" href="namespace_program_stuff_1_1_build.html#ac15be1d690b1d3159bc03251cd62d572" title="Debug build (adds messages and command in CommandUI) ">ProgramStuff::Build::DEBUG</a> equals true.  <a href="#a1aae884b3ab8fd866c0f2061c6898411">More...</a><br /></td></tr>
 <tr class="separator:a1aae884b3ab8fd866c0f2061c6898411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4642b8f33a00c290b8cb8e97cfbe251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#ad4642b8f33a00c290b8cb8e97cfbe251">saveGame</a> (const std::string &amp;saveFile, const <a class="el" href="class_grid15_1_1_grid.html">Grid15::Grid</a> &amp;grid)</td></tr>
 <tr class="memdesc:ad4642b8f33a00c290b8cb8e97cfbe251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the game.  <a href="#ad4642b8f33a00c290b8cb8e97cfbe251">More...</a><br /></td></tr>
@@ -180,7 +180,7 @@ Static Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ac5e7ac7651c276f8915783d6d650f57f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#ac5e7ac7651c276f8915783d6d650f57f">autoSave</a> {true}</td></tr>
+<tr class="memitem:ac5e7ac7651c276f8915783d6d650f57f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#ac5e7ac7651c276f8915783d6d650f57f">autoSave</a> {<a class="el" href="namespace_program_stuff.html#a588bbe1d801d8052fe9b060de1c9b53f">ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT</a>}</td></tr>
 <tr class="memdesc:ac5e7ac7651c276f8915783d6d650f57f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Autosave to last savefile.  <a href="#ac5e7ac7651c276f8915783d6d650f57f">More...</a><br /></td></tr>
 <tr class="separator:ac5e7ac7651c276f8915783d6d650f57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a690a50cbfebed7715612f81fb961b08a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_u_i.html#a690a50cbfebed7715612f81fb961b08a">autoGrid</a> {true}</td></tr>
@@ -452,7 +452,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Handles the debug commands. Only avaliable if <a class="el" href="namespace_program_stuff_1_1_build.html#ac15be1d690b1d3159bc03251cd62d572" title="Debug build. ">ProgramStuff::Build::DEBUG</a> equals true. </p>
+<p>Handles the debug commands. Only avaliable if <a class="el" href="namespace_program_stuff_1_1_build.html#ac15be1d690b1d3159bc03251cd62d572" title="Debug build (adds messages and command in CommandUI) ">ProgramStuff::Build::DEBUG</a> equals true. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inputtedLine</td><td>The arguments to parse </td></tr>
@@ -828,7 +828,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CommandUI::autoSave {true}</td>
+          <td class="memname">bool CommandUI::autoSave {<a class="el" href="namespace_program_stuff.html#a588bbe1d801d8052fe9b060de1c9b53f">ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT</a>}</td>
         </tr>
       </table>
   </td>
@@ -948,7 +948,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_command_u_i.html">CommandUI</a></li>
-    <li class="footer">Generated on Thu Oct 11 2018 15:24:01 for 15Slide by
+    <li class="footer">Generated on Thu Oct 11 2018 15:55:25 for 15Slide by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

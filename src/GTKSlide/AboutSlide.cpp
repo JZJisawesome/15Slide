@@ -18,7 +18,8 @@
 
 #include "GTKSlide/AboutSlide.h"
 
-#include "ProgramStuff.h"
+#include "ProgramStuff.h"//still used for version
+#include "GTKSlide/GTKSlide.h"
 
 #include <iostream>
 
@@ -36,7 +37,7 @@ namespace GTKSlide
 
         try
         {
-            set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
+            set_logo(Gdk::Pixbuf::create_from_file(GTKSlide::Resources::LOGO, 25, 25));
         }
         catch (...)
         {

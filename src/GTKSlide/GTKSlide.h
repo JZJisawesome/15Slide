@@ -32,6 +32,17 @@
  * \author John Jekel
  * \date 2018-2018
  */
-namespace GTKSlide {}
+namespace GTKSlide
+{
+    constexpr bool RUNNING_UNINSTALLED {true};///<Not really important until a settings dialog is created
+    constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
+
+    namespace Resources
+    {
+        constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<File to create the menu bar for GTKSlide::MainWindow
+        constexpr char  ABOUTSLIDE_XML[]   {"data/aboutSlide.glade"};///<File to create the about dialog box
+        constexpr char  LOGO[] {"data/logo.png"};///<The location of the 15Slide logo
+    }
+}
 
 #endif // GTKSLIDE_H

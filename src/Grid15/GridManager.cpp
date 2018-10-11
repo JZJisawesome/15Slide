@@ -18,8 +18,6 @@
 
 #include "GridManager.h"
 
-#include "ProgramStuff.h"
-
 #include <iostream>
 #include <istream>
 #include <cstdint>

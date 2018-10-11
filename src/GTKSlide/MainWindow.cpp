@@ -18,14 +18,12 @@
 
 #include "GTKSlide/MainWindow.h"
 
-#include "ProgramStuff.h"
-
+#include "ProgramStuff.h"//needed for about dialog and filesystem checks
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
-#include "GTKSlide/AboutSlide.h"
+#include "GTKSlide/GTKSlide.h"
 #include "GTKSlide/SlideFileDialog.h"
 #include "GTKSlide/SaveManager.h"
-#include "CommandUI.h"
 
 #include <gtkmm.h>
 
@@ -46,7 +44,7 @@ namespace GTKSlide
      * \param newGridPtr The Grid15::Grid to use
      * \throw Gtk::BuilderError If something goes wrong during parse
      * \throw Glib::Markup error If something goes wrong during parse
-     * \throw Glib::FileError If ProgramStuff::GTKSlide::USE_EXTERNAL_MENUBAR_XML is true and a file error occurs
+     * \throw Glib::FileError If a file error occurs
      * \throw std::runtime_error If a menuBar cannot be created from the glade XML
      */
     MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> &application, std::shared_ptr<Grid15::Grid> &newGridPtr)
@@ -54,7 +52,7 @@ namespace GTKSlide
     {
         try
         {
-            Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO));
+            Gtk::Window::set_icon(Gdk::Pixbuf::create_from_file(GTKSlide::Resources::LOGO));
         }
         catch (...)
         {
@@ -138,7 +136,7 @@ namespace GTKSlide
 
 
         //build the menu from the glade file
-        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::MENUBAR_XML)};
+        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(GTKSlide::Resources::MENUBAR_XML)};
         Gtk::MenuBar * newMenuBar = nullptr;
 
 
@@ -356,8 +354,6 @@ namespace GTKSlide
     /*
     void MainWindow::onMenuBarAutoSave()
     {
-        if constexpr (ProgramStuff::Build::DEBUG)
-            std::clog << "(debug)to do" << std::endl;
     }
     */
 
@@ -398,7 +394,7 @@ namespace GTKSlide
     void MainWindow::onMenuBarAbout()
     {
         //read about dialog from glade file
-        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(ProgramStuff::GTKSlide::Resources::ABOUTSLIDE_XML)};
+        Glib::RefPtr<Gtk::Builder> menuBuilder {Gtk::Builder::create_from_file(GTKSlide::Resources::ABOUTSLIDE_XML)};
         Gtk::AboutDialog *newAboutSlide {};
         menuBuilder->get_widget("aboutSlide", newAboutSlide);
 
@@ -408,7 +404,7 @@ namespace GTKSlide
         //version and logo are set here instead of in glade file
         try
         {
-            newAboutSlide->set_logo(Gdk::Pixbuf::create_from_file(ProgramStuff::GTKSlide::Resources::LOGO, 25, 25));
+            newAboutSlide->set_logo(Gdk::Pixbuf::create_from_file(GTKSlide::Resources::LOGO, 25, 25));
         }
         catch (...)
         {

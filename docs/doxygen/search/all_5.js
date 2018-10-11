@@ -26,5 +26,7 @@ var searchData=
   ['gridmanager_2eh',['GridManager.h',['../_grid_manager_8h.html',1,'']]],
   ['gridptr',['gridPtr',['../class_g_t_k_slide_1_1_main_window.html#ac5612b17e9f7b3940770b99144dc90df',1,'GTKSlide::MainWindow::gridPtr()'],['../class_g_t_k_slide_1_1_tile_grid.html#aaa59db3574a1a0e431a00238e0433ee5',1,'GTKSlide::TileGrid::gridPtr()']]],
   ['gtkslide',['GTKSlide',['../namespace_g_t_k_slide.html',1,'']]],
-  ['gtkslide_2eh',['GTKSlide.h',['../_g_t_k_slide_8h.html',1,'']]]
+  ['gtkslide_2eh',['GTKSlide.h',['../_g_t_k_slide_8h.html',1,'']]],
+  ['gtkslide_5fenabled',['GTKSLIDE_ENABLED',['../namespace_program_stuff.html#a1f4fa10a9f21c40e9f69495c564798d5',1,'ProgramStuff']]],
+  ['resources',['Resources',['../namespace_g_t_k_slide_1_1_resources.html',1,'GTKSlide']]]
 ];

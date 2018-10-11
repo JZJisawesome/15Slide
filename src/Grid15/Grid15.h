@@ -20,7 +20,6 @@
 
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
-#include "Grid15/GridManager.h"//deprecated
 
 
 /** \namespace Grid15

@@ -18,6 +18,7 @@
 #define COMMANDHANDLER_H
 
 
+#include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 
 #include <cstdint>
@@ -116,7 +117,7 @@ class CommandUI
         // Options (with defaults)
         static void displayOptions();
         void handleOptions(const std::string &option, bool optionSetting);
-        bool autoSave   {true}; ///<Autosave to last savefile
+        bool autoSave   {ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT}; ///<Autosave to last savefile
         bool autoGrid   {true}; ///<Autoprint the grid
         bool autoExit   {false};///<Exit the game on win automatically
         bool easySlide  {true}; ///<Slide a tile without having to type "slide" first

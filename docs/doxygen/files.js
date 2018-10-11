@@ -19,7 +19,7 @@ var files =
     [ "GridManager.h", "_grid_manager_8h.html", [
       [ "GridManager", "class_grid15_1_1_grid_manager.html", "class_grid15_1_1_grid_manager" ]
     ] ],
-    [ "GTKSlide.h", "_g_t_k_slide_8h.html", null ],
+    [ "GTKSlide.h", "_g_t_k_slide_8h.html", "_g_t_k_slide_8h" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "MainWindow.cpp", "_main_window_8cpp.html", null ],
     [ "MainWindow.h", "_main_window_8h.html", [
