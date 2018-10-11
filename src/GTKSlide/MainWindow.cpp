@@ -315,16 +315,8 @@ namespace GTKSlide
                 case Gtk::RESPONSE_OK:
                     save();
                     [[fallthrough]]
-                case Gtk::RESPONSE_REJECT:
-                {
-                    saveManager->saveFile = {""};
-                    saveManager->isSaved = {false};
-
-                    (*gridPtr) = {Grid15::GridHelp::generateRandomGrid()};
-
-                    tileGrid.updateTiles();
+                case Gtk::RESPONSE_REJECT://if user choooses not to save but leaves load dialog, don't do anything-
                     break;
-                }
                 case Gtk::RESPONSE_CANCEL:
                 case Gtk::RESPONSE_DELETE_EVENT://x button
                 default:
