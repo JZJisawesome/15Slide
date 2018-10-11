@@ -43,13 +43,13 @@
 #include <exception>
 
 #if defined(ENABLE_GUI)
-#include "GTKSlide/GTKSlide.h"
-#include "GTKSlide/MainWindow.h"
-#include <gtkmm/application.h>
+    #include "GTKSlide/GTKSlide.h"
+    #include "GTKSlide/MainWindow.h"
+    #include <gtkmm/application.h>
 
-#if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
-#include <filesystem>
-#endif
+    #if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
+        #include <filesystem>
+    #endif
 #endif
 
 

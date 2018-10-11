@@ -143,7 +143,7 @@ namespace ProgramStuff
 
 
     #ifndef __SLIDEWINDOWS
-    #define ENABLE_GUI 1
+        #define ENABLE_GUI 1
     #endif
 
     #if defined(ENABLE_GUI)

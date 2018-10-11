@@ -20,7 +20,6 @@
 
 #include "GTKSlide/MainWindow.h"
 #include "GTKSlide/TileGrid.h"
-#include "GTKSlide/AboutSlide.h"
 #include "GTKSlide/SlideFileDialog.h"
 #include "GTKSlide/SaveManager.h"
 
@@ -34,14 +33,15 @@
  */
 namespace GTKSlide
 {
-    constexpr bool RUNNING_UNINSTALLED {true};///<Not really important until a settings dialog is created
-    constexpr bool SENSITIZE_VALID_MOVES_ONLY {true};///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
+    constexpr bool RUNNING_UNINSTALLED          {true};                 ///<Not really important until a settings dialog is created
+    constexpr bool SENSITIZE_VALID_MOVES_ONLY   {true};                 ///<Only allow tiles that can be validly moved to be clicked in GTKSlide::TileGrid
 
+    ///15Slide file locations
     namespace Resources
     {
-        constexpr char  MENUBAR_XML[]   {"data/menuBar.glade"};///<File to create the menu bar for GTKSlide::MainWindow
-        constexpr char  ABOUTSLIDE_XML[]   {"data/aboutSlide.glade"};///<File to create the about dialog box
-        constexpr char  LOGO[] {"data/logo.png"};///<The location of the 15Slide logo
+        constexpr char  MENUBAR_XML[]       {"data/menuBar.glade"};     ///<File to create the menu bar for GTKSlide::MainWindow
+        constexpr char  ABOUTSLIDE_XML[]    {"data/aboutSlide.glade"};  ///<File to create the about dialog box
+        constexpr char  LOGO[]              {"data/logo.png"};          ///<The location of the 15Slide logo
     }
 }
 
