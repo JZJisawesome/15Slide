@@ -15,7 +15,7 @@
 #along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
 
 
-AC_INIT([15Slide], 0.9)
+AC_INIT([15Slide], 0.9.0)
 AM_INIT_AUTOMAKE
 
 
