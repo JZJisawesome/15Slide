@@ -139,7 +139,14 @@ namespace GTKSlide
             //lambda opens new 15Slide issue in browser
             gtk_show_uri_on_window(nullptr, "https://github.com/JZJisawesome/15Slide/issues/new", GDK_CURRENT_TIME, nullptr);
         });
-        applicationPtr->set_accel_for_action("actionGroup.feedback", "F1");
+        applicationPtr->set_accel_for_action("actionGroup.feedback", "F5");
+
+        actionGroup->add_action("contribute", []
+        {
+            //lambda opens new 15Slide repository in browser
+            gtk_show_uri_on_window(nullptr, "https://github.com/JZJisawesome/15Slide", GDK_CURRENT_TIME, nullptr);
+        });
+        applicationPtr->set_accel_for_action("actionGroup.contribute", "F12");
 
         actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::onMenuBarAbout));
         //applicationPtr->set_accel_for_action("actionGroup.about", "a");

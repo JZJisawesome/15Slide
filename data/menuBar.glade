@@ -47,6 +47,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-new</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Generate a new, randomly shuffled grid</property>
                 <property name="action_name">actionGroup.newGame</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -58,6 +59,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-open</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Load an existing saved grid</property>
                 <property name="action_name">actionGroup.load</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -69,6 +71,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Save the grid</property>
                 <property name="action_name">actionGroup.save</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -80,6 +83,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-save-as</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Save the grid to a new location</property>
                 <property name="action_name">actionGroup.saveAs</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -97,6 +101,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-quit</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Exit 15Slide</property>
                 <property name="action_name">actionGroup.exit</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -122,6 +127,7 @@ Author: John Jekel @JZJisawesome
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Learn how to play 15Slide</property>
                 <property name="action_name">actionGroup.demo</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
@@ -132,6 +138,7 @@ Author: John Jekel @JZJisawesome
               <object class="GtkMenuItem">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Send feedback or request a feature</property>
                 <property name="action_name">actionGroup.feedback</property>
                 <property name="label" translatable="yes">Feedback</property>
                 <property name="use_underline">True</property>
@@ -139,10 +146,21 @@ Author: John Jekel @JZJisawesome
               </object>
             </child>
             <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Contribute to the 15Slide Github repository</property>
+                <property name="action_name">actionGroup.contribute</property>
+                <property name="label" translatable="yes">Contribute</property>
+                <accelerator key="F12" signal="activate"/>
+              </object>
+            </child>
+            <child>
               <object class="GtkImageMenuItem">
                 <property name="label">gtk-about</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">About 15Slide</property>
                 <property name="action_name">actionGroup.about</property>
                 <property name="use_underline">True</property>
                 <property name="use_stock">True</property>
