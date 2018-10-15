@@ -114,6 +114,30 @@ Author: John Jekel @JZJisawesome
     </child>
     <child>
       <object class="GtkMenuItem">
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Options</property>
+        <property name="use_underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkCheckMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Autosave the grid</property>
+                <property name="action_name">actionGroup.autoSave</property>
+                <property name="label" translatable="yes">Autosave</property>
+                <property name="use_underline">True</property>
+                <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">_Help</property>
@@ -153,6 +177,12 @@ Author: John Jekel @JZJisawesome
                 <property name="action_name">actionGroup.contribute</property>
                 <property name="label" translatable="yes">Contribute</property>
                 <accelerator key="F12" signal="activate"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparatorMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
               </object>
             </child>
             <child>
