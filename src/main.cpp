@@ -26,7 +26,7 @@
  *
  * \author John Jekel
  * \date 2017-2018
- * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">GNU Lesser General Public Licence Version 3 (LGPL v.3.0)</a>
+ * \copyright <a href="https://github.com/JZJisawesome/15Slide/blob/master/LICENSE">GNU Lesser General Public Licence Version 3 (LGPL v3.0)</a>
  */
 
 
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
 
         if constexpr (ProgramStuff::CLEAR_SCREEN_ON_START)
-            std::cout << "\x1b[2J";//dosent work well, maybe not at all on windows
+            std::cout << "\x1b[2J";//dosent work well, maybe not at all on Windows
 
         std::cout << termcolor::reverse << termcolor::bold;
         std::cout << "15Slide" << "\n";
@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
             g_warning("The 15Slide \"data\" folder could not be found; 15Slide may act weird or may not work at all");
         #endif
 
+        //does nothing usefull, no settings menu anaways
         if constexpr (GTKSlide::RUNNING_UNINSTALLED)
             Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
 

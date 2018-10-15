@@ -49,6 +49,10 @@ namespace GTKSlide
         else
             throw std::invalid_argument {"Grid invalid!"};
 
+        set_border_width(5);
+
+        //create grid of buttons
+
         //create the first row of tile buttons
         for (std::uint_fast32_t i {0}; i < 4; ++i)
         {

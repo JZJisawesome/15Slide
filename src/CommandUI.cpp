@@ -428,7 +428,7 @@ void CommandUI::displayLicence()
 
 
     cout << endl;
-    cout << "Termcolor" << endl;
+    cout << "Termcolor" << "\n";
     cout << "A header-only C++ library for printing colored messages to the terminal." << "\n";
     cout << "Copyright (c) 2013, Ihor Kalnytskyi." << "\n";
     cout << "All rights reserved." << "\n";

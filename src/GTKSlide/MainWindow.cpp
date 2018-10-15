@@ -60,7 +60,6 @@ namespace GTKSlide
         }
 
         set_title("15Slide");
-        //set_border_width(10);//fixme makes menu bar look weird
 
         set_resizable(false);
         set_position(Gtk::WIN_POS_CENTER);
