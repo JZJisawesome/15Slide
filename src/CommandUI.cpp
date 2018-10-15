@@ -378,6 +378,7 @@ void CommandUI::displayAbout()
     cout << "15Slide";
     cout << termcolor::reset;
     cout << " Version " << ProgramStuff::Build::SLIDE_VERSION_STRING << "\n";
+
     cout << "Built on " << ProgramStuff::Build::DATE << " at " << ProgramStuff::Build::TIME << " for " << ProgramStuff::OS::STRING << "\n";
     cout << "Compiler: " << ProgramStuff::Build::COMPILER_STRING << ", Version: " << ProgramStuff::Build::COMPILER_VERSION << "\n";
     cout << "C++ Version: " << ProgramStuff::Build::CPP_VERSION << "\n";
