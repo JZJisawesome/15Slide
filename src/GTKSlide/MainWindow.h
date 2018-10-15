@@ -51,13 +51,12 @@ namespace GTKSlide
 
             void onMenuBarAbout();
 
-            //void onMenuBarAutoSave();//move to settings dialog
-
             //replaced with lambdas/shared with other functions
             //void onMenuBarSave();
             //void onMenuBarSaveAs();
             //void onMenuBarExit();
             //void onMenuBarDemo();
+            //void onMenuBarAutoSave();//should probably move to settings dialog
 
             bool save();
             bool saveAs();

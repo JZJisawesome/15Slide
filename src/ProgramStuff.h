@@ -146,6 +146,7 @@ namespace ProgramStuff
 
 
     #ifndef __SLIDEWINDOWS
+        //comment out to disable
         #define ENABLE_GUI 1
     #endif
 
