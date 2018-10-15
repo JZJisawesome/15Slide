@@ -124,8 +124,13 @@ namespace GTKSlide
         });
         applicationPtr->set_accel_for_action("actionGroup.exit", "<Primary>q");
 
-        //actionGroup->add_action("autoSave", sigc::mem_fun(*this, &MainWindow::on_menuBar_autoSave));
-        //applicationPtr->set_accel_for_action("actionGroup.autoSave", "<control>a");
+        //FIXME set toggled status based on ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT, not through the glade file
+        actionGroup->add_action("autoSave", [this]
+        {
+            //lambda calls exit function (same one as x button)
+            saveManager->autoSave = {!saveManager->autoSave};
+        });
+        applicationPtr->set_accel_for_action("actionGroup.autoSave", "<Primary>a");
 
         actionGroup->add_action("demo", []
         {

@@ -139,6 +139,9 @@ namespace ProgramStuff
     constexpr bool USE_UTF8_TERMINAL {true && !OS::WINDOWS};///<Use UTF-8 throuought the program; not avaliable on Windows
 
     constexpr bool CLEAR_SCREEN_ON_START {false};///<Clear Screen on start with acsii code
+
+    //FIXME changing this will not effect the graphical checkbox in the options of GTKSlide
+    //the menuBar.glade file must be changed to inactive as well
     constexpr bool AUTOSAVE_ON_SLIDE_DEFAULT {true};///<To autosave after each slide by default or not
 
 
