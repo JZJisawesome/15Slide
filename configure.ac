@@ -24,11 +24,13 @@ AC_PROG_CXX
 #Using -I flags is the only way I could get #include in source files to work
 CXXFLAGS+=" --std=c++1z -Wall -Iinclude -Isrc -Isrc/Grid15 -Isrc/GTKSlide"
 
+
 #Optomization Options
 CXXFLAGS+=" -s -O3"
 #CXXFLAGS+=" -s -Os"
 #CXXFLAGS+=" -g -Og"
 
+#Comment this out if you just want to run 15Slide in the command line
 PKG_CHECK_MODULES([GTKMM], [gtkmm-3.0])
 
 

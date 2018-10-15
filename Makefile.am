@@ -16,7 +16,13 @@
 
 AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = 15Slide
+
+#Comment out these lines to use 15Slide in the terminal
 15Slide_CPPFLAGS = $(GTKMM_CFLAGS)
 15Slide_LDADD = $(GTKMM_LIBS)
-15Slide_SOURCES = src/CommandUI.cpp src/CommandUI.h src/Grid15/Grid.cpp src/Grid15/Grid.h src/Grid15/GridHelp.cpp src/Grid15/GridHelp.h src/main.cpp src/GTKSlide/AboutSlide.cpp src/GTKSlide/AboutSlide.h src/GTKSlide/MainWindow.cpp src/GTKSlide/MainWindow.h src/GTKSlide/SlideFileDialog.cpp src/GTKSlide/SlideFileDialog.h src/GTKSlide/TileGrid.cpp src/GTKSlide/TileGrid.h
+15Slide_SOURCES = src/Grid15/Grid.cpp src/Grid15/Grid.h src/Grid15/GridHelp.cpp src/Grid15/GridHelp.h src/main.cpp src/GTKSlide/MainWindow.cpp src/GTKSlide/MainWindow.h src/GTKSlide/SlideFileDialog.cpp src/GTKSlide/SlideFileDialog.h src/GTKSlide/TileGrid.cpp src/GTKSlide/TileGrid.h
+
+#Comment out this line to use GTKSlide
+#15Slide_SOURCES = src/CommandUI.cpp src/CommandUI.h src/Grid15/Grid.cpp src/Grid15/Grid.h src/Grid15/GridHelp.cpp src/Grid15/GridHelp.h src/main.cpp
+
 include_HEADERS = include/termcolor/termcolor.hpp
