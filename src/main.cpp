@@ -33,7 +33,6 @@
 #include "ProgramStuff.h"
 #include "Grid15/Grid.h"
 #include "Grid15/GridHelp.h"
-#include "CommandUI.h"
 
 #include "termcolor/termcolor.hpp"
 
@@ -50,6 +49,8 @@
     #if defined(ENABLE_CHECKS_WITH_STD_FILESYSTEM)
         #include <filesystem>
     #endif
+#else
+    #include "CommandUI.h"
 #endif
 
 
