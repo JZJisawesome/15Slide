@@ -408,7 +408,7 @@ void CommandUI::displayLicence()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide" << "\n";
     cout << termcolor::reset;
-    cout << "Copyright 2018 John Jekel" << "\n";
+    cout << "Copyright 2017-2018 John Jekel" << "\n";
     cout << "15Slide is free software: you can redistribute it and/or modify" << "\n";
     cout << "it under the terms of the GNU Lesser General Public License as published by" << "\n";
     cout << "the Free Software Foundation, either version 3 of the License, or" << "\n";
