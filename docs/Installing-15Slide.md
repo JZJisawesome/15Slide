@@ -1,12 +1,12 @@
 # Installing 15Slide
 ## Downloading a build
-If you are not up to building 15Slide from scratch, [you can grab a release](https://github.com/JZJisawesome/15Slide/releases). Choose one with `linux32` for Linux, or `win32` for windows. Then [run 15Slide](https://jzjisawesome.github.io/15Slide/Running-15Slide).
+It is suggested that you grab a [stable release](https://github.com/JZJisawesome/15Slide/releases) instead of building from the latest master branch. There may also be compiled binaries avaliable.
 
 ## Building
 Note: these steps may be changed when GTKSlide is merged (gtkmm libraries will have to be used)
 
 ### Linux
-1. [Download](https://github.com/JZJisawesome/15Slide/archive/master.zip) or clone (https://github.com/JZJisawesome/15Slide.git) the 15Slide source files
+1. Download or clone the 15Slide source files
 2. Get the termcolor library from [http://termcolor.readthedocs.io/](http://termcolor.readthedocs.io/)
 3. Go to where you downloaded the master branch, and copy the _include_ folder from the termcolor master into it
 4. Open a terminal in the 15Slide master branch and run `autoreconf --install` to create the proper build enviornment
