@@ -129,6 +129,16 @@ Author: John Jekel @JZJisawesome
               </object>
             </child>
             <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">actionGroup.feedback</property>
+                <property name="label" translatable="yes">Feedback</property>
+                <property name="use_underline">True</property>
+                <accelerator key="F5" signal="activate"/>
+              </object>
+            </child>
+            <child>
               <object class="GtkImageMenuItem">
                 <property name="label">gtk-about</property>
                 <property name="visible">True</property>

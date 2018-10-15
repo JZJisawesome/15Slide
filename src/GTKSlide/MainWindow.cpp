@@ -82,6 +82,8 @@ namespace GTKSlide
 
     /** \brief Creates a menu bar for the window and adds it to GtkSlide::MainWindow::mainGrid (it is manage()ed)
      *
+     * Partly based on some Gtkmm examples: https://developer.gnome.org/gtkmm-tutorial/stable/sec-menus-examples.html.en
+     *
      * \throw Gtk::BuilderError If something goes wrong during parse
      * \throw Glib::MarkupError If something goes wrong during parse
      * \throw Glib::FileError If a file error occurs
@@ -131,6 +133,14 @@ namespace GTKSlide
             gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
         });
         applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
+
+        actionGroup->add_action("feedback", []
+        {
+            //lambda opens new 15Slide issue in browser
+            gtk_show_uri_on_window(nullptr, "https://github.com/JZJisawesome/15Slide/issues/new", GDK_CURRENT_TIME, nullptr);
+        });
+        applicationPtr->set_accel_for_action("actionGroup.feedback", "F1");
+
         actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::onMenuBarAbout));
         //applicationPtr->set_accel_for_action("actionGroup.about", "a");
 
