@@ -362,7 +362,7 @@ void CommandUI::displayAbout()
     cout << endl;
 
     cout << endl;
-    cout << "15Slide is a fun, cross-platform, slidy-tile game developed in 2017 with the C++ 17 programming language." << "\n";
+    cout << "15Slide is a fun, cross-platform, slidy-tile game first developed in 2017 with the C++ 17 programming language." << "\n";
     cout << "For all things 15Slide go to https://jzjisawesome.github.io/15Slide/" << "\n";
     cout << "Type \"licence\" for 15Slide and other library licencing." << "\n";
     cout << endl;
