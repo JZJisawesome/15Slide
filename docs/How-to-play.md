@@ -17,7 +17,7 @@ Go to _File_, then choose _New_.
 BE CAREFUL!!! Be sure to save your current game first (see above.)
 
 ### Changing settings
-Graphical settings are not currently implemented in GTKSlide. Autosave is on by default, and automatically exiting on completion of a puzzle is not avaliable.
+Go to _Options_, then check or uncheck an setting to enable or disable it.
 
 ## Terminal
 In the _slide»_ prompt, simply type a number and press enter to move that tile into the empty space.
