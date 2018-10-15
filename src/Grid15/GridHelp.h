@@ -1,4 +1,4 @@
-/* Copyright 2018 John Jekel
+/* Copyright 2017-2018 John Jekel
  * This file is part of 15Slide.
  *
  * 15Slide is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ namespace Grid15
      * \bug See https://github.com/JZJisawesome/15Slide/issues/22 for details and possible changes to this.
      *
      * \author John Jekel
-     * \date 2018-2018
+     * \date 2017-2018
      */
     namespace GridHelp
     {

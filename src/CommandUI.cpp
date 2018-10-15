@@ -1,4 +1,4 @@
-/* Copyright 2018 John Jekel
+/* Copyright 2017-2018 John Jekel
  * This file is part of 15Slide.
  *
  * 15Slide is free software: you can redistribute it and/or modify
@@ -357,7 +357,7 @@ void CommandUI::displayAbout()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide" << "\n";
     cout << termcolor::reset;
-    cout << "Copyright 2018 John Jekel" << "\n";
+    cout << "Copyright 2017-2018 John Jekel" << "\n";
     cout << "See https://github.com/JZJisawesome/15Slide/blob/master/LICENSE for the terms";
     cout << endl;
 

@@ -1,4 +1,4 @@
-/* Copyright 2018 John Jekel
+/* Copyright 2017-2018 John Jekel
  * This file is part of 15Slide.
  *
  * 15Slide is free software: you can redistribute it and/or modify
