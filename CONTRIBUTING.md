@@ -59,6 +59,6 @@ Try to make source and header files similar to this.
 ### Profiling (to do)
 ## Documentation
 As you can probably see, my spelling is not so good (I'm 14!!!). You can help...
-* With the [wiki](https://github.com/JZJisawesome/15Slide/wiki)
-* With the [website](https://github.com/JZJisawesome/15Slide/tree/master/docs)
-* With documentation in code
+- With the [wiki](https://github.com/JZJisawesome/15Slide/wiki)
+- With the [website](https://github.com/JZJisawesome/15Slide/tree/master/docs)
+- With documentation in code
