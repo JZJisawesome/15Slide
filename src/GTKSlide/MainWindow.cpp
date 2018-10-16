@@ -96,6 +96,7 @@ namespace GTKSlide
 
         //start filling the group with signal handelers
 
+        //file
         actionGroup->add_action("newGame", sigc::mem_fun(*this, &MainWindow::onMenuBarNewGame));
         applicationPtr->set_accel_for_action("actionGroup.newGame", "<Primary>n");
 
@@ -123,37 +124,41 @@ namespace GTKSlide
         });
         applicationPtr->set_accel_for_action("actionGroup.exit", "<Primary>q");
 
+        //options
         //FIXME set toggled status based on ProgramStuff::AUTOSAVE_ON_SLIDE_DEFAULT, not through the glade file
         actionGroup->add_action("autoSave", [this]
         {
-            //lambda calls exit function (same one as x button)
             saveManager->autoSave = {!saveManager->autoSave};
         });
         applicationPtr->set_accel_for_action("actionGroup.autoSave", "<Primary>a");
 
+        actionGroup->add_action("autoExit", [this]
+        {
+            //TODO
+        });
+        //applicationPtr->set_accel_for_action("actionGroup.autoExit", "");
+
+        //help
         actionGroup->add_action("demo", []
         {
-            //lambda opens 15Slide website in browser
             gtk_show_uri_on_window(nullptr, "https://jzjisawesome.github.io/15Slide/How-to-play", GDK_CURRENT_TIME, nullptr);
         });
         applicationPtr->set_accel_for_action("actionGroup.demo", "F1");
 
         actionGroup->add_action("feedback", []
         {
-            //lambda opens new 15Slide issue in browser
             gtk_show_uri_on_window(nullptr, "https://github.com/JZJisawesome/15Slide/issues/new", GDK_CURRENT_TIME, nullptr);
         });
         applicationPtr->set_accel_for_action("actionGroup.feedback", "F5");
 
         actionGroup->add_action("contribute", []
         {
-            //lambda opens new 15Slide repository in browser
             gtk_show_uri_on_window(nullptr, "https://github.com/JZJisawesome/15Slide", GDK_CURRENT_TIME, nullptr);
         });
         applicationPtr->set_accel_for_action("actionGroup.contribute", "F12");
 
         actionGroup->add_action("about", sigc::mem_fun(*this, &MainWindow::onMenuBarAbout));
-        //applicationPtr->set_accel_for_action("actionGroup.about", "a");
+        //applicationPtr->set_accel_for_action("actionGroup.about", "");
 
 
         //build the menu from the glade file

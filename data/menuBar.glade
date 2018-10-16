@@ -134,6 +134,16 @@ Author: John Jekel @JZJisawesome
                 <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
               </object>
             </child>
+            <child>
+              <object class="GtkCheckMenuItem" id="autoExitCheckbox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Automatically exit 15Slide after you win (without saving)</property>
+                <property name="action_name">actionGroup.autoExit</property>
+                <property name="label" translatable="yes">Auto-exit</property>
+                <property name="use_underline">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
