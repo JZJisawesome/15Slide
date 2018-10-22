@@ -1,18 +1,24 @@
-/* Copyright 2017-2018 John Jekel
- * This file is part of 15Slide.
+/* MIT License
  *
- * 15Slide is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Copyright (c) 2017-2018 John Jekel
  *
- * 15Slide is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with 15Slide.  If not, see <https://www.gnu.org/licenses/>
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
 */
 
 
@@ -408,22 +414,31 @@ void CommandUI::displayLicence()
     cout << termcolor::reverse << termcolor::bold;
     cout << "15Slide" << "\n";
     cout << termcolor::reset;
-    cout << "Copyright 2017-2018 John Jekel" << "\n";
-    cout << "15Slide is free software: you can redistribute it and/or modify" << "\n";
-    cout << "it under the terms of the GNU Lesser General Public License as published by" << "\n";
-    cout << "the Free Software Foundation, either version 3 of the License, or" << "\n";
-    cout << "(at your option) any later version." << "\n";
+    cout << "MIT License" << "\n";
+    cout << endl;
+    
+    cout << "Copyright (c) 2017-2018 John Jekel" << "\n";
+    cout << endl;
+    
+    cout << "Permission is hereby granted, free of charge, to any person obtaining a copy" << "\n";
+    cout << "of this software and associated documentation files (the "Software"), to deal" << "\n";
+    cout << "in the Software without restriction, including without limitation the rights" << "\n";
+    cout << "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell" << "\n";
+    cout << "copies of the Software, and to permit persons to whom the Software is" << "\n";
+    cout << "furnished to do so, subject to the following conditions:" << "\n";
     cout << endl;
 
-    cout << "15Slide is distributed in the hope that it will be useful," << "\n";
-    cout << "but WITHOUT ANY WARRANTY; without even the implied warranty of" << "\n";
-    cout << "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the" << "\n";
-    cout << "GNU Lesser General Public License for more details." << "\n";
+    cout << "The above copyright notice and this permission notice shall be included in all" << "\n";
+    cout << "copies or substantial portions of the Software." << "\n";
     cout << endl;
 
-    cout << "You should have received a copy of the GNU Lesser General Public License" << "\n";
-    cout << "along with 15Slide.  If not, see <https://www.gnu.org/licenses/>" << "\n";
-    cout << "15Slide is free software: you can redistribute it and/or modify" << "\n";
+    cout << "THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR" << "\n";
+    cout << "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY," << "\n";
+    cout << "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE" << "\n";
+    cout << "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER" << "\n";
+    cout << "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM," << "\n";
+    cout << "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE" << "\n";
+    cout << "SOFTWARE." << "\n";
     cout << endl;
 
 
