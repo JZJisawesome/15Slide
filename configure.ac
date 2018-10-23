@@ -21,7 +21,7 @@
 #SOFTWARE.
 
 
-AC_INIT([15Slide], 0.10.1)
+AC_INIT([15Slide], 0.11.0)
 AM_INIT_AUTOMAKE
 
 

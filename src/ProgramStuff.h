@@ -165,7 +165,7 @@ namespace ProgramStuff
 
     namespace Build
     {
-        constexpr char  SLIDE_VERSION_STRING[]   {"0.10.1"}; ///<15Slide Version String
+        constexpr char  SLIDE_VERSION_STRING[]   {"0.11.0"}; ///<15Slide Version String
 
         constexpr bool DEBUG            {true};     ///<Debug build (adds messages and command in CommandUI)
         constexpr bool RELEASE          {!DEBUG};   ///<Release build
