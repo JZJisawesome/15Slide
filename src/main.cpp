@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
         if constexpr (GTKSlide::RUNNING_UNINSTALLED)
             Glib::setenv ("GSETTINGS_SCHEMA_DIR", ".", false);
 
-        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "io.github.jzjisawesome._15Slide");//give GTK the command line arguments
+        Glib::RefPtr<Gtk::Application> application = Gtk::Application::create(argc, argv, "io.github.jzjisawesome._15slide");//give GTK the command line arguments
 
         //application refrence is needed because get_application returns nullptr sometimes
         GTKSlide::MainWindow window {application, gameGrid};//give the gameGrid and application to the GUI (may want to move to heap, see below)
