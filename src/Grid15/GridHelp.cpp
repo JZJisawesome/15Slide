@@ -119,9 +119,9 @@ namespace Grid15
                     return false;//TODO should throw an exception for this
                 else if (tileY == grid.index[Grid::NO_TILE][0] && tileX == grid.index[Grid::NO_TILE][1])//not no tile itself
                     return false;
-                else if (((tileX == grid.index[Grid::NO_TILE][1] - 1) || (tileX == grid.index[Grid::NO_TILE][1] + 1)) && tileY == grid.index[Grid::NO_TILE][0])//same row, a colum beside
+                else if (tileY == grid.index[Grid::NO_TILE][0] && ((tileX == grid.index[Grid::NO_TILE][1] - 1) || (tileX == grid.index[Grid::NO_TILE][1] + 1)))//same colum, a row beside
                     return true;
-                else if (((tileY == grid.index[Grid::NO_TILE][0] - 1) || (tileY == grid.index[Grid::NO_TILE][0] + 1)) && tileX == grid.index[Grid::NO_TILE][1])//same colum, a row beside
+                else if (tileX == grid.index[Grid::NO_TILE][1] && ((tileY == grid.index[Grid::NO_TILE][0] - 1) || (tileY == grid.index[Grid::NO_TILE][0] + 1)))//same row, a colum beside
                     return true;
                 else
                     return false;
