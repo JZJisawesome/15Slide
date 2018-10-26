@@ -421,7 +421,7 @@ void CommandUI::displayLicence()
     cout << endl;
     
     cout << "Permission is hereby granted, free of charge, to any person obtaining a copy" << "\n";
-    cout << "of this software and associated documentation files (the "Software"), to deal" << "\n";
+    cout << "of this software and associated documentation files (the \"Software\"), to deal" << "\n";
     cout << "in the Software without restriction, including without limitation the rights" << "\n";
     cout << "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell" << "\n";
     cout << "copies of the Software, and to permit persons to whom the Software is" << "\n";
@@ -432,7 +432,7 @@ void CommandUI::displayLicence()
     cout << "copies or substantial portions of the Software." << "\n";
     cout << endl;
 
-    cout << "THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR" << "\n";
+    cout << "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR" << "\n";
     cout << "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY," << "\n";
     cout << "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE" << "\n";
     cout << "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER" << "\n";
